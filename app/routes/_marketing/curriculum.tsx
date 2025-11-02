@@ -53,7 +53,7 @@ export default function Curriculum() {
 				className="h-[119px] w-full"
 				style={{ backgroundColor: 'rgb(103, 116, 137)' }}
 			/>
-			<div className="min-w-[980px] px-4 pt-16" style={{ margin: '0 auto' }}>
+			<div className="min-w-[1200px] px-20 pt-16" style={{ margin: '0 auto' }}>
 				<motion.h1
 					className="mb-6 font-serif text-5xl font-normal text-black md:text-6xl"
 					initial={{ opacity: 0, y: 20 }}
@@ -63,7 +63,7 @@ export default function Curriculum() {
 					Core Curriculum
 				</motion.h1>
 				<motion.div
-					className="mb-8 h-px bg-black"
+					className="mb-8 h-px w-full bg-black"
 					variants={dividerVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -72,8 +72,8 @@ export default function Curriculum() {
 				/>
 			</div>
 
-			<main className="min-w-[980px] px-4 pb-16" style={{ margin: '0 auto' }}>
-				<div className="ml-auto w-[702px]">
+			<main className="ml-auto max-w-[940px] px-20 pb-16">
+				<div className="text-black">
 					{/* Section I */}
 					<motion.section
 						className="mb-12"

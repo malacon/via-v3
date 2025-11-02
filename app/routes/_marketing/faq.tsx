@@ -41,7 +41,7 @@ function FAQItem({
 			return sentences.map((sentence, sentenceIndex) => (
 				<motion.div
 					key={sentenceIndex}
-					className="text-base leading-relaxed text-black"
+					className="pl-4 text-base leading-relaxed text-black"
 					variants={faqVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -59,7 +59,7 @@ function FAQItem({
 		// For JSX content, return as-is but wrapped
 		return (
 			<motion.div
-				className="text-base leading-relaxed text-black"
+				className="pl-4 text-base leading-relaxed text-black"
 				variants={faqVariants}
 				initial="hidden"
 				whileInView="visible"
@@ -72,7 +72,7 @@ function FAQItem({
 	}
 
 	return (
-		<div className="space-y-4">
+		<div className="mb-4 space-y-4">
 			<motion.h3
 				className="text-lg font-bold text-black"
 				variants={faqVariants}
@@ -86,7 +86,7 @@ function FAQItem({
 			{parseAnswerIntoSentences(answer)}
 			{!isLast && (
 				<motion.div
-					className="border-t border-black pt-8"
+					className="my-4 border-t border-black pt-0"
 					variants={dividerVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -236,7 +236,7 @@ export default function FAQ() {
 				className="h-[119px] w-full"
 				style={{ backgroundColor: 'rgb(103, 116, 137)' }}
 			/>
-			<div className="min-w-[980px] px-4 pt-16" style={{ margin: '0 auto' }}>
+			<div className="min-w-[1200px] px-20 pt-16" style={{ margin: '0 auto' }}>
 				<motion.h1
 					className="mb-6 font-serif text-5xl font-normal text-black md:text-6xl"
 					initial={{ opacity: 0, y: 20 }}
@@ -246,7 +246,7 @@ export default function FAQ() {
 					Frequently Asked Questions
 				</motion.h1>
 				<motion.div
-					className="mb-8 h-px bg-black"
+					className="mb-8 h-px w-full bg-black"
 					variants={dividerVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -255,8 +255,8 @@ export default function FAQ() {
 				/>
 			</div>
 
-			<main className="min-w-[980px] px-4 pb-16" style={{ margin: '0 auto' }}>
-				<div className="ml-auto w-[702px]">
+			<main className="ml-auto max-w-[940px] px-20 pb-16">
+				<div>
 					<div className="space-y-8">
 						{faqData.map((faq, index) => (
 							<FAQItem

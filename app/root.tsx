@@ -140,7 +140,6 @@ export const headers: Route.HeadersFunction = pipeHeaders
 function Document({
 	children,
 	nonce,
-	theme = 'light',
 	env = {},
 }: {
 	children: React.ReactNode
@@ -150,7 +149,7 @@ function Document({
 }) {
 	const allowIndexing = env.ALLOW_INDEXING !== 'false'
 	return (
-		<html lang="en" className={`${theme} h-full overflow-x-hidden`}>
+		<html lang="en" className={`light h-full overflow-x-hidden`}>
 			<head suppressHydrationWarning>
 				<ClientHintCheck nonce={nonce} />
 				<Meta />

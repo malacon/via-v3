@@ -52,9 +52,9 @@ export function ThemeSwitch({
 	})
 
 	const optimisticMode = useOptimisticThemeMode()
-	const mode = optimisticMode ?? userPreference ?? 'system'
+	const mode = optimisticMode ?? userPreference ?? 'light'
 	const nextMode =
-		mode === 'system' ? 'light' : mode === 'light' ? 'dark' : 'system'
+		mode === 'light' ? 'dark' : mode === 'dark' ? 'light' : 'light'
 	const modeLabel = {
 		light: (
 			<Icon name="sun">
@@ -64,11 +64,6 @@ export function ThemeSwitch({
 		dark: (
 			<Icon name="moon">
 				<span className="sr-only">Dark</span>
-			</Icon>
-		),
-		system: (
-			<Icon name="laptop">
-				<span className="sr-only">System</span>
 			</Icon>
 		),
 	}
@@ -90,7 +85,7 @@ export function ThemeSwitch({
 					type="submit"
 					className="flex size-8 cursor-pointer items-center justify-center"
 				>
-					{modeLabel[mode]}
+					{modeLabel[mode as keyof typeof modeLabel]}
 				</button>
 			</div>
 		</fetcher.Form>
@@ -127,7 +122,7 @@ export function useTheme() {
 	const requestInfo = useRequestInfo()
 	const optimisticMode = useOptimisticThemeMode()
 	if (optimisticMode) {
-		return optimisticMode === 'system' ? hints.theme : optimisticMode
+		return optimisticMode === 'light' ? hints.theme : optimisticMode
 	}
 	return requestInfo.userPrefs.theme ?? hints.theme
 }
@@ -137,7 +132,7 @@ export function useOptionalTheme() {
 	const optionalRequestInfo = useOptionalRequestInfo()
 	const optimisticMode = useOptimisticThemeMode()
 	if (optimisticMode) {
-		return optimisticMode === 'system' ? optionalHints?.theme : optimisticMode
+		return optimisticMode === 'light' ? optionalHints?.theme : optimisticMode
 	}
 	return optionalRequestInfo?.userPrefs.theme ?? optionalHints?.theme
 }

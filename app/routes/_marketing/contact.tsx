@@ -16,9 +16,7 @@ import { checkHoneypot } from '#app/utils/honeypot.server.ts'
 import { EmailSchema } from '#app/utils/user-validation.ts'
 import { type Route } from './+types/contact.ts'
 
-export const meta: Route.MetaFunction = () => [
-	{ title: 'Contact | Via Nova' },
-]
+export const meta: Route.MetaFunction = () => [{ title: 'Contact | Via Nova' }]
 
 const ContactFormSchema = z.object({
 	firstName: z.string().max(100).optional(),
@@ -36,7 +34,7 @@ export async function action({ request }: Route.ActionArgs) {
 
 	if (submission.status !== 'success') {
 		return data(
-			{ result: submission.reply() },
+			{ result: submission.reply(), success: false },
 			{ status: submission.status === 'error' ? 400 : 200 },
 		)
 	}
@@ -71,6 +69,7 @@ export async function action({ request }: Route.ActionArgs) {
 				result: submission.reply({
 					formErrors: [response.error.message],
 				}),
+				success: false,
 			},
 			{ status: 500 },
 		)
@@ -130,9 +129,9 @@ export default function Contact() {
 	const isSuccess = contact.data?.success === true
 
 	return (
-		<main className="mx-auto max-w-4xl px-4 py-16">
-			<h1 className="mb-8 text-4xl font-bold">Contact</h1>
-			<p className="mb-8 text-lg text-gray-600">
+		<main className="mx-auto max-w-6xl bg-gray-100/50 px-52 py-16">
+			<h1 className="mb-8 font-serif text-6xl font-normal">Contact</h1>
+			<p className="mb-8 pl-8 text-base text-gray-600">
 				If you're interested in applying to Via's 2026 cohort, have any
 				questions, or just want to say hello, please fill out your contact info
 				below and someone from our team will get back to you in the next few
@@ -200,7 +199,7 @@ export default function Contact() {
 							status={
 								contact.state === 'submitting'
 									? 'pending'
-									: form.status ?? 'idle'
+									: (form.status ?? 'idle')
 							}
 							disabled={contact.state !== 'idle'}
 						>
