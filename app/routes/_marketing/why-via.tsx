@@ -1,5 +1,6 @@
+import { motion, useInView } from 'framer-motion'
 import { Img } from 'openimg/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import HeroParallax from '#app/components/HeroParallax.tsx'
 import { TestimonialSection } from '#app/components/testimonial-section.tsx'
@@ -24,9 +25,47 @@ const newsletterImages = [
 	'/img/newsletter-5.jpg',
 ]
 
+const imageVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+		},
+	},
+}
+
+const titleVariants = {
+	hidden: { opacity: 0, y: 30 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.6,
+			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+		},
+	},
+}
+
+const textVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+		},
+	},
+}
+
 export default function WhyVia() {
 	const [newsletterApi, setNewsletterApi] = useState<CarouselApi>()
 	const [newsletterCurrent, setNewsletterCurrent] = useState(0)
+	const newsletterRef = useRef(null)
+	const newsletterInView = useInView(newsletterRef, { once: true, amount: 0.3 })
 
 	useEffect(() => {
 		if (!newsletterApi) return
@@ -310,20 +349,35 @@ export default function WhyVia() {
 			/>
 
 			{/* Fellow Newsletters Section */}
-			<section className="relative z-10 bg-[#364153] py-16">
+			<section ref={newsletterRef} className="relative z-10 bg-[#364153] py-16">
 				<div className="mx-auto max-w-6xl px-4">
 					<div className="text-center text-white">
-						<h2 className="mb-6 font-serif text-4xl font-normal text-white">
+						<motion.h2
+							className="mb-6 font-serif text-4xl font-normal text-white"
+							variants={titleVariants}
+							initial="hidden"
+							animate={newsletterInView ? 'visible' : 'hidden'}
+						>
 							Fellow Newsletters
-						</h2>
-						<p className="mx-auto mb-12 max-w-3xl text-xl leading-[25px] font-thin">
+						</motion.h2>
+						<motion.p
+							className="mx-auto mb-12 max-w-3xl text-xl leading-[25px] font-thin"
+							variants={textVariants}
+							initial="hidden"
+							animate={newsletterInView ? 'visible' : 'hidden'}
+						>
 							Each semester, all of the Via Fellows create newsletters detailing
 							their experience in Via. The newsletter serves as an opportunity
 							for Fellows to reflect on what they're experiencing and to
 							communicate their experience to friends and family.
-						</p>
+						</motion.p>
 					</div>
-					<div className="mx-auto max-w-4xl">
+					<motion.div
+						className="mx-auto max-w-4xl"
+						variants={imageVariants}
+						initial="hidden"
+						animate={newsletterInView ? 'visible' : 'hidden'}
+					>
 						<Carousel
 							setApi={setNewsletterApi}
 							opts={{
@@ -355,7 +409,7 @@ export default function WhyVia() {
 						<div className="mt-2 text-center text-sm text-gray-300">
 							{newsletterCurrent}/{newsletterImages.length}
 						</div>
-					</div>
+					</motion.div>
 				</div>
 			</section>
 

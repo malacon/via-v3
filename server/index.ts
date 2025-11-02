@@ -25,7 +25,6 @@ const viteDevServer = IS_PROD
 	? undefined
 	: await import('vite').then((vite) =>
 			vite.createServer({
-				publicDir: 'public',
 				server: {
 					middlewareMode: true,
 				},
@@ -89,22 +88,6 @@ if (viteDevServer) {
 			immutable: true,
 			maxAge: '1y',
 			fallthrough: false,
-		}),
-	)
-
-	// Serve images and favicons explicitly with caching
-	app.use(
-		'/img',
-		express.static('build/client/img', {
-			maxAge: '1y',
-			immutable: true,
-		}),
-	)
-	app.use(
-		'/favicons',
-		express.static('build/client/favicons', {
-			maxAge: '1y',
-			immutable: true,
 		}),
 	)
 
@@ -218,22 +201,8 @@ if (!ALLOW_INDEXING) {
 	})
 }
 
-// Only let React Router handle non-static asset requests
 app.all(
 	'*',
-	(req, res, next) => {
-		// Skip React Router for static assets that should already be handled
-		if (
-			!IS_DEV &&
-			(req.path.startsWith('/img/') ||
-				req.path.startsWith('/favicons/') ||
-				req.path.startsWith('/assets/') ||
-				req.path.startsWith('/fonts/'))
-		) {
-			return res.status(404).send('Not found')
-		}
-		next()
-	},
 	createRequestHandler({
 		getLoadContext: () => ({ serverBuild: getBuild() }),
 		mode: MODE,

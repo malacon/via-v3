@@ -1,16 +1,10 @@
-import { Img } from 'openimg/react'
-import { useEffect, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
+import { FullWidthSection } from '#app/components/full-width-section.tsx'
 import HeroCarousel from '#app/components/HeroCarousel.tsx'
+import { ProfileCarouselSection } from '#app/components/profile-carousel-section.tsx'
 import { Button } from '#app/components/ui/button.tsx'
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
-	type CarouselApi,
-} from '#app/components/ui/carousel.tsx'
 import { type Route } from './+types/index.ts'
 
 export const meta: Route.MetaFunction = () => [
@@ -75,15 +69,39 @@ const profileImages = [
 	'/img/profile-7.jpg', // FullSizeRender
 ]
 
-export default function Index() {
-	const [profileApi, setProfileApi] = useState<CarouselApi>()
+const titleVariants = {
+	hidden: { opacity: 0, y: 30 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.6,
+			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+		},
+	},
+}
 
-	useEffect(() => {
-		if (!profileApi) return
-		profileApi.on('select', () => {
-			// Handle selection if needed
-		})
-	}, [profileApi])
+const textVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+		},
+	},
+}
+
+export default function Index() {
+	const lifeInViaRef = useRef(null)
+	const keepViaFreeRef = useRef(null)
+
+	const lifeInViaInView = useInView(lifeInViaRef, { once: true, amount: 0.3 })
+	const keepViaFreeInView = useInView(keepViaFreeRef, {
+		once: true,
+		amount: 0.3,
+	})
 
 	return (
 		<div className="bg-white">
@@ -112,144 +130,117 @@ export default function Index() {
 			/>
 
 			{/* Life in Via Section */}
-			<section className="bg-white py-12 md:py-16">
-				<div className="mx-auto max-w-7xl px-4 lg:max-w-[90rem]">
-					<div className="grid gap-12 md:grid-cols-6 lg:grid-cols-9 lg:gap-4 xl:grid-cols-12 xl:gap-16">
-						{/* Left Column - Large Heading with Varied Sizing */}
-						<div className="col-span-6 col-start-1 flex flex-col justify-center text-right text-[40px] xl:col-span-4 xl:col-start-2">
-							<div className="text-header font-serif leading-relaxed font-light">
-								<p className="">Life in Via centers</p>
-								<p className="">around the</p>
-								<p className="">ancient formula</p>
-								<p className="">
-									of <span className="font-bold">study, work,</span>
-								</p>
-								<p className="">
-									<span className="font-bold">& prayer.</span>
-								</p>
-							</div>
+			<FullWidthSection
+				ref={lifeInViaRef}
+				maxWidth="max-w-7xl lg:max-w-[90rem]"
+			>
+				<div className="grid gap-12 md:grid-cols-6 lg:grid-cols-9 lg:gap-4 xl:grid-cols-12 xl:gap-16">
+					{/* Left Column - Large Heading with Varied Sizing */}
+					<div className="col-span-6 col-start-1 flex flex-col justify-center text-right text-[40px] xl:col-span-4 xl:col-start-2">
+						<div className="text-header font-serif leading-relaxed font-light">
+							<motion.p
+								variants={titleVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								Life in Via centers
+							</motion.p>
+							<motion.p
+								variants={titleVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								around the
+							</motion.p>
+							<motion.p
+								variants={titleVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								ancient formula
+							</motion.p>
+							<motion.p
+								variants={titleVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								of <span className="font-bold">study, work,</span>
+							</motion.p>
+							<motion.p
+								variants={titleVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								<span className="font-bold">& prayer.</span>
+							</motion.p>
 						</div>
+					</div>
 
-						{/* Right Column - Detailed Descriptions */}
-						<div className="col-span-6 flex flex-col justify-center gap-3 text-left xl:col-span-7">
-							<div className="font-display text-header space-y-6 text-[25px] font-normal tracking-normal">
-								<p>
-									<span className="font-navigation">Studies</span> in Via
-									consist of seminars featuring the ancient literary and
-									philosophical traditions of Israel, Babylon, Greece, and early
-									Christianity.
-								</p>
-								<p>
-									<span className="font-navigation">Work</span> consists of
-									apprenticeships with Catholic professionals dedicated to
-									preparing participants for success in their respective
-									careers.
-								</p>
-								<p>
-									<span className="font-navigation">Prayer</span> consists of
-									frequent time in silent prayer, spiritual reading, and the
-									sacraments under the guidance of spiritual directors.
-								</p>
-							</div>
+					{/* Right Column - Detailed Descriptions */}
+					<div className="col-span-6 flex flex-col justify-center gap-3 text-left xl:col-span-7">
+						<div className="font-display text-header space-y-6 text-[25px] font-normal tracking-normal">
+							<motion.p
+								variants={textVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								<span className="font-navigation">Studies</span> in Via consist
+								of seminars featuring the ancient literary and philosophical
+								traditions of Israel, Babylon, Greece, and early Christianity.
+							</motion.p>
+							<motion.p
+								variants={textVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								<span className="font-navigation">Work</span> consists of
+								apprenticeships with Catholic professionals dedicated to
+								preparing participants for success in their respective careers.
+							</motion.p>
+							<motion.p
+								variants={textVariants}
+								initial="hidden"
+								animate={lifeInViaInView ? 'visible' : 'hidden'}
+							>
+								<span className="font-navigation">Prayer</span> consists of
+								frequent time in silent prayer, spiritual reading, and the
+								sacraments under the guidance of spiritual directors.
+							</motion.p>
 						</div>
 					</div>
 				</div>
-			</section>
+			</FullWidthSection>
 
 			{/* Profile of a Via Fellow Section */}
-			<section className="bg-heading relative">
-				{/* Mobile: Single image with overlay */}
-				<div className="relative h-[500px] w-full md:hidden">
-					<Img
-						src="/img/profile-hero.jpg"
-						alt="Via Nova community"
-						width={1200}
-						height={800}
-						fit="cover"
-						isAboveFold
-						className="h-full w-full object-cover"
-					/>
-					<div className="bg-header absolute right-0 bottom-0 left-0 p-6 text-white">
-						<h4 className="mb-4 font-serif text-2xl font-normal text-white md:text-3xl">
-							Profile of a Via Fellow
-						</h4>
-						<p className="mb-4 text-base leading-relaxed md:text-xl">
-							Via provides participants with a simple but very full life,
-							experienced in a community of people who desire largely the same
-							things, namely:
-						</p>
-						<ul className="space-y-1.5 text-sm leading-relaxed md:space-y-2 md:text-xl">
-							<li>• Knowledge of oneself, the world, and God</li>
-							<li>• Habits of order and self-mastery</li>
-							<li>• Meaningful work in a potential career</li>
-							<li>• An abiding love of God and neighbor</li>
-							<li>• A capacity to pray & meditate</li>
-							<li>• Freedom from vice and attachment</li>
-							<li>• An ability to share the faith with confidence</li>
-							<li>• A deepened understanding of one's calling in life</li>
-						</ul>
-					</div>
-				</div>
-				{/* Desktop: Two column layout */}
-				<div className="hidden md:flex md:items-stretch">
-					<div className="flex w-[60%] flex-col space-y-6 py-12 text-white md:py-16">
-						<h4 className="ml-[30%] pr-[50px] font-serif text-3xl font-normal text-white">
-							Profile of a Via Fellow
-						</h4>
-						<p className="ml-[30%] pr-[50px] text-xl leading-relaxed">
-							Via provides participants with a simple but very full life,
-							experienced in a community of people who desire largely the same
-							things, namely:
-						</p>
-						<ul className="ml-[30%] space-y-2 pr-[50px] pl-2 text-xl leading-relaxed font-thin">
-							<li>• Knowledge of oneself, the world, and God</li>
-							<li>• Habits of order and self-mastery</li>
-							<li>• Meaningful work in a potential career</li>
-							<li>• An abiding love of God and neighbor</li>
-							<li>• A capacity to pray & meditate</li>
-							<li>• Freedom from vice and attachment</li>
-							<li>• An ability to share the faith with confidence</li>
-							<li>• A deepened understanding of one's calling in life</li>
-						</ul>
-					</div>
-					<div className="flex w-[40%]">
-						<div className="relative h-[626px] w-full">
-							<Carousel
-								setApi={setProfileApi}
-								opts={{
-									align: 'start',
-									loop: true,
-									dragFree: true,
-								}}
-								className="h-full w-full"
-							>
-								<CarouselContent>
-									{profileImages.map((src, index) => (
-										<CarouselItem key={index} className="pl-0">
-											<div className="relative h-full w-full overflow-hidden">
-												<Img
-													src={src}
-													alt={`Intellectual formation ${index + 1}`}
-													width={800}
-													height={1000}
-													fit="cover"
-													className="h-full w-full object-cover"
-												/>
-											</div>
-										</CarouselItem>
-									))}
-								</CarouselContent>
-								<CarouselPrevious variant="ghost" />
-								<CarouselNext variant="ghost" />
-							</Carousel>
-							{/* <CarouselCounter
-								current={profileCurrent}
-								total={profileImages.length}
-							/> */}
-						</div>
-					</div>
-				</div>
-			</section>
+			<ProfileCarouselSection
+				background="bg-heading"
+				carouselImages={profileImages}
+				mobileHeroImage={{
+					src: '/img/profile-hero.jpg',
+					alt: 'Via Nova community',
+					width: 1200,
+					height: 800,
+				}}
+				title="Profile of a Via Fellow"
+				carouselPosition="right"
+				imageAltPrefix="Intellectual formation"
+			>
+				<p className="mb-4 text-base leading-relaxed md:text-xl">
+					Via provides participants with a simple but very full life,
+					experienced in a community of people who desire largely the same
+					things, namely:
+				</p>
+				<ul className="space-y-1.5 text-sm leading-relaxed md:space-y-2 md:text-xl">
+					<li>• Knowledge of oneself, the world, and God</li>
+					<li>• Habits of order and self-mastery</li>
+					<li>• Meaningful work in a potential career</li>
+					<li>• An abiding love of God and neighbor</li>
+					<li>• A capacity to pray & meditate</li>
+					<li>• Freedom from vice and attachment</li>
+					<li>• An ability to share the faith with confidence</li>
+					<li>• A deepened understanding of one's calling in life</li>
+				</ul>
+			</ProfileCarouselSection>
 
 			{/* Learn More Section */}
 			<FullWidthBannerLink to="/why-via">
@@ -257,33 +248,49 @@ export default function Index() {
 			</FullWidthBannerLink>
 
 			{/* Keep Via Free Section */}
-			<section className="bg-white py-12 md:py-16">
-				<div className="mx-auto max-w-5xl px-4 text-center">
-					<h4 className="mb-4 font-serif text-2xl font-normal tracking-widest text-gray-800 md:mb-6 md:text-3xl">
+			<FullWidthSection ref={keepViaFreeRef} maxWidth="max-w-5xl">
+				<div className="text-center">
+					<motion.h4
+						className="mb-4 font-serif text-2xl font-normal tracking-widest text-gray-800 md:mb-6 md:text-3xl"
+						variants={titleVariants}
+						initial="hidden"
+						animate={keepViaFreeInView ? 'visible' : 'hidden'}
+					>
 						Keep Via Free
-					</h4>
-					<blockquote className="mb-6 text-base leading-9 text-gray-800 md:mb-12 md:text-xl">
+					</motion.h4>
+					<motion.blockquote
+						className="mb-6 text-base leading-9 text-gray-800 md:mb-12 md:text-xl"
+						variants={textVariants}
+						initial="hidden"
+						animate={keepViaFreeInView ? 'visible' : 'hidden'}
+					>
 						We believe that the experience of Via is so important that financial
 						barriers should be removed as much as possible to allow young people
 						to participate in one life-changing year of formation. Help us keep
 						Via free by making a gift today.
-					</blockquote>
-					<Button
-						variant="default"
-						size="wide"
-						asChild
-						className="md:bg-header md:hover:bg-header/90 mb-6 w-48 rounded-full bg-gray-400 px-0 py-4 text-base text-gray-800 hover:bg-gray-500 md:mb-8 md:py-4 md:text-lg md:text-white"
+					</motion.blockquote>
+					<motion.div
+						variants={textVariants}
+						initial="hidden"
+						animate={keepViaFreeInView ? 'visible' : 'hidden'}
 					>
-						<a
-							href="https://vianova.stellarwebsystems.com/donations/pool/79bdb7d4-264e-11ee-9cac-16118fddfe69"
-							target="_blank"
-							rel="noreferrer noopener"
+						<Button
+							variant="default"
+							size="wide"
+							asChild
+							className="md:bg-header md:hover:bg-header/90 mb-6 w-48 rounded-full bg-gray-400 px-0 py-4 text-base text-gray-800 hover:bg-gray-500 md:mb-8 md:py-4 md:text-lg md:text-white"
 						>
-							Give Now
-						</a>
-					</Button>
+							<a
+								href="https://vianova.stellarwebsystems.com/donations/pool/79bdb7d4-264e-11ee-9cac-16118fddfe69"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								Give Now
+							</a>
+						</Button>
+					</motion.div>
 				</div>
-			</section>
+			</FullWidthSection>
 
 			{/* Footer */}
 			<footer className="bg-white py-6 md:py-8">

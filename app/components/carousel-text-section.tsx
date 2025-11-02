@@ -94,11 +94,29 @@ export function CarouselTextSection({
 		},
 	}
 
+	const imageVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 0.5,
+				ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+			},
+		},
+	}
+
 	const hasMultipleImages = images.length > 1
 
 	// Render carousel and text in the correct order based on carouselSide
 	const carouselElement = (
-		<div className="relative" style={{ height: imageContainerHeight }}>
+		<motion.div
+			className="relative"
+			style={{ height: imageContainerHeight }}
+			variants={imageVariants}
+			initial="hidden"
+			animate={isInView ? 'visible' : 'hidden'}
+		>
 			<Carousel
 				setApi={setApi}
 				opts={{
@@ -141,7 +159,7 @@ export function CarouselTextSection({
 					className={counterColor}
 				/>
 			)}
-		</div>
+		</motion.div>
 	)
 
 	const textElement = (

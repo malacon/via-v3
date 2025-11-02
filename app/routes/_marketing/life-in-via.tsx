@@ -238,9 +238,6 @@ export default function LifeInVia() {
 				images={['/img/retreats-pilgrimages.jpg']}
 				carouselSide="right"
 				imageAltPrefix="retreats and pilgrimages"
-				imageHeight={480}
-				imageWidth={475}
-				imageContainerHeight="480px"
 			>
 				<p>
 					Retreats in Via serve as an opportunity for devoting more time to
@@ -295,9 +292,6 @@ export default function LifeInVia() {
 				images={['/img/internal-support.jpg']}
 				carouselSide="right"
 				imageAltPrefix="internal support"
-				imageHeight={383}
-				imageWidth={475}
-				imageContainerHeight="383px"
 			>
 				<p>
 					Fellows have intentional check-ins with their housemates every two
