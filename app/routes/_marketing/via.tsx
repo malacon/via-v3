@@ -1,3 +1,4 @@
+import { Img } from 'openimg/react'
 import { type Route } from './+types/via.ts'
 
 export const meta: Route.MetaFunction = () => [{ title: 'Via Nova' }]
@@ -10,7 +11,7 @@ export default function Via() {
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
 					<a href="/" className="flex items-center gap-3">
 						<img
-							src="./img/via-logo.png"
+							src="/img/via-logo.png"
 							alt="Via Nova logo"
 							className="w-auto"
 							width="324"
@@ -75,9 +76,12 @@ export default function Via() {
 			{/* Hero Section */}
 			<section className="relative overflow-hidden bg-gray-900">
 				<div className="absolute inset-0 h-full w-full">
-					<img
+					<Img
 						src="/2aa532_8cf969a8c37f4d958ef55d4053dcf93f~mv2.jpg"
 						alt=""
+						width={1920}
+						height={1080}
+						fit="cover"
 						className="h-full w-full object-cover opacity-40"
 					/>
 					<div className="absolute inset-0 bg-black/50" />
@@ -184,14 +188,20 @@ export default function Via() {
 						</ul>
 					</div>
 					<div className="mt-8 space-y-4 lg:mt-0">
-						<img
+						<Img
 							src="/2aa532_35186cef25b7464681e8b861bd860489~mv2.jpg"
 							alt=""
+							width={800}
+							height={600}
+							fit="cover"
 							className="h-auto w-full rounded-md object-cover shadow-lg"
 						/>
-						<img
+						<Img
 							src="/2aa532_ccc37c52482344ca92b601281b26157e~mv2.jpeg"
 							alt=""
+							width={800}
+							height={600}
+							fit="cover"
 							className="h-auto w-full rounded-md object-cover shadow-lg"
 						/>
 					</div>
@@ -211,9 +221,12 @@ export default function Via() {
 					<div className="grid gap-6 sm:grid-cols-3">
 						{/* Newsletter cards */}
 						<div className="text-center">
-							<img
+							<Img
 								src="/2aa532_8c2404f747e24465b2853f617ce5fbb8~mv2.jpg"
 								alt=""
+								width={400}
+								height={600}
+								fit="cover"
 								className="mb-4 rounded-md object-cover shadow-md"
 							/>
 							<h3 className="mb-2 font-bold text-gray-800">
@@ -227,9 +240,12 @@ export default function Via() {
 							</p>
 						</div>
 						<div className="text-center">
-							<img
+							<Img
 								src="/2aa532_8c2404f747e24465b2853f617ce5fbb8~mv2.jpg"
 								alt=""
+								width={400}
+								height={600}
+								fit="cover"
 								className="mb-4 rounded-md object-cover shadow-md"
 							/>
 							<h3 className="mb-2 font-bold text-gray-800">
@@ -243,9 +259,12 @@ export default function Via() {
 							</p>
 						</div>
 						<div className="text-center">
-							<img
+							<Img
 								src="/2aa532_8c2404f747e24465b2853f617ce5fbb8~mv2.jpg"
 								alt=""
+								width={400}
+								height={600}
+								fit="cover"
 								className="mb-4 rounded-md object-cover shadow-md"
 							/>
 							<h3 className="mb-2 font-bold text-gray-800">

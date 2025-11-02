@@ -1,3 +1,4 @@
+import { Img } from 'openimg/react'
 import { useEffect, useState } from 'react'
 import HeroParallax from '#app/components/HeroParallax.tsx'
 import {
@@ -182,9 +183,12 @@ export default function LifeInVia() {
 										{intellectualImages.map((src, index) => (
 											<CarouselItem key={index} className="pl-0">
 												<div className="relative h-[587px] w-full overflow-hidden rounded-lg">
-													<img
+													<Img
 														src={src}
 														alt={`Intellectual formation ${index + 1}`}
+														width={800}
+														height={1000}
+														fit="cover"
 														className="h-full w-full object-cover"
 													/>
 												</div>
@@ -300,9 +304,12 @@ export default function LifeInVia() {
 									{spiritualImages.map((src, index) => (
 										<CarouselItem key={index} className="pl-0">
 											<div className="relative h-[587px] w-full overflow-hidden rounded-lg">
-												<img
+												<Img
 													src={src}
 													alt={`Spiritual formation ${index + 1}`}
+													width={800}
+													height={1000}
+													fit="cover"
 													className="h-full w-full object-cover"
 												/>
 											</div>
@@ -343,9 +350,12 @@ export default function LifeInVia() {
 										{serviceImages.map((src, index) => (
 											<CarouselItem key={index} className="pl-0">
 												<div className="relative h-[587px] w-full overflow-hidden rounded-lg">
-													<img
+													<Img
 														src={src}
 														alt={`Service & community ${index + 1}`}
+														width={800}
+														height={1000}
+														fit="cover"
 														className="h-full w-full object-cover"
 													/>
 												</div>
@@ -431,9 +441,12 @@ export default function LifeInVia() {
 							</div>
 						</div>
 						<div>
-							<img
+							<Img
 								src="/img/retreats-pilgrimages.jpg"
 								alt="Fellows on horses during pilgrimage"
+								width={1200}
+								height={900}
+								fit="cover"
 								className="h-[587px] w-full rounded-lg object-cover"
 							/>
 						</div>
@@ -449,9 +462,12 @@ export default function LifeInVia() {
 				<div className="mx-auto max-w-7xl px-4">
 					<div className="grid gap-12 md:grid-cols-2">
 						<div>
-							<img
+							<Img
 								src="/img/external-support-alt.jpg"
 								alt="External support - Fellows in study"
+								width={800}
+								height={600}
+								fit="cover"
 								className="h-[383px] w-full rounded-lg object-cover"
 							/>
 						</div>
@@ -504,9 +520,12 @@ export default function LifeInVia() {
 							</div>
 						</div>
 						<div>
-							<img
+							<Img
 								src="/img/internal-support.jpg"
 								alt="Internal support"
+								width={800}
+								height={600}
+								fit="cover"
 								className="h-[384px] w-full rounded-lg object-cover"
 							/>
 						</div>
@@ -522,9 +541,12 @@ export default function LifeInVia() {
 				<div className="mx-auto max-w-7xl px-4">
 					<div className="grid gap-12 md:grid-cols-2">
 						<div>
-							<img
+							<Img
 								src="/img/professional-formation.jpg"
 								alt="Professional formation"
+								width={800}
+								height={1000}
+								fit="cover"
 								className="h-[565px] w-full rounded-lg object-cover"
 							/>
 						</div>
@@ -602,9 +624,12 @@ export default function LifeInVia() {
 									{bottomLineImages.map((src, index) => (
 										<CarouselItem key={index} className="pl-0">
 											<div className="relative h-[587px] w-full overflow-hidden rounded-lg">
-												<img
+												<Img
 													src={src}
 													alt={`Bottom line ${index + 1}`}
+													width={800}
+													height={1000}
+													fit="cover"
 													className="h-full w-full object-cover"
 												/>
 											</div>

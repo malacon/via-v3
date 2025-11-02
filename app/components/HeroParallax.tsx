@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { Img } from 'openimg/react'
 import { useRef } from 'react'
 
 type HeroParallaxProps = {
@@ -44,15 +45,21 @@ export default function HeroParallax({
 				className="pointer-events-none fixed top-0 left-0 h-screen w-screen will-change-transform"
 				style={{
 					y, // disabled by reduced-motion CSS below
-					backgroundImage: `url(${imageSrc})`,
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
-					backgroundRepeat: 'no-repeat',
 					zIndex: 1,
 				}}
 				aria-hidden
 				data-parallax-bg
-			/>
+			>
+				<Img
+					src={imageSrc}
+					alt=""
+					width={1920}
+					height={1080}
+					fit="cover"
+					isAboveFold
+					className="h-full w-full object-cover"
+				/>
+			</motion.div>
 
 			{/* Optional overlay to increase text contrast */}
 			<div className={`absolute inset-0 z-0 ${overlayClass}`} aria-hidden />

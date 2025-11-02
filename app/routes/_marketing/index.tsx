@@ -1,3 +1,4 @@
+import { Img } from 'openimg/react'
 import { useEffect, useState } from 'react'
 import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import HeroCarousel from '#app/components/HeroCarousel.tsx'
@@ -8,7 +9,6 @@ import {
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
-	CarouselCounter,
 	type CarouselApi,
 } from '#app/components/ui/carousel.tsx'
 import { type Route } from './+types/index.ts'
@@ -77,13 +77,11 @@ const profileImages = [
 
 export default function Index() {
 	const [profileApi, setProfileApi] = useState<CarouselApi>()
-	const [profileCurrent, setProfileCurrent] = useState(0)
 
 	useEffect(() => {
 		if (!profileApi) return
-		setProfileCurrent(profileApi.selectedScrollSnap() + 1)
 		profileApi.on('select', () => {
-			setProfileCurrent(profileApi.selectedScrollSnap() + 1)
+			// Handle selection if needed
 		})
 	}, [profileApi])
 
@@ -162,9 +160,13 @@ export default function Index() {
 			<section className="bg-heading relative">
 				{/* Mobile: Single image with overlay */}
 				<div className="relative h-[500px] w-full md:hidden">
-					<img
+					<Img
 						src="/img/profile-hero.jpg"
 						alt="Via Nova community"
+						width={1200}
+						height={800}
+						fit="cover"
+						isAboveFold
 						className="h-full w-full object-cover"
 					/>
 					<div className="bg-header absolute right-0 bottom-0 left-0 p-6 text-white">
@@ -225,9 +227,12 @@ export default function Index() {
 									{profileImages.map((src, index) => (
 										<CarouselItem key={index} className="pl-0">
 											<div className="relative h-full w-full overflow-hidden">
-												<img
+												<Img
 													src={src}
 													alt={`Intellectual formation ${index + 1}`}
+													width={800}
+													height={1000}
+													fit="cover"
 													className="h-full w-full object-cover"
 												/>
 											</div>

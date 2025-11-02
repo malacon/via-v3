@@ -1,3 +1,4 @@
+import { Img } from 'openimg/react'
 import { useEffect, useState } from 'react'
 import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import HeroParallax from '#app/components/HeroParallax.tsx'
@@ -86,9 +87,12 @@ export default function WhyVia() {
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="float-left mr-6 mb-6 w-full max-w-md md:max-w-sm">
-								<img
+								<Img
 									src="/img/testimonial-collin.jpg"
 									alt="Collin Stephenson on mountain peak"
+									width={600}
+									height={800}
+									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
@@ -133,9 +137,12 @@ export default function WhyVia() {
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="float-right mb-6 ml-6 w-full max-w-md md:max-w-sm">
-								<img
+								<Img
 									src="/img/testimonial-ellen-1.jpg"
 									alt="Ellen LeBlanc"
+									width={600}
+									height={800}
+									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
@@ -177,9 +184,12 @@ export default function WhyVia() {
 						</div>
 						<div className="clear-both">
 							<div className="float-left mr-6 mb-6 w-full max-w-md md:max-w-sm">
-								<img
+								<Img
 									src="/img/testimonial-ellen-2.jpg"
 									alt="Isaac and Anthony with guitars"
+									width={600}
+									height={800}
+									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
@@ -217,9 +227,12 @@ export default function WhyVia() {
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="float-right mb-6 ml-6 w-full max-w-md md:max-w-lg">
-								<img
+								<Img
 									src="/img/testimonial-isaac-1.jpg"
 									alt="Isaac and Anthony with guitars"
+									width={800}
+									height={600}
+									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
@@ -261,9 +274,12 @@ export default function WhyVia() {
 						</div>
 						<div className="clear-both">
 							<div className="float-left mr-6 mb-6 w-full max-w-2xs md:max-w-sm">
-								<img
+								<Img
 									src="/img/testimonial-isaac-2.jpg"
 									alt="Isaac LeJeune with guitar"
+									width={600}
+									height={800}
+									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
@@ -289,9 +305,12 @@ export default function WhyVia() {
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="mask-shape-square float-right mb-6 ml-6">
-								<img
+								<Img
 									src="/img/testimonial-sam.jpg"
 									alt="Sam LeBlanc in kitchen"
+									width={337}
+									height={435}
+									fit="cover"
 									className="mask-image-applied h-[435px] w-[337px] scale-x-[-1] overflow-hidden object-cover [object-position:var(--object-position)] [filter:var(--filter-effect-svg-url)]"
 								/>
 							</div>
@@ -361,9 +380,12 @@ export default function WhyVia() {
 								{newsletterImages.map((src, index) => (
 									<CarouselItem key={index} className="pl-0 md:basis-1/2">
 										<div className="relative h-[400px] w-full overflow-hidden">
-											<img
+											<Img
 												src={src}
 												alt={`Fellow newsletter ${index + 1}`}
+												width={800}
+												height={1000}
+												fit="cover"
 												className="h-full w-full object-cover"
 											/>
 										</div>
