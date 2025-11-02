@@ -1,0 +1,66 @@
+---
+alwaysApply: true
+---
+
+# Via Nova Design Standards
+
+## Brand Fonts
+
+- **Libre Baskerville**: Primary font for most text
+- **Futura (and Futura Light)**: For small text, variety, and pacing of
+  attention
+
+## Brand Colors
+
+- **Light Tint**: 100% or 80% of `#F7F7F7`
+- **Dark Blue**: `#364153` (and percentages of)
+- **Navy Blue**: `#202A2E`
+- **Light Grey Blue**: `#677489`
+- **Tint behind "Why Via"**: 15% of `#677489`
+
+## Design Principles
+
+1. Follow wireframe designs for desktop and mobile layouts including fonts,
+   placement, and size
+2. Ensure text animations are implemented as designed
+3. Maintain consistent spacing between lines and text throughout
+4. Use gradients on images - never go to fully clear on one side, always keep
+   the lightest gradient at 15-20% of the overlay color
+5. Ensure proper text alignment and prevent "type widows" (single words on a new
+   line)
+
+## Navigation
+
+- Desktop: Navigation should be wider than content of main body
+- Mobile: Use hamburger menu with consistent font treatment (no italics, same as
+  desktop)
+- Title safe area should be wider than Wix default to prevent text collisions
+- Via Logo links to home page
+
+## Images
+
+- All images should be properly centered
+- Use gradients overlays on images as specified
+- Maintain consistent image quality and cropping
+
+## Mobile Considerations
+
+- Ensure mobile optimization is complete for all pages
+- Hamburger menu items should be centered on mobile
+- Text should properly rag (wrap) with correct alignment based on alphanumeric
+  indicators
+- Maintain consistent spacing above and below each line
+
+## Interactive Elements
+
+- Carousels should support swipe on mobile and cursor navigation on desktop
+- Passive fade transitions should be implemented
+- Hover states should be applied to interactive elements
+- Sticky navigation should be used where appropriate
+
+## Content Guidelines
+
+- Maintain semantic HTML structure
+- Use proper heading hierarchy
+- Ensure accessibility with ARIA labels where needed
+- Follow the approved text content from design notes
