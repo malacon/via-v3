@@ -83,15 +83,15 @@ export default function WhyVia() {
 
 			{/* Collin Stephenson Testimonial */}
 			<section id="testimonials" className="relative z-10 bg-white py-16">
-				<div className="mx-auto max-w-7xl px-4">
+				<div className="mx-auto max-w-6xl px-4">
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="float-left mr-6 mb-6 w-full max-w-md md:max-w-sm">
 								<Img
 									src="/img/testimonial-collin.jpg"
 									alt="Collin Stephenson on mountain peak"
-									width={600}
-									height={800}
+									width={321}
+									height={445}
 									fit="cover"
 									className="w-full object-cover"
 								/>
@@ -99,7 +99,7 @@ export default function WhyVia() {
 							<h2 className="pb-6 font-serif text-4xl font-normal text-gray-900">
 								Collin Stephenson
 							</h2>
-							<div className="space-y-4 text-lg leading-relaxed text-gray-700">
+							<div className="space-y-4 text-lg leading-[25px] font-thin text-gray-800">
 								<p>
 									My single year with Via changed my life in dramatic ways.
 									First and foremost, it increased my desire to have an
@@ -133,15 +133,15 @@ export default function WhyVia() {
 
 			{/* Ellen LeBlanc Testimonial */}
 			<section className="relative z-10 bg-white py-16">
-				<div className="mx-auto max-w-7xl px-4">
+				<div className="mx-auto max-w-6xl px-4">
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="float-right mb-6 ml-6 w-full max-w-md md:max-w-sm">
 								<Img
 									src="/img/testimonial-ellen-1.jpg"
 									alt="Ellen LeBlanc"
-									width={600}
-									height={800}
+									width={371}
+									height={390}
 									fit="cover"
 									className="w-full object-cover"
 								/>
@@ -149,7 +149,7 @@ export default function WhyVia() {
 							<h2 className="pb-6 font-serif text-4xl font-normal text-gray-900">
 								Ellen LeBlanc
 							</h2>
-							<div className="space-y-4 text-lg leading-relaxed text-gray-700">
+							<div className="space-y-4 text-lg leading-[25px] font-thin text-gray-800">
 								<p>
 									One of the main reasons I did Via was for the intellectual
 									formation. I recognized the blessings of my classical
@@ -187,13 +187,13 @@ export default function WhyVia() {
 								<Img
 									src="/img/testimonial-ellen-2.jpg"
 									alt="Isaac and Anthony with guitars"
-									width={600}
-									height={800}
+									width={426}
+									height={325}
 									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
-							<div className="space-y-4 text-lg leading-relaxed text-gray-700">
+							<div className="space-y-4 text-lg leading-[25px] font-thin text-gray-800">
 								<p>
 									Life in Via was demanding, as I had anticipated, but never to
 									the point of misery. I was pleasantly surprised at how
@@ -223,15 +223,15 @@ export default function WhyVia() {
 
 			{/* Isaac LeJeune Testimonial */}
 			<section className="relative z-10 bg-white py-16">
-				<div className="mx-auto max-w-7xl px-4">
+				<div className="mx-auto max-w-6xl px-4">
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="float-right mb-6 ml-6 w-full max-w-md md:max-w-lg">
 								<Img
 									src="/img/testimonial-isaac-1.jpg"
 									alt="Isaac and Anthony with guitars"
-									width={800}
-									height={600}
+									width={465}
+									height={312}
 									fit="cover"
 									className="w-full object-cover"
 								/>
@@ -240,7 +240,7 @@ export default function WhyVia() {
 								Isaac LeJeune
 							</h2>
 
-							<div className="space-y-4 text-lg leading-relaxed text-gray-700">
+							<div className="space-y-4 text-lg leading-[25px] font-thin text-gray-800">
 								<p>
 									There are a lot of ways someone can expect to grow in Via. I
 									found that what we did in Via helped me to love my faith and
@@ -277,13 +277,13 @@ export default function WhyVia() {
 								<Img
 									src="/img/testimonial-isaac-2.jpg"
 									alt="Isaac LeJeune with guitar"
-									width={600}
-									height={800}
+									width={351}
+									height={208}
 									fit="cover"
 									className="w-full object-cover"
 								/>
 							</div>
-							<p className="text-lg leading-relaxed text-gray-700">
+							<p className="text-lg leading-[25px] font-thin text-gray-800">
 								Via was an extremely fruitful experience for me. The saints
 								attest to the fact that a vital component of growing in the
 								spiritual life is consistency, and Via's way of life, being as
@@ -301,7 +301,7 @@ export default function WhyVia() {
 
 			{/* Sam LeBlanc Testimonial */}
 			<section className="relative z-10 bg-white py-16">
-				<div className="mx-auto max-w-7xl px-4">
+				<div className="mx-auto max-w-6xl px-4">
 					<div className="space-y-6">
 						<div className="clear-both">
 							<div className="mask-shape-square float-right mb-6 ml-6">
@@ -317,7 +317,7 @@ export default function WhyVia() {
 							<h2 className="pb-6 font-serif text-4xl font-normal text-gray-900">
 								Sam LeBlanc
 							</h2>
-							<div className="space-y-4 text-lg leading-relaxed text-gray-700">
+							<div className="space-y-4 text-lg leading-[25px] font-thin text-gray-800">
 								<p>
 									Via was the most fulfilling nine months I've ever had, and the
 									fastest nine months of my life. Some of the experiences, like
@@ -354,12 +354,12 @@ export default function WhyVia() {
 
 			{/* Fellow Newsletters Section */}
 			<section className="relative z-10 bg-[#364153] py-16">
-				<div className="mx-auto max-w-7xl px-4">
+				<div className="mx-auto max-w-6xl px-4">
 					<div className="text-center text-white">
 						<h2 className="mb-6 font-serif text-4xl font-normal text-white">
 							Fellow Newsletters
 						</h2>
-						<p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed">
+						<p className="mx-auto mb-12 max-w-3xl text-xl leading-[25px] font-thin">
 							Each semester, all of the Via Fellows create newsletters detailing
 							their experience in Via. The newsletter serves as an opportunity
 							for Fellows to reflect on what they're experiencing and to

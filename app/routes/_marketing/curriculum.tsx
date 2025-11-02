@@ -63,7 +63,7 @@ export default function Curriculum() {
 					Core Curriculum
 				</motion.h1>
 				<motion.div
-					className="mb-8 h-px bg-gray-900"
+					className="mb-8 h-px bg-black"
 					variants={dividerVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -99,7 +99,7 @@ export default function Curriculum() {
 							</AnimatedListItem>
 						</ul>
 						<motion.div
-							className="my-8 h-px bg-gray-900"
+							className="my-8 h-px bg-black"
 							variants={dividerVariants}
 							initial="hidden"
 							whileInView="visible"
@@ -139,7 +139,7 @@ export default function Curriculum() {
 							</AnimatedListItem>
 						</ul>
 						<motion.div
-							className="my-8 h-px bg-gray-900"
+							className="my-8 h-px bg-black"
 							variants={dividerVariants}
 							initial="hidden"
 							whileInView="visible"
@@ -192,7 +192,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 						<motion.div
-							className="my-8 h-px bg-gray-900"
+							className="my-8 h-px bg-black"
 							variants={dividerVariants}
 							initial="hidden"
 							whileInView="visible"
@@ -265,7 +265,7 @@ export default function Curriculum() {
 							</AnimatedListItem>
 						</ul>
 						<motion.div
-							className="my-8 h-px bg-gray-900"
+							className="my-8 h-px bg-black"
 							variants={dividerVariants}
 							initial="hidden"
 							whileInView="visible"
@@ -307,7 +307,7 @@ export default function Curriculum() {
 							</AnimatedListItem>
 						</ul>
 						<motion.div
-							className="my-8 h-px bg-gray-900"
+							className="my-8 h-px bg-black"
 							variants={dividerVariants}
 							initial="hidden"
 							whileInView="visible"

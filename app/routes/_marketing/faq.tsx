@@ -41,7 +41,7 @@ function FAQItem({
 			return sentences.map((sentence, sentenceIndex) => (
 				<motion.div
 					key={sentenceIndex}
-					className="text-base leading-relaxed text-gray-700"
+					className="text-base leading-relaxed text-black"
 					variants={faqVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -59,7 +59,7 @@ function FAQItem({
 		// For JSX content, return as-is but wrapped
 		return (
 			<motion.div
-				className="text-base leading-relaxed text-gray-700"
+				className="text-base leading-relaxed text-black"
 				variants={faqVariants}
 				initial="hidden"
 				whileInView="visible"
@@ -74,7 +74,7 @@ function FAQItem({
 	return (
 		<div className="space-y-4">
 			<motion.h3
-				className="text-lg font-bold text-gray-900"
+				className="text-lg font-bold text-black"
 				variants={faqVariants}
 				initial="hidden"
 				whileInView="visible"
@@ -86,7 +86,7 @@ function FAQItem({
 			{parseAnswerIntoSentences(answer)}
 			{!isLast && (
 				<motion.div
-					className="border-t border-gray-200 pt-8"
+					className="border-t border-black pt-8"
 					variants={dividerVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -119,7 +119,7 @@ const faqData = [
 		answer: (
 			<>
 				This{' '}
-				<Link to="/curriculum" className="underline hover:text-gray-900">
+				<Link to="/curriculum" className="underline hover:text-black">
 					link
 				</Link>{' '}
 				will allow you to view the syllabus for Via's core curriculum. Fellows
@@ -180,7 +180,7 @@ const faqData = [
 				visit, please reach out to{' '}
 				<a
 					href="mailto:admissions@studyworkpray.org"
-					className="underline hover:text-gray-900"
+					className="underline hover:text-black"
 				>
 					admissions@studyworkpray.org
 				</a>
@@ -191,7 +191,7 @@ const faqData = [
 	{
 		question: 'What does life after Via look like?',
 		answer: (
-			<div className="space-y-4">
+			<div className="space-y-4 text-black">
 				<p>
 					Some of the more tangible fruits of formation in Via can be seen in
 					the career plans of Fellows before doing Via and after doing Via.
@@ -246,7 +246,7 @@ export default function FAQ() {
 					Frequently Asked Questions
 				</motion.h1>
 				<motion.div
-					className="mb-8 h-px bg-gray-900"
+					className="mb-8 h-px bg-black"
 					variants={dividerVariants}
 					initial="hidden"
 					whileInView="visible"

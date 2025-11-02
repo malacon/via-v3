@@ -87,7 +87,20 @@ export default function LifeInVia() {
 	const scrollToSection = (sectionId: string) => {
 		const element = document.getElementById(sectionId)
 		if (element) {
-			element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+			// Get the sticky nav element to calculate its height
+			const stickyNav = document.querySelector('.sticky-nav')
+			const navHeight = stickyNav ? stickyNav.getBoundingClientRect().height : 0
+			const navTop = window.matchMedia('(min-width: 768px)').matches ? 64 : 73 // md:top-16 = 64px, top-[73px] = 73px
+			const offset = navTop + navHeight + 20 // Add 20px padding
+
+			const elementPosition =
+				element.getBoundingClientRect().top + window.scrollY
+			const offsetPosition = elementPosition - offset
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			})
 		}
 	}
 
@@ -118,7 +131,7 @@ export default function LifeInVia() {
 			/>
 
 			{/* Sticky In-Page Navigation */}
-			<nav className="sticky top-[73px] z-20 bg-[#364153] py-4 md:top-16">
+			<nav className="sticky-nav sticky top-[73px] z-20 bg-[#364153] py-4 md:top-[105px]">
 				<div className="max-w-8xl mx-auto px-4">
 					<div className="flex flex-wrap items-center justify-center gap-4 md:gap-10">
 						<button
