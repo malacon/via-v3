@@ -1,5 +1,6 @@
+import { animate } from 'framer-motion'
 import { OpenImgContextProvider } from 'openimg/react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
 	data,
 	Link,
@@ -198,6 +199,75 @@ function App() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 	useToast(data.toast)
 
+	const scrollToHashRef = useRef<string | null>(null)
+	const initialPathnameRef = useRef<string | null>(null)
+
+	// Handle smooth scrolling for anchor links
+	useEffect(() => {
+		const scrollToHash = (hash: string, smooth = true) => {
+			const element = document.getElementById(hash.slice(1))
+			if (!element) return
+
+			const header = document.querySelector('header')
+			const headerHeight = header ? header.getBoundingClientRect().height : 0
+			const offset = headerHeight - 16 // Match the offset used in FullWidthBannerLink
+
+			const elementPosition = element.getBoundingClientRect().top
+			const offsetPosition = elementPosition + window.pageYOffset - offset
+
+			if (smooth) {
+				animate(window.scrollY, offsetPosition, {
+					duration: 0.6,
+					ease: [0.25, 0.1, 0.25, 1],
+					onUpdate: (latest) => {
+						window.scrollTo(0, latest)
+					},
+				})
+			} else {
+				window.scrollTo(0, offsetPosition)
+			}
+		}
+
+		// Track if this is the initial page load
+		const isInitialLoad = initialPathnameRef.current === null
+
+		// Handle initial hash on page load - immediately adjust position to account for header
+		if (location.hash && isInitialLoad) {
+			initialPathnameRef.current = location.pathname
+			scrollToHashRef.current = location.hash
+
+			// Immediately correct the scroll position (browser may have already scrolled)
+			// Use requestAnimationFrame to ensure DOM is fully rendered
+			requestAnimationFrame(() => {
+				scrollToHash(location.hash, false)
+			})
+		} else if (location.pathname !== initialPathnameRef.current) {
+			// Reset when navigating to a new page
+			initialPathnameRef.current = location.pathname
+			if (location.hash) {
+				scrollToHashRef.current = location.hash
+				requestAnimationFrame(() => {
+					scrollToHash(location.hash, false)
+				})
+			}
+		}
+
+		// Handle hash changes after initial load (back/forward navigation or clicks)
+		const handleHashChange = () => {
+			if (location.hash && scrollToHashRef.current !== location.hash) {
+				scrollToHashRef.current = location.hash
+				scrollToHash(location.hash, true)
+			}
+		}
+
+		// Listen for hash changes
+		window.addEventListener('hashchange', handleHashChange)
+
+		return () => {
+			window.removeEventListener('hashchange', handleHashChange)
+		}
+	}, [location.hash, location.pathname])
+
 	const isActivePath = (path: string) => {
 		if (path === '/') {
 			return location.pathname === '/'
@@ -223,7 +293,7 @@ function App() {
 							/>
 						</Link>
 						<nav
-							className="font-display hidden items-center gap-8 text-base tracking-wider lg:flex"
+							className="font-display hidden items-center gap-10 text-base tracking-wider lg:flex"
 							aria-label="Main navigation"
 						>
 							<Link

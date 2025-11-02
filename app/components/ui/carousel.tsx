@@ -204,7 +204,7 @@ const CarouselPrevious = React.forwardRef<
 			variant={variant}
 			size={size}
 			className={cn(
-				'focus-within:box-shadow-none focus-visible:box-shadow-none absolute z-10 h-auto w-auto rounded-none border-none bg-transparent p-2 text-white opacity-0 transition-opacity focus-within:border-none focus-within:bg-transparent focus-within:ring-0 hover:border-none hover:bg-transparent hover:text-white/80 hover:opacity-100 focus:bg-transparent focus:ring-0 focus:outline-none focus-visible:border-none focus-visible:bg-transparent focus-visible:ring-0 active:border-none active:bg-transparent',
+				'focus-within:box-shadow-none focus-visible:box-shadow-none absolute z-10 h-auto w-auto rounded-none border-none bg-transparent p-2 text-white opacity-0 ring-offset-0 transition-opacity focus-within:border-none focus-within:bg-transparent focus-within:ring-0 hover:border-none hover:bg-transparent hover:text-white/80 hover:opacity-100 focus:bg-transparent focus:ring-0 focus:outline-none focus-visible:border-none focus-visible:bg-transparent focus-visible:ring-0 active:border-none active:bg-transparent',
 				orientation === 'horizontal'
 					? 'top-1/2 left-2 -translate-y-1/2 md:left-4'
 					: '-top-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -235,7 +235,7 @@ const CarouselNext = React.forwardRef<
 			variant={variant}
 			size={size}
 			className={cn(
-				'focus-within:box-shadow-none focus-visible:box-shadow-none absolute z-10 h-auto w-auto rounded-none border-none bg-transparent p-2 text-white opacity-0 transition-opacity focus-within:border-none focus-within:bg-transparent focus-within:ring-0 hover:border-none hover:bg-transparent hover:text-white/80 hover:opacity-100 focus:bg-transparent focus:ring-0 focus:outline-none focus-visible:border-none focus-visible:bg-transparent focus-visible:ring-0 active:border-none active:bg-transparent',
+				'focus-within:box-shadow-none focus-visible:box-shadow-none absolute z-10 h-auto w-auto rounded-none border-none bg-transparent p-2 text-white opacity-0 ring-offset-0 transition-opacity focus-within:border-none focus-within:bg-transparent focus-within:ring-0 hover:border-none hover:bg-transparent hover:text-white/80 hover:opacity-100 focus:bg-transparent focus:ring-0 focus:outline-none focus-visible:border-none focus-visible:bg-transparent focus-visible:ring-0 active:border-none active:bg-transparent',
 				orientation === 'horizontal'
 					? 'top-1/2 right-2 -translate-y-1/2 md:right-4'
 					: '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',

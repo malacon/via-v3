@@ -98,7 +98,7 @@ export default function LifeInVia() {
 					<p className="mb-4 font-serif text-xl text-gray-700">
 						study &nbsp;| &nbsp;work | &nbsp;pray
 					</p>
-					<h1 className="mb-6 font-serif text-5xl font-normal text-black md:text-6xl">
+					<h1 className="mb-6 font-serif text-5xl font-normal text-black md:text-[56px]">
 						Life in Via
 					</h1>
 					<p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700">

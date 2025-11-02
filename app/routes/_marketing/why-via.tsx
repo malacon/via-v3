@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import HeroParallax from '#app/components/HeroParallax.tsx'
 import {
 	Carousel,
@@ -74,17 +75,13 @@ export default function WhyVia() {
 			/>
 
 			{/* Learn More Banner */}
-			<section className="relative z-10 bg-gray-100 py-12">
-				<div className="mx-auto max-w-7xl px-4 text-center">
-					<p className="text-lg font-normal text-gray-700">
-						Learn more about Via from testimonies of people who have experienced
-						it firsthand.
-					</p>
-				</div>
-			</section>
+			<FullWidthBannerLink to="#testimonials">
+				Learn more about Via from testimonies of people who have experienced it
+				firsthand.
+			</FullWidthBannerLink>
 
 			{/* Collin Stephenson Testimonial */}
-			<section className="relative z-10 bg-white py-16">
+			<section id="testimonials" className="relative z-10 bg-white py-16">
 				<div className="mx-auto max-w-7xl px-4">
 					<div className="space-y-6">
 						<div className="clear-both">

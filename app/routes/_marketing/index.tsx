@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
+import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import HeroCarousel from '#app/components/HeroCarousel.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import {
@@ -199,7 +199,7 @@ export default function Index() {
 							experienced in a community of people who desire largely the same
 							things, namely:
 						</p>
-						<ul className="ml-[30%] space-y-2 pr-[50px] pl-2 text-xl leading-relaxed">
+						<ul className="ml-[30%] space-y-2 pr-[50px] pl-2 text-xl leading-relaxed font-thin">
 							<li>• Knowledge of oneself, the world, and God</li>
 							<li>• Habits of order and self-mastery</li>
 							<li>• Meaningful work in a potential career</li>
@@ -234,8 +234,8 @@ export default function Index() {
 										</CarouselItem>
 									))}
 								</CarouselContent>
-								<CarouselPrevious />
-								<CarouselNext />
+								<CarouselPrevious variant="ghost" />
+								<CarouselNext variant="ghost" />
 							</Carousel>
 							{/* <CarouselCounter
 								current={profileCurrent}
@@ -247,22 +247,17 @@ export default function Index() {
 			</section>
 
 			{/* Learn More Section */}
-			<Link
-				to="/why-via"
-				className="bg-button-banner block py-6 text-center transition-opacity hover:opacity-80"
-			>
-				<p className="font-serif text-2xl text-gray-100">
-					Learn more about Via from the Fellows and friends.
-				</p>
-			</Link>
+			<FullWidthBannerLink to="/why-via">
+				Learn more about Via from the Fellows and friends.
+			</FullWidthBannerLink>
 
 			{/* Keep Via Free Section */}
 			<section className="bg-white py-12 md:py-16">
 				<div className="mx-auto max-w-5xl px-4 text-center">
-					<h4 className="mb-4 font-serif text-2xl font-normal text-gray-800 md:mb-6 md:text-3xl">
+					<h4 className="mb-4 font-serif text-2xl font-normal tracking-widest text-gray-800 md:mb-6 md:text-3xl">
 						Keep Via Free
 					</h4>
-					<blockquote className="mb-6 text-base leading-relaxed text-gray-800 md:mb-12 md:text-xl">
+					<blockquote className="mb-6 text-base leading-9 text-gray-800 md:mb-12 md:text-xl">
 						We believe that the experience of Via is so important that financial
 						barriers should be removed as much as possible to allow young people
 						to participate in one life-changing year of formation. Help us keep
@@ -272,7 +267,7 @@ export default function Index() {
 						variant="default"
 						size="wide"
 						asChild
-						className="md:bg-header md:hover:bg-header/90 mb-6 rounded-full bg-gray-400 py-4 text-base text-gray-800 hover:bg-gray-500 md:mb-8 md:py-4 md:text-lg md:text-white"
+						className="md:bg-header md:hover:bg-header/90 mb-6 w-48 rounded-full bg-gray-400 px-0 py-4 text-base text-gray-800 hover:bg-gray-500 md:mb-8 md:py-4 md:text-lg md:text-white"
 					>
 						<a
 							href="https://vianova.stellarwebsystems.com/donations/pool/79bdb7d4-264e-11ee-9cac-16118fddfe69"
