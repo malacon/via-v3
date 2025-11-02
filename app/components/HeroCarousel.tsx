@@ -1,5 +1,6 @@
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { Img } from 'openimg/react'
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 
 type Slide = {
 	src: string // image URL
@@ -120,11 +121,14 @@ export default function HeroCarousel({
 						aria-hidden={current.alt ? undefined : true}
 					>
 						{/* Background image layer */}
-						<div
-							className="absolute inset-0 bg-cover bg-center"
-							style={{
-								backgroundImage: `url(${current.src})`,
-							}}
+						<Img
+							src={current.src}
+							alt={current.alt || ''}
+							width={1920}
+							height={1080}
+							fit="cover"
+							isAboveFold
+							className="absolute inset-0 h-full w-full object-cover"
 						/>
 					</motion.div>
 				</AnimatePresence>
