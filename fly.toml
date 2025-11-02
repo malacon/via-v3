@@ -9,10 +9,6 @@ swap_size_mb = 512
 allowed_public_ports = [ ]
 auto_rollback = true
 
-[mounts]
-source = "data"
-destination = "/data"
-
 [build]
 dockerfile = "/other/Dockerfile"
 ignorefile = "/other/Dockerfile.dockerignore"
@@ -44,18 +40,9 @@ script_checks = [ ]
   timeout = "2s"
 
   [[services.http_checks]]
-  interval = "10s"
-  grace_period = "5s"
-  method = "get"
-  path = "/resources/healthcheck"
-  protocol = "http"
-  timeout = "2s"
-  tls_skip_verify = false
-  headers = { }
-
-  [[services.http_checks]]
-  grace_period = "10s"
-  interval = "30s"
-  method = "GET"
-  timeout = "5s"
-  path = "/litefs/health"
+  interval     = "10s"
+  timeout      = "2s"
+  method       = "GET"
+  path         = "/healthz"
+  protocol     = "http"
+  grace_period = "90s"
