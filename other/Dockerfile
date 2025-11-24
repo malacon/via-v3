@@ -42,7 +42,10 @@ WORKDIR /myapp
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 
 ADD prisma .
-RUN npx prisma generate
+# Set a dummy DATABASE_URL for prisma generate (not used, just needed for validation)
+ENV DATABASE_URL="file:./dummy.db"
+# Run migrations to create schema, then generate Prisma client with SQL validation
+RUN npx prisma migrate deploy && npx prisma generate --sql
 
 ADD . .
 
@@ -56,7 +59,7 @@ FROM base
 
 ENV FLY="true"
 ENV INTERNAL_PORT="8080"
-ENV PORT="8081"
+ENV PORT="8080"
 ENV NODE_ENV="production"
 
 WORKDIR /myapp
