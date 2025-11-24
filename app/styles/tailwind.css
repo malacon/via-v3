@@ -157,6 +157,12 @@
 	--color-brand-gold: #f5b642;
 	--color-text-header: #364153;
 	--color-button-banner: #202a2e;
+	--color-brand-dark-blue: #364153;
+	--color-brand-navy: #202a2e;
+	--color-brand-light-grey-blue: #677489;
+	--color-brand-tint: #f7f7f7;
+	--color-brand-tint-80: rgba(247, 247, 247, 0.8);
+	--color-brand-tint-why-via: rgba(103, 116, 137, 0.15);
 }
 
 @theme {
@@ -369,6 +375,43 @@
 		background-color: var(--color-text-header);
 	}
 
+	/* Via Nova Brand Color Classes */
+	.bg-brand-dark-blue {
+		background-color: var(--color-brand-dark-blue);
+	}
+
+	.bg-brand-navy {
+		background-color: var(--color-brand-navy);
+	}
+
+	.bg-brand-light-grey-blue {
+		background-color: var(--color-brand-light-grey-blue);
+	}
+
+	.bg-brand-tint {
+		background-color: var(--color-brand-tint);
+	}
+
+	.bg-brand-tint-80 {
+		background-color: var(--color-brand-tint-80);
+	}
+
+	.bg-brand-tint-why-via {
+		background-color: var(--color-brand-tint-why-via);
+	}
+
+	.text-brand-dark-blue {
+		color: var(--color-brand-dark-blue);
+	}
+
+	.text-brand-navy {
+		color: var(--color-brand-navy);
+	}
+
+	.text-brand-light-grey-blue {
+		color: var(--color-brand-light-grey-blue);
+	}
+
 	.profile-content-margin {
 		margin-left: calc((100% - 980px) * 0.5);
 	}
@@ -392,5 +435,38 @@
 		-webkit-mask-repeat: var(--mask-repeat, no-repeat);
 		mask-size: var(--mask-size, 100% 100%);
 		-webkit-mask-size: var(--mask-size, 100% 100%);
+	}
+
+	.sticky-nav-link {
+		transition: color 0.2s ease;
+	}
+
+	.sticky-nav-link:hover {
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	/* Curriculum page mobile text wrapping */
+	.curriculum-title {
+		/* Prevent widows and ensure proper text alignment on mobile */
+		word-break: break-word;
+		hyphens: auto;
+	}
+
+	@media (max-width: 767px) {
+		.curriculum-title {
+			/* On mobile, ensure titles wrap properly with hanging indent */
+			/* Align wrapped lines with first letter after numeric/alphabetic indicator */
+			text-indent: -2em;
+			padding-left: 2em;
+			/* Prevent single word widows */
+			orphans: 2;
+			widows: 2;
+		}
+
+		/* For nested list items with alphanumeric indicators */
+		.curriculum-list-item {
+			text-indent: -1.5em;
+			padding-left: 1.5em;
+		}
 	}
 }

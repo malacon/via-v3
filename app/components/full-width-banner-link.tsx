@@ -57,9 +57,9 @@ export function FullWidthBannerLink({
 		<Link
 			to={to}
 			onClick={handleClick}
-			className={`bg-button-banner relative z-10 block px-6 py-6 text-center transition-opacity hover:opacity-80 md:px-0 ${className ?? ''}`}
+			className={`bg-brand-navy relative z-10 block px-6 py-6 text-center transition-opacity hover:opacity-80 md:px-0 ${className ?? ''}`}
 		>
-			<p className="font-serif text-2xl text-gray-100">{children}</p>
+			<p className="font-serif text-2xl text-white">{children}</p>
 		</Link>
 	)
 }

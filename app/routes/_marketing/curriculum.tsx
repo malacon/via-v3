@@ -49,10 +49,7 @@ export default function Curriculum() {
 	return (
 		<div className="bg-white">
 			{/* Full width top bar */}
-			<div
-				className="h-[67px] w-full md:h-[119px]"
-				style={{ backgroundColor: 'rgb(103, 116, 137)' }}
-			/>
+			<div className="bg-brand-light-grey-blue h-[67px] w-full md:h-[119px]" />
 			<div className="container3">
 				<div
 					className="px-4 pt-16 pb-8 md:min-w-[1200px] md:px-20"
@@ -89,7 +86,7 @@ export default function Curriculum() {
 							transition={{ duration: 0.6 }}
 						>
 							<motion.h2
-								className="mb-4 text-xl font-bold"
+								className="curriculum-title mb-4 text-xl font-bold"
 								variants={sectionVariants}
 								initial="hidden"
 								whileInView="visible"
@@ -123,7 +120,7 @@ export default function Curriculum() {
 							transition={{ duration: 0.6 }}
 						>
 							<motion.h2
-								className="mb-4 text-xl font-bold"
+								className="curriculum-title mb-4 text-xl font-bold"
 								variants={sectionVariants}
 								initial="hidden"
 								whileInView="visible"
@@ -161,14 +158,14 @@ export default function Curriculum() {
 							transition={{ duration: 0.6 }}
 						>
 							<motion.h2
-								className="mb-4 text-xl font-bold"
+								className="curriculum-title mb-4 text-xl font-bold"
 								variants={sectionVariants}
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								III. Revelation: the Chosen People
+								III. The Chosen People: Israel
 							</motion.h2>
 							<div className="grid grid-cols-1 gap-4 text-base md:grid-cols-2">
 								<ul className="space-y-2">
@@ -202,14 +199,14 @@ export default function Curriculum() {
 							transition={{ duration: 0.6 }}
 						>
 							<motion.h2
-								className="mb-4 text-xl font-bold"
+								className="curriculum-title mb-4 text-xl font-bold"
 								variants={sectionVariants}
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								IV. Natural Reason, from poetry to science: Greece
+								IV. From Poetry to Science: Greece
 							</motion.h2>
 							<div className="grid grid-cols-1 gap-4 text-base md:grid-cols-2">
 								<ul className="space-y-3">
@@ -270,15 +267,14 @@ export default function Curriculum() {
 							transition={{ duration: 0.6 }}
 						>
 							<motion.h2
-								className="mb-4 text-xl font-bold"
+								className="curriculum-title mb-4 text-xl font-bold"
 								variants={sectionVariants}
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								V. Government of the Earthly City and the Pursuit of Happiness:
-								Rome
+								V. The Pursuit of Happiness: Rome
 							</motion.h2>
 							<ul className="space-y-2 text-base">
 								<AnimatedListItem index={0}>
@@ -311,14 +307,14 @@ export default function Curriculum() {
 							transition={{ duration: 0.6 }}
 						>
 							<motion.h2
-								className="mb-4 text-xl font-bold"
+								className="curriculum-title mb-4 text-xl font-bold"
 								variants={sectionVariants}
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								VI. Revelation: the Heavenly City
+								VI. City of God: Church Fathers
 							</motion.h2>
 							<ul className="space-y-4 text-base">
 								<AnimatedListItem index={0}>

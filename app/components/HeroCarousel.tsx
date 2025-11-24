@@ -2,11 +2,37 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Img } from 'openimg/react'
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 
-type Slide = {
+type HorizontalFocus = number | 'left' | 'center' | 'right'
+type VerticalFocus = number | 'top' | 'center' | 'bottom'
+
+export type Slide = {
 	src: string // image URL
 	heading?: string
 	subheading?: string
 	alt?: string // decorative? allow empty string if purely decorative
+	focusX?: HorizontalFocus // Horizontal focus: number (0-100) for percentage, or 'left' | 'center' | 'right' - defaults to 'center'
+	focusY?: VerticalFocus // Vertical focus: number (0-100) for percentage, or 'top' | 'center' | 'bottom' - defaults to 'center'
+}
+
+/**
+ * Converts focusX and focusY values to a CSS object-position string
+ */
+function getObjectPosition(
+	focusX?: HorizontalFocus,
+	focusY?: VerticalFocus,
+): string {
+	const x = focusX ?? 'center'
+	const y = focusY ?? 'center'
+
+	const xValue = typeof x === 'number' ? `${x}%` : x
+	const yValue = typeof y === 'number' ? `${y}%` : y
+
+	// If both are center, just return 'center'
+	if (xValue === 'center' && yValue === 'center') {
+		return 'center'
+	}
+
+	return `${xValue} ${yValue}`
 }
 
 type HeroCarouselProps = {
@@ -98,8 +124,10 @@ export default function HeroCarousel({
 	}
 
 	// Inline gradient style for right-side darkening panel
-	// left -> right: transparent to rgba(0,0,0,overlayOpacity)
-	const gradient = `linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,${overlayOpacity}) 55%, rgba(0,0,0,${overlayOpacity}) 100%)`
+	// left -> right: never fully clear, maintain 15-20% minimum opacity
+	// Ensure gradient goes from 0.15-0.2 minimum to target opacity
+	const minOpacity = Math.max(0.15, overlayOpacity * 0.2)
+	const gradient = `linear-gradient(to right, rgba(0,0,0,${minOpacity}) 0%, rgba(0,0,0,${overlayOpacity * 0.5}) 30%, rgba(0,0,0,${overlayOpacity}) 55%, rgba(0,0,0,${overlayOpacity}) 100%)`
 
 	return (
 		<>
@@ -120,7 +148,7 @@ export default function HeroCarousel({
 							transition={
 								reduced
 									? { duration: 0 }
-									: { duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }
+									: { duration: 2.5, ease: [0.25, 0.1, 0.25, 1] }
 							}
 							className="will-change-opacity absolute inset-0"
 							aria-hidden={current.alt ? undefined : true}
@@ -134,6 +162,12 @@ export default function HeroCarousel({
 								fit="cover"
 								isAboveFold
 								className="absolute inset-0 h-full w-full object-cover"
+								style={{
+									objectPosition: getObjectPosition(
+										current.focusX,
+										current.focusY,
+									),
+								}}
 							/>
 						</motion.div>
 					</AnimatePresence>

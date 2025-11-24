@@ -1,80 +1,10 @@
-import { motion, useInView } from 'framer-motion'
-import { Img } from 'openimg/react'
-import { useEffect, useRef, useState } from 'react'
-import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import HeroParallax from '#app/components/HeroParallax.tsx'
 import { TestimonialSection } from '#app/components/testimonial-section.tsx'
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
-	type CarouselApi,
-} from '#app/components/ui/carousel.tsx'
 import { type Route } from './+types/why-via.ts'
 
 export const meta: Route.MetaFunction = () => [{ title: 'Why Via? | Via Nova' }]
 
-// Newsletter gallery images
-const newsletterImages = [
-	'/img/newsletter-1.jpg',
-	'/img/newsletter-2.jpg',
-	'/img/newsletter-3.jpg',
-	'/img/newsletter-4.jpg',
-	'/img/newsletter-5.jpg',
-]
-
-const imageVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.5,
-			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-		},
-	},
-}
-
-const titleVariants = {
-	hidden: { opacity: 0, y: 30 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.6,
-			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-		},
-	},
-}
-
-const textVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.5,
-			ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-		},
-	},
-}
-
 export default function WhyVia() {
-	const [newsletterApi, setNewsletterApi] = useState<CarouselApi>()
-	const [newsletterCurrent, setNewsletterCurrent] = useState(0)
-	const newsletterRef = useRef(null)
-	const newsletterInView = useInView(newsletterRef, { once: true, amount: 0.3 })
-
-	useEffect(() => {
-		if (!newsletterApi) return
-		setNewsletterCurrent(newsletterApi.selectedScrollSnap() + 1)
-		newsletterApi.on('select', () => {
-			setNewsletterCurrent(newsletterApi.selectedScrollSnap() + 1)
-		})
-	}, [newsletterApi])
-
 	return (
 		<div className="bg-white">
 			{/* Hero Section with Subtitle and Title */}
@@ -91,19 +21,10 @@ export default function WhyVia() {
 						</div>
 						<div className="mx-auto max-w-4xl space-y-6 text-base leading-relaxed text-gray-700 md:text-lg">
 							<p>
-								Our students experience an integrated life aimed at freeing
-								their minds from the world's illusions <br />
-								and realizing the invitation to fulfill our Lord's summons to
-								know, love, and serve Him.
-							</p>
-							<p>
-								We believe that such an experience is enormously beneficial,
-								such that an additional stage of formation needs to be inserted
-								into the traditional sequence of young Christians' formation, so
-								as to better live in the world but not of it. Via exists because
-								we believe everyone would be profoundly well-served by having
-								one year of the extraordinary formative experience, that we all
-								wish we had, before launching into the real world.
+								A lot of people ask us why they should do Via, or why Via
+								exists. We think this question can best be answered by those who
+								have participated in our way of life. Below are a few Fellows'
+								articulation of Via's purpose and merit.
 							</p>
 						</div>
 					</div>
@@ -114,19 +35,13 @@ export default function WhyVia() {
 			<HeroParallax
 				imageSrc="/img/why-via-hero.jpg"
 				heightClass="h-[429px]"
-				overlayClass="bg-black/0"
+				overlayClass="bg-gradient-to-t from-black/15 via-black/10 to-black/15"
 			/>
-
-			{/* Learn More Banner */}
-			<FullWidthBannerLink to="#testimonials">
-				Learn more about Via from testimonies of people who have experienced it
-				firsthand.
-			</FullWidthBannerLink>
 
 			{/* Collin Stephenson Testimonial */}
 			<TestimonialSection
 				id="testimonials"
-				name="Collin Stephenson"
+				name="Collin | Fellow, 2024 Cohort"
 				firstImagePosition="left"
 				images={[
 					{
@@ -141,7 +56,7 @@ export default function WhyVia() {
 						<p>
 							My single year with Via changed my life in dramatic ways. First
 							and foremost, it increased my desire to have an intentional faith
-							life, one that is disciplined, and with greater dedication to
+							life&mdash;one that is disciplined, and with greater dedication to
 							daily prayer.
 						</p>
 						<p>
@@ -154,13 +69,13 @@ export default function WhyVia() {
 							towards the love of God.
 						</p>
 						<p>
-							Via's rich education and structured way of life resulted in what I
-							can only describe as a monumental and transformative year for
-							which I'm most grateful. Throughout the visible high moments there
-							were also many challenges, but those challenges were the very
-							means by which I was able to grow. Via's day-to-day life provided
-							abundant opportunity to practice virtue, manage communal living,
-							and to submit to God's will.
+							Via’s education and structured way of life resulted in what I can
+							only describe as a monumental and transformative year for which
+							I’m most grateful. Throughout the highs felt throughout the year
+							there were also many challenges, but those challenges were the
+							very means by which I was able to grow. Our day-to-day
+							life&mdash;especially living in community&mdash;provided abundant
+							opportunities to grow in virtue and to submit to God's will.
 						</p>
 					</>,
 				]}
@@ -168,14 +83,14 @@ export default function WhyVia() {
 
 			{/* Ellen LeBlanc Testimonial */}
 			<TestimonialSection
-				name="Ellen LeBlanc"
+				name="Ellen | Fellow, 2024 Cohort"
 				firstImagePosition="right"
 				images={[
 					{
-						src: '/img/testimonial-ellen-1.jpg',
-						alt: 'Ellen LeBlanc',
-						width: 371,
-						height: 390,
+						src: '/img/ellen.jpg',
+						alt: 'Ellen and Rachel in front of mountain',
+						width: 800,
+						height: 600,
 					},
 					{
 						src: '/img/testimonial-ellen-2.jpg',
@@ -241,7 +156,7 @@ export default function WhyVia() {
 
 			{/* Isaac LeJeune Testimonial */}
 			<TestimonialSection
-				name="Isaac LeJeune"
+				name="Isaac | Fellow, 2023 Cohort"
 				firstImagePosition="right"
 				images={[
 					{
@@ -305,7 +220,7 @@ export default function WhyVia() {
 
 			{/* Sam LeBlanc Testimonial */}
 			<TestimonialSection
-				name="Sam LeBlanc"
+				name="Sam | Fellow, 2023 Cohort"
 				firstImagePosition="right"
 				images={[
 					{
@@ -349,71 +264,6 @@ export default function WhyVia() {
 					</>,
 				]}
 			/>
-
-			{/* Fellow Newsletters Section */}
-			<section ref={newsletterRef} className="relative z-10 bg-[#364153] py-16">
-				<div className="mx-auto max-w-6xl px-4">
-					<div className="text-center text-white">
-						<motion.h2
-							className="mb-6 font-serif text-4xl font-normal text-white"
-							variants={titleVariants}
-							initial="hidden"
-							animate={newsletterInView ? 'visible' : 'hidden'}
-						>
-							Fellow Newsletters
-						</motion.h2>
-						<motion.p
-							className="mx-auto mb-12 max-w-3xl text-xl leading-[25px] font-thin"
-							variants={textVariants}
-							initial="hidden"
-							animate={newsletterInView ? 'visible' : 'hidden'}
-						>
-							Each semester, all of the Via Fellows create newsletters detailing
-							their experience in Via. The newsletter serves as an opportunity
-							for Fellows to reflect on what they're experiencing and to
-							communicate their experience to friends and family.
-						</motion.p>
-					</div>
-					<motion.div
-						className="mx-auto max-w-4xl"
-						variants={imageVariants}
-						initial="hidden"
-						animate={newsletterInView ? 'visible' : 'hidden'}
-					>
-						<Carousel
-							setApi={setNewsletterApi}
-							opts={{
-								align: 'start',
-								loop: true,
-								dragFree: true,
-							}}
-							className="w-full"
-						>
-							<CarouselContent>
-								{newsletterImages.map((src, index) => (
-									<CarouselItem key={index} className="pl-0 md:basis-1/2">
-										<div className="relative h-[400px] w-full overflow-hidden">
-											<Img
-												src={src}
-												alt={`Fellow newsletter ${index + 1}`}
-												width={800}
-												height={1000}
-												fit="cover"
-												className="h-full w-full object-cover"
-											/>
-										</div>
-									</CarouselItem>
-								))}
-							</CarouselContent>
-							<CarouselPrevious className="text-white" />
-							<CarouselNext className="text-white" />
-						</Carousel>
-						<div className="mt-2 text-center text-sm text-gray-300">
-							{newsletterCurrent}/{newsletterImages.length}
-						</div>
-					</motion.div>
-				</div>
-			</section>
 
 			{/* Footer */}
 			<footer className="border-t border-gray-200 bg-white py-6">

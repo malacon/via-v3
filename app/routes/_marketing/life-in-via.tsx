@@ -6,30 +6,11 @@ export const meta: Route.MetaFunction = () => [
 	{ title: 'Life In Via | Via Nova' },
 ]
 
-// Image arrays for galleries
-const intellectualImages = [
-	'/img/intellectual-1.jpg',
-	'/img/intellectual-2.jpg',
-	'/img/intellectual-3.jpg',
-]
-
-const spiritualImages = [
-	'/img/spiritual-1.jpg',
-	'/img/spiritual-2.jpg',
-	'/img/spiritual-3.jpg',
-]
-
-const serviceImages = [
-	'/img/service-1.jpg',
-	'/img/service-2.jpg',
-	'/img/service-3.jpg',
-]
-
-const bottomLineImages = [
-	'/img/bottomline-1.jpg',
-	'/img/bottomline-2.jpg',
-	'/img/bottomline-3.jpg',
-]
+// Images - per Luke's 11/1 notes: static images only, no galleries
+const intellectualImage = '/img/intellectual-1.jpg'
+const spiritualImage = '/img/spiritual-1.jpg'
+const serviceImage = '/img/service-lundi-gras.jpg' // Updated per design notes
+const bottomLineImage = '/img/bottomline-1.jpg'
 
 export default function LifeInVia() {
 	const scrollToSection = (sectionId: string) => {
@@ -104,44 +85,50 @@ export default function LifeInVia() {
 			/>
 
 			{/* Sticky In-Page Navigation */}
-			<nav className="sticky-nav top-[73px] z-20 bg-[#364153] py-4 md:sticky md:top-[105px]">
+			<nav className="sticky-nav bg-brand-dark-blue top-[73px] z-20 py-4 md:sticky md:top-[105px]">
 				<div className="max-w-8xl mx-auto px-4">
-					<div className="flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:gap-10">
+					<div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:flex-wrap md:space-y-0 md:space-x-10">
 						<button
 							onClick={() => scrollToSection('intellectual-formation')}
-							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
 						>
 							Intellectual Formation
 						</button>
 						<button
 							onClick={() => scrollToSection('spiritual-formation')}
-							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
 						>
 							Spiritual Formation
 						</button>
 						<button
+							onClick={() => scrollToSection('service-community')}
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+						>
+							Service & Community
+						</button>
+						<button
+							onClick={() => scrollToSection('retreats-pilgrimages')}
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+						>
+							Retreats & Pilgrimages
+						</button>
+						<button
 							onClick={() => scrollToSection('external-support')}
-							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
 						>
 							External Support
 						</button>
 						<button
 							onClick={() => scrollToSection('internal-support')}
-							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
 						>
 							Internal Support
 						</button>
 						<button
 							onClick={() => scrollToSection('professional-formation')}
-							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
+							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
 						>
 							Professional Formation
-						</button>
-						<button
-							onClick={() => scrollToSection('service-community')}
-							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
-						>
-							Service
 						</button>
 					</div>
 				</div>
@@ -151,7 +138,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="intellectual-formation"
 				title="Intellectual Formation"
-				images={intellectualImages}
+				images={[intellectualImage]}
 				carouselSide="left"
 				imageAltPrefix="intellectual formation"
 			>
@@ -198,7 +185,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="spiritual-formation"
 				title="Spiritual Formation"
-				images={spiritualImages}
+				images={[spiritualImage]}
 				carouselSide="right"
 				imageAltPrefix="spiritual formation"
 			>
@@ -229,7 +216,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="service-community"
 				title="Service & Community"
-				images={serviceImages}
+				images={[serviceImage]}
 				carouselSide="left"
 				imageAltPrefix="service & community"
 			>
@@ -314,7 +301,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="internal-support"
 				title="Internal Support"
-				images={['/img/internal-support.jpg']}
+				images={['/img/internal-support-music-room.jpg']}
 				carouselSide="right"
 				imageAltPrefix="internal support"
 			>
@@ -370,7 +357,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="bottom-line"
 				title="Bottom Line"
-				images={bottomLineImages}
+				images={[bottomLineImage]}
 				carouselSide="right"
 				imageAltPrefix="bottom line"
 				variant="dark"
@@ -379,9 +366,9 @@ export default function LifeInVia() {
 					The essential purpose of all of Via's structures is to create an
 					environment that helps young people to respond more zealously to the
 					call to sanctity. No amount of programming can force the soul's free
-					response to this calling, but we believe the features of life in Via
-					allow our participants and those we serve to see more clearly the
-					goodness and joy of the life of a disciple.
+					response to this calling, but we believe Via's structures allow our
+					participants and those we serve to discover the profound joy of the
+					life of a disciple.
 				</p>
 			</CarouselTextSection>
 

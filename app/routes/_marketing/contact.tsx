@@ -131,13 +131,13 @@ export default function Contact() {
 	return (
 		<main className="mx-auto max-w-6xl bg-gray-100/50 px-4 py-8 sm:px-8 md:px-16 md:py-16 lg:px-52">
 			<h1 className="mb-6 font-serif text-4xl font-normal sm:text-5xl md:mb-8 md:text-6xl">
-				Contact
+				Get in touch.
 			</h1>
-			<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 sm:pl-8 md:text-base">
-				If you're interested in applying to Via's 2026 cohort, have any
-				questions, or just want to say hello, please fill out your contact info
-				below and someone from our team will get back to you in the next few
-				days.
+			<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 md:text-lg">
+				If you would like to request an application to Via's 2026 cohort, if you
+				wish to get involved in our mission in any way, or if you just want to
+				say hello, please fill out your contact info below and someone from our
+				team will get back to you soon.
 			</p>
 
 			{isSuccess ? (

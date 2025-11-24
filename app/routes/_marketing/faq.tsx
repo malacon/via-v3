@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Img } from 'openimg/react'
 import { Link } from 'react-router'
 import { type Route } from './+types/faq.ts'
 
@@ -105,6 +106,11 @@ function FAQItem({
 
 const faqData = [
 	{
+		question: 'Who is Via for?',
+		answer:
+			'Via has something for everyone who wants to get involved, however, our primary purpose is to create an environment for a select group of hungry young adults who desire a deeper and more holistic educative experience before beginning or finishing a college degree or setting out on a career.',
+	},
+	{
 		question: 'What are the ages of participants in Via?',
 		answer:
 			'Fellows applying to the 2025-2026 cohort should be between ages 18 and 22 by August of 2025.',
@@ -112,7 +118,7 @@ const faqData = [
 	{
 		question: 'Is Via co-ed?',
 		answer:
-			"Via has both a men's cohort and a women's cohort. Each cohort has their own house but the cohorts come together for most of the week's events.",
+			"Via has both a men's cohort and a women's cohort. Each cohort has their own house but the cohorts come together for most of Via's events.",
 	},
 	{
 		question: 'Where is Via located?',
@@ -137,23 +143,54 @@ const faqData = [
 		),
 	},
 	{
-		question: 'How much does it cost?',
+		question: 'How do I apply to Via?',
 		answer: (
 			<>
-				Via does not charge tuition. We believe that the experience of Via is so
-				important that financial barriers should be removed as much as possible
-				to allow students to participate in Via with minimal to no financial
-				stress. The experience of Via is a gift from the lay faithful of the
-				Church aimed at equipping the future of the Church for a life of
-				self-gift in turn. The Fellows' only expenses are the normal personal
-				expenses they have, in addition to their rent ($350/month if a Fellow is
-				sharing a room, which most do). Fellows' food expenses are also offset
-				by several communal meals each week and the meal prep option. The meal
-				prep option refers to the option each Fellow has to prepare meals for
-				throughout the week each weekend using specific funds from a donation
-				pool.
+				The first step in Via's application process is requesting an
+				application. Use the{' '}
+				<Link to="/contact" className="underline hover:text-black">
+					contact page here
+				</Link>{' '}
+				to share a bit about yourself and we'll take it from there.
 			</>
 		),
+	},
+	{
+		question: 'When is the deadline to apply?',
+		answer: (
+			<>
+				Via operates on a rolling admissions timeline. If a student is remotely
+				interested in enrolling in Via, we recommend reaching out using the{' '}
+				<Link to="/contact" className="underline hover:text-black">
+					contact page here
+				</Link>{' '}
+				to request an application. Via's application process is designed to help
+				applicants understand what Via has to offer on a deeper level, and to
+				discern if Via is a good fit.
+			</>
+		),
+	},
+	{
+		question: 'Does Via have a come and see or an open house?',
+		answer: (
+			<>
+				Via doesn't have a specific day or weekend for interested Fellows to
+				visit, but we welcome visitors starting in September. If you would like
+				to visit, please reach out to{' '}
+				<a
+					href="mailto:admissions@studyworkpray.org"
+					className="underline hover:text-black"
+				>
+					admissions@studyworkpray.org
+				</a>
+				.
+			</>
+		),
+	},
+	{
+		question: 'How much does Via cost?',
+		answer:
+			"Via does not charge tuition. We believe that the experience of Via is so important that financial barriers should be removed as much as possible to allow students to participate in Via with minimal or no financial stress. The Fellows' only expenses are the normal personal expenses they have, in addition to their rent ($350/month if a Fellow is sharing a room, which most do). Fellows' food expenses are offset by several communal meals each week and the ability to meal prep.",
 	},
 	{
 		question: 'How does Via pay for all of this?',
@@ -177,56 +214,46 @@ const faqData = [
 		),
 	},
 	{
-		question: 'Does Via have a come and see or an open house?',
-		answer: (
-			<>
-				Via doesn't have a day or weekend for interested Fellows to visit, but
-				we welcome visitors from September through March. If you would like to
-				visit, please reach out to{' '}
-				<a
-					href="mailto:admissions@studyworkpray.org"
-					className="underline hover:text-black"
-				>
-					admissions@studyworkpray.org
-				</a>
-				.
-			</>
-		),
-	},
-	{
-		question: 'What does life after Via look like?',
+		question: 'What are the fruits of doing Via?',
 		answer: (
 			<div className="space-y-4 text-black">
 				<p>
 					Some of the more tangible fruits of formation in Via can be seen in
 					the career plans of Fellows before doing Via and after doing Via.
+				</p>
+				<p>
 					Rachel came into Via thinking she should study art at a university
 					(but her top scholarship opportunity was at a university that taught
 					only modern and secular art, neither of which she was particularly
 					excited about) and left Via with a concrete plan for private training
 					with a sacred artist who is now teaching her skills much more suited
 					to her interests and with a training plan that will cost less money
-					and take less time. Collin came into Via deadset on completing his
-					nursing program in New Orleans and left Via with an unexpectedly
-					generous scholarship to the Catholic University of America to study
-					biology and philosophy and pursue medical school. It's not necessarily
-					the case that these particular Fellows' new plans are better than
-					their old plans, but the fact that their plans drastically changed
-					throughout their time in Via shows what there were desires and
-					opportunities that if not for Via would have been unrealized.
+					and take less time.
 				</p>
 				<p>
-					This being said, the fruits of Via that we care the most about are
-					those which we cannot precisely observe nor quantify, and certainly
-					not engineer. In a word, we hope that life after Via looks like
-					zealous Christian discipleship in all its shapes and flavors, but it
-					is up to the Fellow to apply himself to the structures of Via in order
-					to get all he can out of it--when this happens he can count on
-					enjoying the fruits normally received from Via, namely greater clarity
-					about their future and a deepened eagerness to pursue new goals.
-					Sometimes, our students have the same essential career plans that they
-					came into Via with, but with an invigorated spirit and a deeper
-					understanding of how best to pursue their goals.
+					Collin came into Via deadset on completing his nursing program in New
+					Orleans and left Via with an unexpectedly generous scholarship to the
+					Catholic University of America to study biology and philosophy and
+					pursue medical school.
+				</p>
+				<p>
+					It's not necessarily the case that these particular Fellows' new plans
+					are better than their old plans, but the fact that their plans
+					drastically changed throughout their time in Via shows that there were
+					desires and opportunities that if not for Via would have likely gone
+					unrealized. At the same time, our students sometimes leave Via with
+					the same essential career plans that they came into Via with, but
+					always with a greater confidence and a deeper understanding of how
+					best to pursue those same future plans.
+				</p>
+				<p>
+					That being said, the fruits of Via that we care the most about are
+					those which we cannot fully observe nor engineer. Our primary hope for
+					our participants is that our students finish Via zealous to live the
+					life of a Christian disciple, in all its diverse forms. However, it is
+					ultimately up to the Fellow to apply himself to the structures of Via
+					in order to receive all that it has to offer--when this happens he can
+					count on enjoying the extraordinary fruits normally received from Via.
 				</p>
 			</div>
 		),
@@ -237,10 +264,7 @@ export default function FAQ() {
 	return (
 		<div className="bg-white">
 			{/* Full width top bar */}
-			<div
-				className="h-[67px] w-full md:h-[119px]"
-				style={{ backgroundColor: 'rgb(103, 116, 137)' }}
-			/>
+			<div className="bg-brand-light-grey-blue h-[67px] w-full md:h-[119px]" />
 			<div className="container3">
 				<div
 					className="px-4 pt-16 pb-4 md:min-w-[1200px] md:px-20"
@@ -279,6 +303,17 @@ export default function FAQ() {
 						</div>
 					</div>
 				</main>
+			</div>
+			{/* Bottom Image */}
+			<div className="relative h-[400px] w-full overflow-hidden md:h-[500px]">
+				<Img
+					src="/img/faq-books-glasses.jpg"
+					alt="Books and glasses"
+					width={1920}
+					height={1080}
+					fit="cover"
+					className="h-full w-full object-cover"
+				/>
 			</div>
 		</div>
 	)

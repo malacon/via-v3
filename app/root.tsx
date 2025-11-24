@@ -302,7 +302,7 @@ function App() {
 		>
 			<div className="flex min-h-screen flex-col justify-between">
 				<header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-					<div className="container3 mx-auto flex items-center justify-between px-28 py-3 lg:px-20">
+					<div className="container3 mx-auto flex items-center justify-between px-4 py-3 md:px-28 lg:px-20">
 						<Link to="/" className="flex items-center gap-3">
 							<img
 								src="/img/via-logo.png"
@@ -473,7 +473,7 @@ function App() {
 									<Link
 										to="/why-via"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`font-display tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/why-via') ? 'text-[#404040] underline' : ''
 										}`}
 									>
