@@ -109,24 +109,38 @@ export default function Index() {
 			<HeroCarousel
 				slides={heroSlides}
 				intervalMs={6000}
-				heightClass="h-[400px] md:h-[510px]"
+				heightClass="h-[236px] md:h-[510px]"
 				overlayOpacity={0.85}
 				staticHeading=""
 				staticSubheading={
-					<div className="container">
-						<p className="mb-3 w-[580px] text-left font-sans text-2xl leading-relaxed font-light tracking-[0.3px]">
+					<div className="container mx-auto max-w-7xl">
+						<p className="mx-auto mb-3 max-w-[580px] text-left font-sans text-2xl leading-relaxed font-light tracking-[0.3px]">
 							Via Nova offers a live-in experience of holistic intellectual,
 							professional, and spiritual formation for young adults.
 						</p>
-						<p className="w-[580px] text-left font-sans text-2xl leading-relaxed font-light tracking-[0.3px]">
+						<p className="mx-auto max-w-[580px] text-left font-sans text-2xl leading-relaxed font-light tracking-[0.3px]">
 							Through a life of study, work, and prayer, we offer our
 							participants a <em>via nova</em>, that is "a new way" of learning
-							and living, such that our students and those we serve in our
-							community may be better equipped for a life of freedom, mission, &
-							holiness.
+							and living, such that our students and our community may be better
+							equipped for a life of freedom, mission, & holiness.
 						</p>
 					</div>
 				}
+				mobileSubheading={
+					<>
+						<p className="mb-3 font-sans leading-relaxed font-light">
+							Via Nova offers a live-in experience of holistic intellectual,
+							professional, and spiritual formation for Catholics ages 18-22.
+						</p>
+						<p className="font-sans leading-relaxed font-light">
+							Through a life of study, work, and prayer, we offer participants a{' '}
+							<em>via nova</em>, that is "a new way" of learning and living,
+							such that our students and our community may be better equipped
+							for a life of freedom, mission, and holiness.
+						</p>
+					</>
+				}
+				mobileSubheadingBgColor="bg-gray-500"
 			/>
 
 			{/* Life in Via Section */}
@@ -134,7 +148,55 @@ export default function Index() {
 				ref={lifeInViaRef}
 				maxWidth="max-w-7xl lg:max-w-[90rem]"
 			>
-				<div className="grid gap-12 md:grid-cols-6 lg:grid-cols-9 lg:gap-4 xl:grid-cols-12 xl:gap-16">
+				{/* Mobile Layout */}
+				<div className="px-4 py-3 md:hidden">
+					<motion.h2
+						className="text-header mb-4 text-center font-serif text-2xl leading-relaxed font-light"
+						variants={titleVariants}
+						initial="hidden"
+						animate={lifeInViaInView ? 'visible' : 'hidden'}
+					>
+						Life in Via centers
+						<br /> around the
+						<br /> ancient formula
+						<br /> of{' '}
+						<span className="font-bold">
+							study, work,
+							<br /> & prayer.
+						</span>
+					</motion.h2>
+					<div className="text-header font-display space-y-4 px-4 text-center text-lg leading-relaxed font-normal tracking-normal">
+						<motion.p
+							variants={textVariants}
+							initial="hidden"
+							animate={lifeInViaInView ? 'visible' : 'hidden'}
+						>
+							<span className="font-navigation">Studies</span> in Via consist of
+							seminars featuring the ancient literary and philosophical
+							traditions of Israel, Babylon, Greece, and early Christianity.
+						</motion.p>
+						<motion.p
+							variants={textVariants}
+							initial="hidden"
+							animate={lifeInViaInView ? 'visible' : 'hidden'}
+						>
+							<span className="font-navigation">Work</span> consists of
+							apprenticeships with Catholic professionals dedicated to preparing
+							participants for success in their respective careers.
+						</motion.p>
+						<motion.p
+							variants={textVariants}
+							initial="hidden"
+							animate={lifeInViaInView ? 'visible' : 'hidden'}
+						>
+							<span className="font-navigation">Prayer</span> consists of
+							frequent time in silent prayer, spiritual reading, and the
+							sacraments under the guidance of spiritual directors.
+						</motion.p>
+					</div>
+				</div>
+				{/* Desktop Layout */}
+				<div className="hidden grid-cols-6 gap-12 md:grid lg:grid-cols-9 lg:gap-4 xl:grid-cols-12 xl:gap-16">
 					{/* Left Column - Large Heading with Varied Sizing */}
 					<div className="col-span-6 col-start-1 flex flex-col justify-center text-right text-[40px] xl:col-span-4 xl:col-start-2">
 						<div className="text-header font-serif leading-relaxed font-light">
@@ -215,6 +277,7 @@ export default function Index() {
 			<ProfileCarouselSection
 				background="bg-heading"
 				carouselImages={profileImages}
+				mobileHeroHeight="236"
 				mobileHeroImage={{
 					src: '/img/profile-hero.jpg',
 					alt: 'Via Nova community',
@@ -225,21 +288,23 @@ export default function Index() {
 				carouselPosition="right"
 				imageAltPrefix="Intellectual formation"
 			>
-				<p className="mb-4 text-base leading-relaxed md:text-xl">
-					Via provides participants with a simple but very full life,
-					experienced in a community of people who desire largely the same
-					things, namely:
-				</p>
-				<ul className="space-y-1.5 text-sm leading-relaxed md:space-y-2 md:text-xl">
-					<li>• Knowledge of oneself, the world, and God</li>
-					<li>• Habits of order and self-mastery</li>
-					<li>• Meaningful work in a potential career</li>
-					<li>• An abiding love of God and neighbor</li>
-					<li>• A capacity to pray & meditate</li>
-					<li>• Freedom from vice and attachment</li>
-					<li>• An ability to share the faith with confidence</li>
-					<li>• A deepened understanding of one's calling in life</li>
-				</ul>
+				<div className="mx-auto px-0">
+					<p className="mb-4 text-lg leading-relaxed md:text-xl">
+						Via provides participants with a simple but very full life,
+						experienced in a community of people who desire largely the same
+						things, namely:
+					</p>
+					<ul className="list-disc space-y-1.5 pl-6 text-base leading-relaxed md:space-y-2 md:text-xl">
+						<li>Knowledge of oneself, the world, and God</li>
+						<li>Habits of order and self-mastery</li>
+						<li>Meaningful work in a potential career</li>
+						<li>An abiding love of God and neighbor</li>
+						<li>A capacity to pray & meditate</li>
+						<li>Freedom from vice and attachment</li>
+						<li>An ability to share the faith with confidence</li>
+						<li>A deepened understanding of one's calling in life</li>
+					</ul>
+				</div>
 			</ProfileCarouselSection>
 
 			{/* Learn More Section */}

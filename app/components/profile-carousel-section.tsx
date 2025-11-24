@@ -148,29 +148,33 @@ export function ProfileCarouselSection({
 
 	const altPrefix = imageAltPrefix || title.toLowerCase()
 
-	// Mobile: Single image with overlay
+	// Mobile: Image at top, text below (similar to HeroCarousel pattern)
 	const mobileView = (
-		<div
-			className={`relative w-full md:hidden`}
-			style={{ height: mobileHeroHeight }}
-		>
-			<motion.div
-				variants={imageVariants}
-				initial="hidden"
-				animate={isInView ? 'visible' : 'hidden'}
+		<>
+			{/* Image at top */}
+			<div
+				className={`relative w-full md:hidden`}
+				style={{ height: mobileHeroHeight }}
 			>
-				<Img
-					src={mobileHeroImage.src}
-					alt={mobileHeroImage.alt}
-					width={mobileHeroImage.width}
-					height={mobileHeroImage.height}
-					fit="cover"
-					isAboveFold
-					className="h-full w-full object-cover"
-				/>
-			</motion.div>
+				<motion.div
+					variants={imageVariants}
+					initial="hidden"
+					animate={isInView ? 'visible' : 'hidden'}
+				>
+					<Img
+						src={mobileHeroImage.src}
+						alt={mobileHeroImage.alt}
+						width={mobileHeroImage.width}
+						height={mobileHeroImage.height}
+						fit="cover"
+						isAboveFold
+						className="h-full w-full object-cover"
+					/>
+				</motion.div>
+			</div>
+			{/* Text section below image */}
 			<motion.div
-				className={`${overlayBackground} absolute right-0 bottom-0 left-0 p-6 ${textColor}`}
+				className={`${overlayBackground} w-full px-6 py-6 md:py-8 ${textColor} md:hidden`}
 				variants={textVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}
@@ -191,7 +195,7 @@ export function ProfileCarouselSection({
 					{children}
 				</motion.div>
 			</motion.div>
-		</div>
+		</>
 	)
 
 	// Desktop: Two column layout
@@ -236,14 +240,15 @@ export function ProfileCarouselSection({
 	)
 
 	const textElement = (
+		// make inner divs be left
 		<motion.div
-			className={`flex w-[60%] flex-col space-y-6 py-12 ${textColor} md:py-16`}
+			className={`ml-auto flex w-[45%] max-w-[750px] flex-col space-y-6 py-12 ${textColor} md:py-16`}
 			variants={textVariants}
 			initial="hidden"
 			animate={isInView ? 'visible' : 'hidden'}
 		>
 			<motion.h4
-				className={`ml-[30%] pr-[50px] font-serif text-3xl font-normal ${textColor}`}
+				className={`max-w-[580px] pr-[50px] font-serif text-3xl font-normal ${textColor}`}
 				variants={titleVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}
@@ -251,7 +256,7 @@ export function ProfileCarouselSection({
 				{title}
 			</motion.h4>
 			<motion.div
-				className="ml-[30%] pr-[50px]"
+				className="pr-[50px]"
 				variants={textVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}

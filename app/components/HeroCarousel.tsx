@@ -17,6 +17,8 @@ type HeroCarouselProps = {
 	className?: string
 	staticHeading?: string // If provided, this heading is always shown instead of slide-specific headings
 	staticSubheading?: ReactNode // If provided, this subheading is always shown instead of slide-specific subheadings
+	mobileSubheading?: ReactNode // Optional: Custom content for mobile grey section below carousel. If not provided and staticSubheading exists, will be used.
+	mobileSubheadingBgColor?: string // Background color for mobile subheading section (default: "bg-gray-500")
 }
 
 export default function HeroCarousel({
@@ -27,6 +29,8 @@ export default function HeroCarousel({
 	className = '',
 	staticHeading,
 	staticSubheading,
+	mobileSubheading,
+	mobileSubheadingBgColor = 'bg-gray-500',
 }: HeroCarouselProps) {
 	const [index, setIndex] = useState(0)
 	const reduced = useReducedMotion()
@@ -98,83 +102,104 @@ export default function HeroCarousel({
 	const gradient = `linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,${overlayOpacity}) 55%, rgba(0,0,0,${overlayOpacity}) 100%)`
 
 	return (
-		<section
-			className={`relative w-full ${heightClass} overflow-hidden ${className}`}
-			role="region"
-			aria-label="Hero image carousel"
-		>
-			{/* Slides as absolutely positioned layers to cross-fade */}
-			<div className="absolute inset-0">
-				<AnimatePresence mode="sync">
-					<motion.div
-						key={current?.src + index} // key on index to trigger transition
-						variants={fade}
-						initial="initial"
-						animate="animate"
-						exit="exit"
-						transition={
-							reduced
-								? { duration: 0 }
-								: { duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }
-						}
-						className="will-change-opacity absolute inset-0"
-						aria-hidden={current.alt ? undefined : true}
-					>
-						{/* Background image layer */}
-						<Img
-							src={current.src}
-							alt={current.alt || ''}
-							width={1920}
-							height={1080}
-							fit="cover"
-							isAboveFold
-							className="absolute inset-0 h-full w-full object-cover"
-						/>
-					</motion.div>
-				</AnimatePresence>
+		<>
+			<section
+				className={`relative w-full ${heightClass} overflow-hidden ${className}`}
+				role="region"
+				aria-label="Hero image carousel"
+			>
+				{/* Slides as absolutely positioned layers to cross-fade */}
+				<div className="absolute inset-0">
+					<AnimatePresence mode="sync">
+						<motion.div
+							key={current?.src + index} // key on index to trigger transition
+							variants={fade}
+							initial="initial"
+							animate="animate"
+							exit="exit"
+							transition={
+								reduced
+									? { duration: 0 }
+									: { duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }
+							}
+							className="will-change-opacity absolute inset-0"
+							aria-hidden={current.alt ? undefined : true}
+						>
+							{/* Background image layer */}
+							<Img
+								src={current.src}
+								alt={current.alt || ''}
+								width={1920}
+								height={1080}
+								fit="cover"
+								isAboveFold
+								className="absolute inset-0 h-full w-full object-cover"
+							/>
+						</motion.div>
+					</AnimatePresence>
 
-				{/* Left->Right gradient overlay that darkens the right half - static, doesn't fade */}
-				<div
-					className="absolute inset-0"
-					style={{ backgroundImage: gradient }}
-					aria-hidden
-				/>
-			</div>
+					{/* Left->Right gradient overlay that darkens the right half - static, doesn't fade - Hidden on mobile */}
+					<div
+						className="absolute inset-0 hidden md:block"
+						style={{ backgroundImage: gradient }}
+						aria-hidden
+					/>
+				</div>
 
-			{/* Right-side content column */}
-			<div className="relative z-10 h-full w-full">
-				<div className="flex h-full w-full">
-					{/* Spacer / image side (left) */}
-					<div className="grow" />
+				{/* Right-side content column - Hidden on mobile */}
+				<div className="relative z-10 hidden h-full w-full md:block">
+					<div className="container2 mx-auto flex h-full w-full max-w-7xl px-0">
+						{/* Spacer / image side (left) */}
+						<div className="grow" />
 
-					{/* Text panel (right) */}
-					<div className="flex w-full max-w-[720px] items-center px-6 py-10 md:max-w-[640px] md:px-10 md:py-16 lg:max-w-[720px] xl:max-w-[800px]">
-						<div className="w-full text-right text-white">
-							{(staticHeading || current.heading) && (
-								<h1 className="text-4xl font-bold drop-shadow md:text-5xl lg:text-6xl">
-									{staticHeading ?? current.heading}
-								</h1>
-							)}
-							{(staticSubheading ?? current.subheading) && (
-								<div className="mt-4 text-lg opacity-90 md:mt-6 md:text-2xl md:leading-relaxed">
-									{staticSubheading ?? <p>{current.subheading}</p>}
-								</div>
-							)}
+						{/* Text panel (right) */}
+						<div className="flex w-full max-w-[720px] items-center px-0 py-10 md:max-w-[640px] md:py-16 lg:max-w-[720px] xl:max-w-[800px]">
+							<div className="align-right w-full text-white">
+								{(staticHeading || current.heading) && (
+									<h1 className="text-4xl font-bold drop-shadow md:text-5xl lg:text-6xl">
+										{staticHeading ?? current.heading}
+									</h1>
+								)}
+								{(staticSubheading ?? current.subheading) && (
+									<div className="mt-4 text-lg opacity-90 md:mt-6 md:text-2xl md:leading-relaxed">
+										{staticSubheading ?? <p>{current.subheading}</p>}
+									</div>
+								)}
 
-							{/* Live region to announce slide changes for screen readers */}
-							<p className="sr-only" aria-live="polite">
-								Slide {index + 1} of {length}.
-							</p>
+								{/* Live region to announce slide changes for screen readers */}
+								<p className="sr-only" aria-live="polite">
+									Slide {index + 1} of {length}.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			{/* A subtle bottom gradient for legibility if content below overlaps */}
-			<div
-				className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent"
-				aria-hidden
-			/>
-		</section>
+				{/* A subtle bottom gradient for legibility if content below overlaps */}
+				<div
+					className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent"
+					aria-hidden
+				/>
+			</section>
+
+			{/* Mobile-only text section below carousel */}
+			{(mobileSubheading ?? staticSubheading) && (
+				<div
+					className={`${mobileSubheadingBgColor} px-4 py-8 text-xl text-white md:hidden md:py-6`}
+				>
+					<div className="mx-auto max-w-7xl">
+						{mobileSubheading ?? (
+							<div className="font-sans leading-relaxed font-light">
+								{typeof staticSubheading === 'string' ? (
+									<p>{staticSubheading}</p>
+								) : (
+									staticSubheading
+								)}
+							</div>
+						)}
+					</div>
+				</div>
+			)}
+		</>
 	)
 }

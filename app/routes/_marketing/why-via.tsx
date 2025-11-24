@@ -81,12 +81,14 @@ export default function WhyVia() {
 			<section className="relative z-10 bg-white py-12">
 				<div className="mx-auto max-w-7xl px-4">
 					<div className="text-center">
-						<p className="mb-4 font-serif text-xl text-gray-700">
-							freedom &nbsp;| &nbsp;mission &nbsp;| &nbsp;holiness
-						</p>
-						<h1 className="mb-8 font-serif text-5xl font-normal text-black md:text-6xl">
-							Why Via?
-						</h1>
+						<div className="flex flex-col-reverse md:flex-col">
+							<p className="mb-8 font-serif text-xl text-gray-700 md:mb-4">
+								freedom &nbsp;| &nbsp;mission &nbsp;| &nbsp;holiness
+							</p>
+							<h1 className="mb-4 font-serif text-5xl font-normal text-black md:mb-8 md:text-6xl">
+								Why Via?
+							</h1>
+						</div>
 						<div className="mx-auto max-w-4xl space-y-6 text-base leading-relaxed text-gray-700 md:text-lg">
 							<p>
 								Our students experience an integrated life aimed at freeing

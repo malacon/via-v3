@@ -36,13 +36,13 @@ export default function HeroParallax({
 	return (
 		<section
 			ref={sectionRef}
-			className={`relative ${heightClass} overflow-hidden`}
+			className={`relative hidden ${heightClass} overflow-hidden md:block`}
 			aria-label="Parallax hero"
 		>
 			{/* Fixed viewport layer behind content - stays pinned to viewport */}
 			<motion.div
 				// Use fixed so it stays "stuck" to the viewport; behind content frame
-				className="pointer-events-none fixed top-0 left-0 h-screen w-screen will-change-transform"
+				className="pointer-events-none fixed top-0 left-0 hidden h-screen w-screen will-change-transform md:block"
 				style={{
 					y, // disabled by reduced-motion CSS below
 					zIndex: 1,
@@ -62,7 +62,10 @@ export default function HeroParallax({
 			</motion.div>
 
 			{/* Optional overlay to increase text contrast */}
-			<div className={`absolute inset-0 z-0 ${overlayClass}`} aria-hidden />
+			<div
+				className={`absolute inset-0 z-0 hidden ${overlayClass} md:block`}
+				aria-hidden
+			/>
 
 			{/* Foreground frame acts like the window through which we see the fixed bg */}
 			{(heading || subheading) && (

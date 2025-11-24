@@ -1,4 +1,4 @@
-import { animate } from 'framer-motion'
+import { AnimatePresence, animate, motion } from 'framer-motion'
 import { OpenImgContextProvider } from 'openimg/react'
 import { useEffect, useRef, useState } from 'react'
 import {
@@ -22,7 +22,7 @@ import { EpicProgress } from './components/progress-bar.tsx'
 import { SearchBar } from './components/search-bar.tsx'
 import { useToast } from './components/toaster.tsx'
 import { Button } from './components/ui/button.tsx'
-import { href as iconsHref } from './components/ui/icon.tsx'
+import { Icon, href as iconsHref } from './components/ui/icon.tsx'
 import { EpicToaster } from './components/ui/sonner.tsx'
 import { UserDropdown } from './components/user-dropdown.tsx'
 import {
@@ -196,6 +196,7 @@ function App() {
 	const isOnSearchPage = matches.find((m) => m.id === 'routes/users/index')
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+	const [showScrollToTop, setShowScrollToTop] = useState(false)
 	useToast(data.toast)
 
 	const scrollToHashRef = useRef<string | null>(null)
@@ -267,6 +268,26 @@ function App() {
 		}
 	}, [location.hash, location.pathname])
 
+	// Handle scroll-to-top button visibility
+	useEffect(() => {
+		const handleScroll = () => {
+			setShowScrollToTop(window.scrollY > 300)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
+
+	const scrollToTop = () => {
+		animate(window.scrollY, 0, {
+			duration: 0.6,
+			ease: [0.25, 0.1, 0.25, 1],
+			onUpdate: (latest) => {
+				window.scrollTo(0, latest)
+			},
+		})
+	}
+
 	const isActivePath = (path: string) => {
 		if (path === '/') {
 			return location.pathname === '/'
@@ -281,14 +302,12 @@ function App() {
 		>
 			<div className="flex min-h-screen flex-col justify-between">
 				<header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-					<div className="mx-auto flex items-center justify-between px-28 py-3 lg:px-20">
+					<div className="container3 mx-auto flex items-center justify-between px-28 py-3 lg:px-20">
 						<Link to="/" className="flex items-center gap-3">
 							<img
 								src="/img/via-logo.png"
 								alt="Via Nova logo"
-								className="w-auto"
-								width="324"
-								height="81"
+								className="h-[58px] w-auto md:h-[81px] md:w-[324px]"
 							/>
 						</Link>
 						<nav
@@ -362,111 +381,167 @@ function App() {
 								{mobileMenuOpen ? 'Close menu' : 'Open menu'}
 							</span>
 							<svg
-								className="h-6 w-6"
+								className="h-8 w-8"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
 							>
-								{mobileMenuOpen ? (
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M6 18L18 6M6 6l12 12"
-									/>
-								) : (
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M4 6h16M4 12h16M4 18h16"
-									/>
-								)}
+								<motion.path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M4 6h16"
+									initial={false}
+									animate={{
+										rotate: mobileMenuOpen ? 45 : 0,
+										y: mobileMenuOpen ? 6 : 0,
+										opacity: 1,
+									}}
+									transition={{
+										duration: 0.3,
+										ease: [0.4, 0, 0.2, 1],
+									}}
+								/>
+								<motion.path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M4 12h16"
+									initial={false}
+									animate={{
+										opacity: mobileMenuOpen ? 0 : 1,
+										scaleX: mobileMenuOpen ? 0 : 1,
+									}}
+									transition={{
+										duration: 0.2,
+										ease: [0.4, 0, 0.2, 1],
+									}}
+								/>
+								<motion.path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M4 18h16"
+									initial={false}
+									animate={{
+										rotate: mobileMenuOpen ? -45 : 0,
+										y: mobileMenuOpen ? -6 : 0,
+										opacity: 1,
+									}}
+									transition={{
+										duration: 0.3,
+										ease: [0.4, 0, 0.2, 1],
+									}}
+								/>
 							</svg>
 						</button>
 					</div>
-					{mobileMenuOpen && (
-						<nav
-							className="h-full border-t border-gray-200 bg-white lg:hidden"
-							aria-label="Mobile navigation"
-						>
-							<div className="mx-auto flex h-[100vh] flex-col items-center gap-4 px-4 py-4">
-								<Link
-									to="/"
-									onClick={() => setMobileMenuOpen(false)}
-									className={`text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
-										isActivePath('/') ? 'text-[#404040] underline' : ''
-									}`}
-								>
-									Home
-								</Link>
-								<Link
-									to="/life-in-via"
-									onClick={() => setMobileMenuOpen(false)}
-									className={`text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
-										isActivePath('/life-in-via')
-											? 'text-[#404040] underline'
-											: ''
-									}`}
-								>
-									Life In Via
-								</Link>
-								<Link
-									to="/why-via"
-									onClick={() => setMobileMenuOpen(false)}
-									className={`text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
-										isActivePath('/why-via') ? 'text-[#404040] underline' : ''
-									}`}
-								>
-									Why Via?
-								</Link>
-								<Link
-									to="/curriculum"
-									onClick={() => setMobileMenuOpen(false)}
-									className={`text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
-										isActivePath('/curriculum')
-											? 'text-[#404040] underline'
-											: ''
-									}`}
-								>
-									Curriculum
-								</Link>
-								<Link
-									to="/faq"
-									onClick={() => setMobileMenuOpen(false)}
-									className={`text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
-										isActivePath('/faq') ? 'text-[#404040] underline' : ''
-									}`}
-								>
-									FAQ
-								</Link>
-								<Link
-									to="/contact"
-									onClick={() => setMobileMenuOpen(false)}
-									className={`text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
-										isActivePath('/contact') ? 'text-[#404040] underline' : ''
-									}`}
-								>
-									Contact
-								</Link>
-								<a
-									href="https://vianova.stellarwebsystems.com/donations/pool/79bdb7d4-264e-11ee-9cac-16118fddfe69"
-									target="_blank"
-									rel="noreferrer noopener"
-									onClick={() => setMobileMenuOpen(false)}
-									className="text-base tracking-wider text-black transition-colors hover:text-[#404040] hover:underline"
-								>
-									GIVE
-								</a>
-							</div>
-						</nav>
-					)}
+					<AnimatePresence>
+						{mobileMenuOpen && (
+							<motion.nav
+								initial={{ opacity: 0, y: -100 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -100 }}
+								transition={{
+									duration: 0.3,
+									ease: [0.4, 0, 0.2, 1],
+								}}
+								className="h-full border-t border-gray-200 bg-white lg:hidden"
+								aria-label="Mobile navigation"
+							>
+								<div className="mx-auto flex h-[100vh] flex-col items-center gap-4 px-4 py-4 text-xl">
+									<Link
+										to="/"
+										onClick={() => setMobileMenuOpen(false)}
+										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+											isActivePath('/') ? 'text-[#404040] underline' : ''
+										}`}
+									>
+										Home
+									</Link>
+									<Link
+										to="/life-in-via"
+										onClick={() => setMobileMenuOpen(false)}
+										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+											isActivePath('/life-in-via')
+												? 'text-[#404040] underline'
+												: ''
+										}`}
+									>
+										Life In Via
+									</Link>
+									<Link
+										to="/why-via"
+										onClick={() => setMobileMenuOpen(false)}
+										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+											isActivePath('/why-via') ? 'text-[#404040] underline' : ''
+										}`}
+									>
+										Why Via?
+									</Link>
+									<Link
+										to="/curriculum"
+										onClick={() => setMobileMenuOpen(false)}
+										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+											isActivePath('/curriculum')
+												? 'text-[#404040] underline'
+												: ''
+										}`}
+									>
+										Curriculum
+									</Link>
+									<Link
+										to="/faq"
+										onClick={() => setMobileMenuOpen(false)}
+										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+											isActivePath('/faq') ? 'text-[#404040] underline' : ''
+										}`}
+									>
+										FAQ
+									</Link>
+									<Link
+										to="/contact"
+										onClick={() => setMobileMenuOpen(false)}
+										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+											isActivePath('/contact') ? 'text-[#404040] underline' : ''
+										}`}
+									>
+										Contact
+									</Link>
+									<a
+										href="https://vianova.stellarwebsystems.com/donations/pool/79bdb7d4-264e-11ee-9cac-16118fddfe69"
+										target="_blank"
+										rel="noreferrer noopener"
+										onClick={() => setMobileMenuOpen(false)}
+										className="tracking-wider text-black transition-colors hover:text-[#404040] hover:underline"
+									>
+										GIVE
+									</a>
+								</div>
+							</motion.nav>
+						)}
+					</AnimatePresence>
 				</header>
 
 				<div className="flex flex-1 flex-col">
 					<Outlet />
 				</div>
 			</div>
+			{/* Mobile Scroll to Top Button */}
+			<AnimatePresence>
+				{showScrollToTop && (
+					<motion.button
+						initial={{ opacity: 0, scale: 0.8 }}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.8 }}
+						onClick={scrollToTop}
+						className="fixed right-6 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border bg-white text-black shadow-lg transition-colors hover:bg-gray-800 md:hidden"
+						aria-label="Scroll to top"
+					>
+						<Icon name="chevron-up" className="h-12 w-12 text-black" />
+					</motion.button>
+				)}
+			</AnimatePresence>
 			<EpicToaster closeButton position="top-center" theme={theme} />
 			<EpicProgress />
 		</OpenImgContextProvider>

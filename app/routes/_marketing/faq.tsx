@@ -38,28 +38,33 @@ function FAQItem({
 				.filter((sentence) => sentence.trim())
 				.map((sentence) => sentence.trim())
 
-			return sentences.map((sentence, sentenceIndex) => (
-				<motion.div
-					key={sentenceIndex}
-					className="pl-4 text-base leading-relaxed text-black"
-					variants={faqVariants}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: '-100px' }}
-					transition={{
-						duration: 0.6,
-						delay: index * 0.1 + sentenceIndex * 0.05,
-					}}
-				>
-					{sentence}
-				</motion.div>
-			))
+			return sentences.map((sentence, sentenceIndex) => {
+				// Last sentence should have padding-bottom: 8
+				const isLastSentence = sentenceIndex === sentences.length - 1
+				const className = isLastSentence ? 'pb-8 md:pb-0' : 'pb-0'
+				return (
+					<motion.div
+						key={sentenceIndex}
+						className={`text-lg leading-relaxed text-black md:pl-4 md:text-base ${className}`}
+						variants={faqVariants}
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true, margin: '-100px' }}
+						transition={{
+							duration: 0.6,
+							delay: index * 0.1 + sentenceIndex * 0.05,
+						}}
+					>
+						{sentence}
+					</motion.div>
+				)
+			})
 		}
 
 		// For JSX content, return as-is but wrapped
 		return (
 			<motion.div
-				className="pl-4 text-base leading-relaxed text-black"
+				className="pb-8 text-lg leading-relaxed text-black md:pb-0 md:pl-4 md:text-base"
 				variants={faqVariants}
 				initial="hidden"
 				whileInView="visible"
@@ -72,7 +77,7 @@ function FAQItem({
 	}
 
 	return (
-		<div className="mb-4 space-y-4">
+		<div className="mb-8 space-y-4 md:mb-4">
 			<motion.h3
 				className="text-lg font-bold text-black"
 				variants={faqVariants}
@@ -233,43 +238,48 @@ export default function FAQ() {
 		<div className="bg-white">
 			{/* Full width top bar */}
 			<div
-				className="h-[119px] w-full"
+				className="h-[67px] w-full md:h-[119px]"
 				style={{ backgroundColor: 'rgb(103, 116, 137)' }}
 			/>
-			<div className="min-w-[1200px] px-20 pt-16" style={{ margin: '0 auto' }}>
-				<motion.h1
-					className="mb-6 font-serif text-5xl font-normal text-black md:text-6xl"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
+			<div className="container3">
+				<div
+					className="px-4 pt-16 pb-4 md:min-w-[1200px] md:px-20"
+					style={{ margin: '0 auto' }}
 				>
-					Frequently Asked Questions
-				</motion.h1>
-				<motion.div
-					className="mb-8 h-px w-full bg-black"
-					variants={dividerVariants}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
-					transition={{ duration: 0.8, delay: 0.2 }}
-				/>
-			</div>
-
-			<main className="ml-auto max-w-[940px] px-20 pb-16">
-				<div>
-					<div className="space-y-8">
-						{faqData.map((faq, index) => (
-							<FAQItem
-								key={index}
-								question={faq.question}
-								answer={faq.answer}
-								isLast={index === faqData.length - 1}
-								index={index}
-							/>
-						))}
-					</div>
+					<motion.h1
+						className="mb-6 font-serif text-5xl font-normal text-black md:text-6xl"
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
+					>
+						Frequently Asked Questions
+					</motion.h1>
+					<motion.div
+						className="mb-8 h-px w-full bg-black"
+						variants={dividerVariants}
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+					/>
 				</div>
-			</main>
+
+				<main className="ml-auto max-w-[940px] px-4 pb-16 md:px-20">
+					<div>
+						<div className="space-y-8">
+							{faqData.map((faq, index) => (
+								<FAQItem
+									key={index}
+									question={faq.question}
+									answer={faq.answer}
+									isLast={index === faqData.length - 1}
+									index={index}
+								/>
+							))}
+						</div>
+					</div>
+				</main>
+			</div>
 		</div>
 	)
 }

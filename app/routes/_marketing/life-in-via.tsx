@@ -35,18 +35,40 @@ export default function LifeInVia() {
 	const scrollToSection = (sectionId: string) => {
 		const element = document.getElementById(sectionId)
 		if (element) {
-			// Get the sticky nav element to calculate its height
+			// Get the sticky nav to calculate offset
 			const stickyNav = document.querySelector('.sticky-nav')
-			const navHeight = stickyNav ? stickyNav.getBoundingClientRect().height : 0
-			const navTop = window.matchMedia('(min-width: 768px)').matches ? 64 : 73 // md:top-16 = 64px, top-[73px] = 73px
-			const offset = navTop + navHeight + 20 // Add 20px padding
 
-			const elementPosition =
-				element.getBoundingClientRect().top + window.scrollY
-			const offsetPosition = elementPosition - offset
+			if (!stickyNav) {
+				// Fallback if sticky nav not found
+				element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+				return
+			}
 
-			window.scrollTo({
-				top: offsetPosition,
+			// Get the sticky nav's CSS top value (73px mobile, 105px desktop)
+			const computedStyle = window.getComputedStyle(stickyNav)
+			const navTop =
+				parseFloat(computedStyle.top) ||
+				(window.matchMedia('(min-width: 768px)').matches ? 105 : 73)
+			const navHeight = stickyNav.getBoundingClientRect().height
+
+			// On mobile, the image appears first (254px tall), so we need to account for it
+			// to position the text content below the sticky nav
+			const isMobile = window.matchMedia('(max-width: 767px)').matches
+			const mobileImageHeight = isMobile ? 254 : 0
+
+			// Calculate where the element currently is relative to viewport
+			const elementTop = element.getBoundingClientRect().top
+
+			// We want the text content (which is mobileImageHeight down from section top on mobile)
+			// to be positioned right below the sticky nav
+			// Current text position = elementTop + mobileImageHeight
+			// Target text position = navTop + navHeight
+			// Scroll amount = current text position - target text position
+			const scrollAmount = elementTop + mobileImageHeight - (navTop + navHeight)
+
+			// Scroll from current position
+			window.scrollBy({
+				top: scrollAmount,
 				behavior: 'smooth',
 			})
 		}
@@ -57,14 +79,17 @@ export default function LifeInVia() {
 			{/* Hero Section */}
 			<section className="relative z-10 bg-white py-12">
 				<div className="mx-auto max-w-7xl px-4 text-center">
-					<p className="mb-4 font-serif text-xl text-gray-700">
-						study &nbsp;| &nbsp;work | &nbsp;pray
-					</p>
-					<h1 className="mb-6 font-serif text-5xl font-normal text-black md:text-[56px]">
-						Life in Via
-					</h1>
-					<p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700">
-						Below you can find the essential features of life in Via. <br />
+					<div className="flex flex-col">
+						<h1 className="order-1 mb-4 font-serif text-5xl font-normal text-black md:order-2 md:mb-6 md:text-[56px]">
+							Life in Via
+						</h1>
+						<p className="order-2 mb-6 font-serif text-lg text-gray-700 md:order-1 md:mb-4 md:text-xl">
+							study &nbsp;| &nbsp;work | &nbsp;pray
+						</p>
+					</div>
+					<p className="mx-auto max-w-3xl text-lg leading-loose text-gray-700 md:leading-relaxed">
+						Below you can find the essential features of life in Via.{' '}
+						<br className="hidden md:block" />
 						These categories don't do justice to the experience of Via but
 						here's the gist.
 					</p>
@@ -79,9 +104,9 @@ export default function LifeInVia() {
 			/>
 
 			{/* Sticky In-Page Navigation */}
-			<nav className="sticky-nav sticky top-[73px] z-20 bg-[#364153] py-4 md:top-[105px]">
+			<nav className="sticky-nav top-[73px] z-20 bg-[#364153] py-4 md:sticky md:top-[105px]">
 				<div className="max-w-8xl mx-auto px-4">
-					<div className="flex flex-wrap items-center justify-center gap-4 md:gap-10">
+					<div className="flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:gap-10">
 						<button
 							onClick={() => scrollToSection('intellectual-formation')}
 							className="text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white transition-colors hover:text-gray-300"
@@ -136,7 +161,7 @@ export default function LifeInVia() {
 					curriculum consists of several seminars each week split into the
 					following six sequences:
 				</p>
-				<div className="grid grid-cols-2 gap-2">
+				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					<p>I. Introduction to Dialectic</p>
 					<p>II. Origin: Myths and Revelation</p>
 					<p>III. The Chosen People: Israel</p>

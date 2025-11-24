@@ -111,12 +111,23 @@ export function CarouselTextSection({
 	// Render carousel and text in the correct order based on carouselSide
 	const carouselElement = (
 		<motion.div
-			className="relative"
-			style={{ height: imageContainerHeight }}
+			className="carousel-motion-container relative h-[254px]"
+			style={
+				{
+					'--desktop-height': imageContainerHeight,
+				} as React.CSSProperties & { '--desktop-height'?: string }
+			}
 			variants={imageVariants}
 			initial="hidden"
 			animate={isInView ? 'visible' : 'hidden'}
 		>
+			<style>{`
+				@media (min-width: 768px) {
+					#${id} .carousel-motion-container {
+						height: var(--desktop-height, ${imageContainerHeight}) !important;
+					}
+				}
+			`}</style>
 			<Carousel
 				setApi={setApi}
 				opts={{
@@ -129,10 +140,7 @@ export function CarouselTextSection({
 				<CarouselContent>
 					{images.map((src, index) => (
 						<CarouselItem key={index} className="pl-0">
-							<div
-								className="relative w-full overflow-hidden"
-								style={{ height: imageContainerHeight }}
-							>
+							<div className="relative h-[254px] w-full overflow-hidden md:h-full">
 								<Img
 									src={src}
 									alt={`${altPrefix} ${index + 1}`}
@@ -165,7 +173,7 @@ export function CarouselTextSection({
 	const textElement = (
 		<div className="flex flex-col justify-center space-y-6">
 			<motion.h2
-				className={`font-serif text-4xl font-bold ${titleColor}`}
+				className={`font-serif text-2xl font-normal md:text-4xl md:font-bold ${titleColor}`}
 				variants={titleVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}
@@ -191,31 +199,28 @@ export function CarouselTextSection({
 		<section
 			id={id}
 			ref={ref}
-			className={`relative z-10 scroll-mt-24 ${bgColor} py-16 ${className ?? ''}`}
+			className={`relative z-10 scroll-mt-24 ${bgColor} p-0 md:py-16 ${className ?? ''}`}
 		>
-			<div className="mx-auto max-w-7xl px-4">
+			<div className="mx-auto max-w-7xl px-0 pb-12 md:px-4 md:pb-0">
 				<div
-					className={`grid gap-12 ${
+					className={`grid gap-6 md:gap-12 ${
 						carouselSide === 'left'
 							? 'md:grid-cols-[45%_55%]'
 							: 'md:grid-cols-[55%_45%]'
 					}`}
 				>
-					{carouselSide === 'left' ? (
-						<>
-							{/* Carousel on left */}
-							{carouselElement}
-							{/* Text on right */}
-							{textElement}
-						</>
-					) : (
-						<>
-							{/* Text on left */}
-							{textElement}
-							{/* Carousel on right */}
-							{carouselElement}
-						</>
-					)}
+					{/* On mobile, always show carousel first, then text */}
+					{/* On desktop, respect carouselSide prop */}
+					<div
+						className={`${carouselSide === 'left' ? 'order-1 md:order-1' : 'order-1 md:order-2'}`}
+					>
+						{carouselElement}
+					</div>
+					<div
+						className={`p-6 pt-0 md:p-0 ${carouselSide === 'left' ? 'order-2 md:order-2' : 'order-2 md:order-1'}`}
+					>
+						{textElement}
+					</div>
 				</div>
 			</div>
 		</section>

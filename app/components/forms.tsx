@@ -24,7 +24,7 @@ export function ErrorList({
 	const errorsToRender = errors?.filter(Boolean)
 	if (!errorsToRender?.length) return null
 	return (
-		<ul id={id} className="flex flex-col gap-1">
+		<ul id={id} className="flex flex-col gap-1 text-right">
 			{errorsToRender.map((e) => (
 				<li key={e} className="text-foreground-destructive text-[10px]">
 					{e}
@@ -50,16 +50,16 @@ export function Field({
 	const errorId = errors?.length ? `${id}-error` : undefined
 	return (
 		<div className={className}>
-			<Label htmlFor={id} {...labelProps} />
+			<div className="flex items-end justify-between">
+				<Label htmlFor={id} {...labelProps} />
+				{errorId ? <ErrorList id={errorId} errors={errors} /> : null}
+			</div>
 			<Input
 				id={id}
 				aria-invalid={errorId ? true : undefined}
 				aria-describedby={errorId}
 				{...inputProps}
 			/>
-			<div className="min-h-[32px] px-4 pt-1 pb-3">
-				{errorId ? <ErrorList id={errorId} errors={errors} /> : null}
-			</div>
 		</div>
 	)
 }
@@ -124,16 +124,16 @@ export function TextareaField({
 	const errorId = errors?.length ? `${id}-error` : undefined
 	return (
 		<div className={className}>
-			<Label htmlFor={id} {...labelProps} />
+			<div className="flex items-end justify-between">
+				<Label htmlFor={id} {...labelProps} />
+				{errorId ? <ErrorList id={errorId} errors={errors} /> : null}
+			</div>
 			<Textarea
 				id={id}
 				aria-invalid={errorId ? true : undefined}
 				aria-describedby={errorId}
 				{...textareaProps}
 			/>
-			<div className="min-h-[32px] px-4 pt-1 pb-3">
-				{errorId ? <ErrorList id={errorId} errors={errors} /> : null}
-			</div>
 		</div>
 	)
 }

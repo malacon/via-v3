@@ -129,9 +129,11 @@ export default function Contact() {
 	const isSuccess = contact.data?.success === true
 
 	return (
-		<main className="mx-auto max-w-6xl bg-gray-100/50 px-52 py-16">
-			<h1 className="mb-8 font-serif text-6xl font-normal">Contact</h1>
-			<p className="mb-8 pl-8 text-base text-gray-600">
+		<main className="mx-auto max-w-6xl bg-gray-100/50 px-4 py-8 sm:px-8 md:px-16 md:py-16 lg:px-52">
+			<h1 className="mb-6 font-serif text-4xl font-normal sm:text-5xl md:mb-8 md:text-6xl">
+				Contact
+			</h1>
+			<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 sm:pl-8 md:text-base">
 				If you're interested in applying to Via's 2026 cohort, have any
 				questions, or just want to say hello, please fill out your contact info
 				below and someone from our team will get back to you in the next few
@@ -152,9 +154,12 @@ export default function Contact() {
 							labelProps={{
 								htmlFor: fields.firstName.id,
 								children: 'First Name',
+								className: 'text-lg leading-relaxed md:text-base',
 							}}
 							inputProps={{
 								...getInputProps(fields.firstName, { type: 'text' }),
+								// input should be blocked and dark background
+								className: 'border-gray-800  rounded-none',
 							}}
 							errors={fields.firstName.errors}
 						/>
@@ -162,9 +167,11 @@ export default function Contact() {
 							labelProps={{
 								htmlFor: fields.lastName.id,
 								children: 'Last Name',
+								className: 'text-lg leading-relaxed md:text-base',
 							}}
 							inputProps={{
 								...getInputProps(fields.lastName, { type: 'text' }),
+								className: 'border-gray-800  rounded-none',
 							}}
 							errors={fields.lastName.errors}
 						/>
@@ -172,10 +179,12 @@ export default function Contact() {
 							labelProps={{
 								htmlFor: fields.email.id,
 								children: 'Email',
+								className: 'text-lg leading-relaxed md:text-base',
 							}}
 							inputProps={{
 								required: true,
 								...getInputProps(fields.email, { type: 'email' }),
+								className: 'border-gray-800  rounded-none',
 							}}
 							errors={fields.email.errors}
 						/>
@@ -185,10 +194,12 @@ export default function Contact() {
 						labelProps={{
 							htmlFor: fields.message.id,
 							children: 'Message',
+							className: 'text-lg leading-relaxed md:text-base',
 						}}
 						textareaProps={{
 							...getTextareaProps(fields.message),
 							rows: 6,
+							className: 'border-gray-800  rounded-none',
 						}}
 						errors={fields.message.errors}
 					/>
@@ -202,6 +213,7 @@ export default function Contact() {
 									: (form.status ?? 'idle')
 							}
 							disabled={contact.state !== 'idle'}
+							className="font-display w-full rounded-none border-gray-800 py-6 text-lg leading-relaxed font-thin md:text-base"
 						>
 							Send
 						</StatusButton>
