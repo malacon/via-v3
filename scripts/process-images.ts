@@ -103,6 +103,24 @@ const IMAGE_MAP: Array<{
 		dest: 'faq-books-glasses.jpg',
 		config: 'gallery',
 	},
+	// Life in Via - Study, Work, Prayer section
+	{
+		source: 'VIA-12-Seminar-LUandFellows.jpg',
+		dest: 'life-in-via-study.jpg',
+		config: 'gallery',
+	},
+	{
+		source: 'VIA-21-AnnAyrisseWritingInSeminarNextToAnthony.jpg',
+		dest: 'life-in-via-study-alt.jpg',
+		config: 'gallery',
+	},
+	// Prayer image (Anthony and AnnAyrisse)
+	{
+		source:
+			'_1_CURRENTLY IN WEBSITE WIREFRAME/LifeInVia PAGE/Intellectual Formation/Copy of VIA-21-AnnAyrisseWritingInSeminarNextToAnthony.jpg',
+		dest: 'life-in-via-prayer.jpg',
+		config: 'gallery',
+	},
 ]
 
 async function ensureDir(dir: string) {

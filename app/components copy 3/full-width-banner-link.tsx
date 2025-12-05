@@ -57,9 +57,9 @@ export function FullWidthBannerLink({
 		<Link
 			to={to}
 			onClick={handleClick}
-			className={`bg-brand-navy hover:bg-opacity-90 focus:ring-offset-brand-navy relative z-10 block cursor-pointer px-6 py-6 text-center transition-all hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none active:scale-[0.98] md:px-0 ${className ?? ''}`}
+			className={`bg-brand-navy hover:bg-opacity-90 focus:ring-offset-brand-navy relative z-10 block cursor-pointer px-6 py-8 text-center transition-all hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none active:scale-[0.98] md:px-0 md:py-10 ${className ?? ''}`}
 		>
-			<p className="font-serif text-2xl text-white underline decoration-white/30 decoration-2 underline-offset-4 transition-all hover:decoration-white/60">
+			<p className="font-serif text-2xl leading-relaxed text-white underline decoration-white/30 decoration-2 underline-offset-4 transition-all hover:decoration-white/60 md:text-3xl">
 				{children}
 			</p>
 		</Link>

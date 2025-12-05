@@ -175,8 +175,12 @@
 	 * - 600: Semi-bold
 	 * - 700: Bold
 	 */
-	--font-display: 'Futura', 'Sans Serif', system-ui, sans-serif;
-	--font-sans: 'Futura', 'Sans Serif', 'Helvetica', system-ui, sans-serif;
+	--font-display:
+		'Baskerville', 'Georgia', serif, 'Futura', 'Sans Serif', system-ui,
+		sans-serif;
+	--font-sans:
+		'Baskerville', 'Georgia', serif, 'Futura', 'Sans Serif', 'Helvetica',
+		system-ui, sans-serif;
 	--font-serif: 'Baskerville', 'Georgia', serif;
 	--font-navigation: 'Helvetica', 'Sans Serif', system-ui, sans-serif;
 

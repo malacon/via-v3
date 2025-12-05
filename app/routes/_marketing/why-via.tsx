@@ -42,13 +42,14 @@ export default function WhyVia() {
 			<TestimonialSection
 				id="testimonials"
 				name="Collin | Fellow, 2024 Cohort"
-				firstImagePosition="left"
 				images={[
 					{
 						src: '/img/testimonial-collin.jpg',
 						alt: 'Collin Stephenson on mountain peak',
 						width: 321,
-						height: 445,
+						height: 445 * 0.6,
+						cropY: '40%', // Crop 20% from top
+						objectPosition: 'center', // Center horizontally, vertical position set by cropY
 					},
 				]}
 				textSections={[
@@ -84,13 +85,14 @@ export default function WhyVia() {
 			{/* Ellen LeBlanc Testimonial */}
 			<TestimonialSection
 				name="Ellen | Fellow, 2024 Cohort"
-				firstImagePosition="right"
 				images={[
 					{
 						src: '/img/ellen.jpg',
 						alt: 'Ellen and Rachel in front of mountain',
-						width: 800,
-						height: 600,
+						width: 400,
+						height: 333,
+						objectPosition: 'center',
+						cropX: '50%',
 					},
 					{
 						src: '/img/testimonial-ellen-2.jpg',
@@ -157,21 +159,20 @@ export default function WhyVia() {
 			{/* Isaac LeJeune Testimonial */}
 			<TestimonialSection
 				name="Isaac | Fellow, 2023 Cohort"
-				firstImagePosition="right"
 				images={[
 					{
 						src: '/img/testimonial-isaac-1.jpg',
 						alt: 'Isaac and Anthony with guitars',
 						width: 465,
 						height: 312,
-						containerWidth: 'w-full max-w-md md:max-w-lg',
+						// containerWidth: 'w-full max-w-md md:max-w-lg',
 					},
 					{
 						src: '/img/testimonial-isaac-2.jpg',
 						alt: 'Isaac LeJeune with guitar',
 						width: 351,
 						height: 208,
-						containerWidth: 'w-full max-w-2xs md:max-w-sm',
+						// containerWidth: 'w-full max-w-2xs md:max-w-sm',
 					},
 				]}
 				textSections={[
@@ -221,7 +222,6 @@ export default function WhyVia() {
 			{/* Sam LeBlanc Testimonial */}
 			<TestimonialSection
 				name="Sam | Fellow, 2023 Cohort"
-				firstImagePosition="right"
 				images={[
 					{
 						src: '/img/testimonial-sam.jpg',

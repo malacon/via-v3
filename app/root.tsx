@@ -308,6 +308,7 @@ function App() {
 								src="/img/via-logo.png"
 								alt="Via Nova logo"
 								className="h-[58px] w-auto md:h-[81px] md:w-[324px]"
+								style={{ imageRendering: 'crisp-edges' }}
 							/>
 						</Link>
 						<nav
@@ -328,7 +329,7 @@ function App() {
 									isActivePath('/life-in-via') ? 'text-[#404040] underline' : ''
 								}`}
 							>
-								Life In Via
+								Life in Via
 							</Link>
 							<Link
 								to="/why-via"
@@ -468,7 +469,7 @@ function App() {
 												: ''
 										}`}
 									>
-										Life In Via
+										Life in Via
 									</Link>
 									<Link
 										to="/why-via"

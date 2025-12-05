@@ -176,7 +176,7 @@ export function TestimonialSection({
 	// Render headshot with circular shape and text wrapping
 	// Always renders a circle - either with image or colored background
 	const renderHeadshot = () => {
-		const headshotSize = headshot?.size || 'w-32 h-32 md:w-60 md:h-60'
+		const headshotSize = headshot?.size || 'w-32 h-32 md:w-40 md:h-40'
 		const objectPosition = headshot
 			? getObjectPosition(
 					headshot.cropX,
@@ -187,15 +187,10 @@ export function TestimonialSection({
 
 		return (
 			<motion.div
-				className={`float-left mr-3 shrink-0 overflow-hidden rounded-full ${headshotSize}`}
+				className={`float-left mr-6 ${headshotSize} shrink-0 overflow-hidden rounded-full`}
 				style={{
-					shapeOutside: `polygon(100% 50%,97.55% 65.45%,90.45% 79.39%,79.39% 90.45%,65.45% 97.55%,50% 100%,34.55% 97.55%,20.61% 90.45%,9.55% 79.39%,2.45% 65.45%,0% 50%,2.45% 34.55%,9.55% 20.61%,20.61% 9.55%,34.55% 2.45%,50% 0%,65.45% 2.45%,79.39% 9.55%,90.45% 20.61%,97.55% 34.55%)`,
-					// .polygon {
-					// 	width: 200px; /* adjust to control the size */
-					// 	aspect-ratio: 1;
-					// 	clip-path: polygon(100% 50%,97.55% 65.45%,90.45% 79.39%,79.39% 90.45%,65.45% 97.55%,50% 100%,34.55% 97.55%,20.61% 90.45%,9.55% 79.39%,2.45% 65.45%,0% 50%,2.45% 34.55%,9.55% 20.61%,20.61% 9.55%,34.55% 2.45%,50% 0%,65.45% 2.45%,79.39% 9.55%,90.45% 20.61%,97.55% 34.55%);
-					// }
-					shapeMargin: '0.075rem',
+					shapeOutside: `circle(50% at 50% 50%)`,
+					shapeMargin: '1rem',
 					backgroundColor: headshot ? undefined : defaultHeadshotColor,
 				}}
 				variants={imageVariants}
@@ -232,16 +227,7 @@ export function TestimonialSection({
 					{/* Headshot, name, first image, and first text section */}
 					<div className="clear-both">
 						{renderHeadshot()}
-						{/* Header text at the top, inline with headshot */}
-						<motion.h2
-							className={`mb-4 inline-block font-serif text-4xl font-normal ${titleColor}`}
-							variants={titleVariants}
-							initial="hidden"
-							animate={isInView ? 'visible' : 'hidden'}
-						>
-							{name}
-						</motion.h2>
-						{/* First image floated right, aligned with first paragraph */}
+						{/* First image floated right, appears at the top - rendered before name so it's positioned higher */}
 						{images.length > 0 &&
 							images[0] &&
 							(() => {
@@ -275,7 +261,15 @@ export function TestimonialSection({
 									</motion.div>
 								)
 							})()}
-						{/* Body text wraps around headshot */}
+						<motion.h2
+							className={`mb-4 inline-block font-serif text-4xl font-normal ${titleColor}`}
+							style={{ verticalAlign: 'middle' }}
+							variants={titleVariants}
+							initial="hidden"
+							animate={isInView ? 'visible' : 'hidden'}
+						>
+							{name}
+						</motion.h2>
 						{textSections.length > 0 && (
 							<motion.div
 								className={`space-y-4 text-lg leading-[25px] font-thin ${textColor}`}
