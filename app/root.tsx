@@ -302,17 +302,17 @@ function App() {
 		>
 			<div className="flex min-h-screen flex-col justify-between">
 				<header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-					<div className="container3 mx-auto flex items-center justify-between px-4 py-3 md:px-28 lg:px-20">
+					<div className="container3 mx-auto flex items-center justify-between px-4 py-2.5 md:px-28 md:py-3 lg:px-20">
 						<Link to="/" className="flex items-center gap-3">
 							<img
-								src="/img/via-logo.png"
+								src="/img/via-logo-cropped.png"
 								alt="Via Nova logo"
 								className="h-[58px] w-auto md:h-[81px] md:w-[324px]"
 								style={{ imageRendering: 'crisp-edges' }}
 							/>
 						</Link>
 						<nav
-							className="font-display hidden items-center gap-10 text-base tracking-wider lg:flex"
+							className="font-display hidden items-center gap-10 text-base tracking-wide lg:flex lg:tracking-wider"
 							aria-label="Main navigation"
 						>
 							<Link

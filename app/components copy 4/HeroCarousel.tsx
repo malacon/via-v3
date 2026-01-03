@@ -56,7 +56,7 @@ export default function HeroCarousel({
 	staticHeading,
 	staticSubheading,
 	mobileSubheading,
-	mobileSubheadingBgColor = 'bg-gray-500',
+	mobileSubheadingBgColor = 'bg-via-primary',
 }: HeroCarouselProps) {
 	const [index, setIndex] = useState(0)
 	const reduced = useReducedMotion()
@@ -132,7 +132,7 @@ export default function HeroCarousel({
 	return (
 		<>
 			<section
-				className={`relative w-full ${heightClass} overflow-hidden ${className}`}
+				className={`relative w-full ${heightClass} overflow-hidden ${className} py-4`}
 				role="region"
 				aria-label="Hero image carousel"
 			>
@@ -182,17 +182,17 @@ export default function HeroCarousel({
 
 				{/* Left-side content column - Hidden on mobile */}
 				<div className="relative z-10 hidden h-full w-full md:block">
-					<div className="container3 mx-auto flex h-full w-full">
+					<div className="px-content-x container3 mx-auto flex h-full w-full lg:pl-16!">
 						{/* Text panel (left) */}
-						<div className="flex w-full max-w-[720px] items-center px-4 py-10 md:max-w-[640px] md:py-16 lg:max-w-[720px] lg:px-0 xl:max-w-[800px]">
-							<div className="w-full text-white">
+						<div className="flex w-full max-w-lg items-center">
+							<div className="text-via-text-inverse w-full">
 								{(staticHeading || current.heading) && (
-									<h1 className="text-4xl font-bold drop-shadow md:text-5xl lg:text-6xl">
+									<h1 className="font-serif text-4xl leading-tight font-bold text-balance drop-shadow md:text-5xl">
 										{staticHeading ?? current.heading}
 									</h1>
 								)}
 								{(staticSubheading ?? current.subheading) && (
-									<div className="mt-4 text-lg opacity-90 md:mt-6 md:text-2xl md:leading-relaxed">
+									<div className="font-body text-body-lg text-via-text-inverse mt-4 md:mt-6">
 										{staticSubheading ?? <p>{current.subheading}</p>}
 									</div>
 								)}
@@ -219,11 +219,11 @@ export default function HeroCarousel({
 			{/* Mobile-only text section below carousel */}
 			{(mobileSubheading ?? staticSubheading) && (
 				<div
-					className={`${mobileSubheadingBgColor} px-4 py-8 text-xl text-white md:hidden md:py-6`}
+					className={`${mobileSubheadingBgColor ?? 'bg-via-primary'} px-content-x font-body text-body-lg text-via-text-inverse py-8 md:hidden md:py-6`}
 				>
-					<div className="mx-auto max-w-7xl">
+					<div className="max-w-via-content mx-auto">
 						{mobileSubheading ?? (
-							<div className="font-sans leading-relaxed font-light">
+							<div className="font-body leading-relaxed">
 								{typeof staticSubheading === 'string' ? (
 									<p>{staticSubheading}</p>
 								) : (

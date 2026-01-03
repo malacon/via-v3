@@ -85,6 +85,14 @@ export default function WhyVia() {
 			{/* Ellen LeBlanc Testimonial */}
 			<TestimonialSection
 				name="Ellen | Fellow, 2024 Cohort"
+				headshot={{
+					src: '/img/ellen-headshot3.png',
+					alt: 'Ellen Headshot',
+					width: 400,
+					height: 400,
+					objectPosition: 'center',
+					cropX: '50%',
+				}}
 				images={[
 					{
 						src: '/img/ellen.jpg',
@@ -222,6 +230,16 @@ export default function WhyVia() {
 			{/* Sam LeBlanc Testimonial */}
 			<TestimonialSection
 				name="Sam | Fellow, 2023 Cohort"
+				// light brown
+				headshotColor="#8B4513"
+				headshot={{
+					src: '/img/sam-headshot.png',
+					alt: 'Sam Headshot',
+					width: 400,
+					height: 400,
+					objectPosition: 'center',
+					cropX: '50%',
+				}}
 				images={[
 					{
 						src: '/img/testimonial-sam.jpg',

@@ -4,9 +4,10 @@ import { useRef } from 'react'
 import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import { FullWidthSection } from '#app/components/full-width-section.tsx'
 import HeroCarousel, { type Slide } from '#app/components/HeroCarousel.tsx'
-import { ProfileCarouselSection } from '#app/components/profile-carousel-section.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { type Route } from './+types/index.ts'
+import { Link } from 'react-router'
+import EmployeeCarousel from '#app/components/employee-carosel.tsx'
 
 export const meta: Route.MetaFunction = () => [
 	{ title: 'Via Nova' },
@@ -21,6 +22,25 @@ export const meta: Route.MetaFunction = () => [
 // 1) dancing, 2) John teaching (whiteboard centered), 3) Max/Lili sitting outside (flipped)
 const heroSlides: Slide[] = [
 	{
+		src: '/img/mountain-isaac-anthony-flip.jpg', // Poetry Night (focus on the table)
+		heading: 'Isaac hoisting Anthony on mountain',
+		subheading: '',
+		alt: 'Isaac hoisting Anthony on mountain',
+		focusY: 70,
+		focusX: 'center',
+	},
+	{
+		src: '/img/life-in-via-luke.png', // VIA-30.HayesAndFellowsSmilingSeminar.JPG
+		heading: 'A New Way',
+		subheading:
+			'Through a life of study, work, and prayer, we offer our participants a via nova, that is "a new way" of learning and living.',
+		alt: 'John teaching with whiteboard',
+		focusY: 65,
+		focusX: 'center',
+		// focusX: 'center', // Center horizontally
+		// focusY: 'center', // Center vertically
+	},
+	{
 		src: '/img/hero-dancing.jpg', // IMG_3998.jpeg from _EventsDances
 		heading: 'Via Nova',
 		subheading:
@@ -33,42 +53,6 @@ const heroSlides: Slide[] = [
 		// focusX: 'center' | 'left' | 'right' | 30 (percentage 0-100)
 		// focusY: 'center' | 'top' | 'bottom' | 40 (percentage 0-100)
 	},
-	{
-		src: '/img/hero-teaching.jpg', // VIA-30.HayesAndFellowsSmilingSeminar.JPG
-		heading: 'A New Way',
-		subheading:
-			'Through a life of study, work, and prayer, we offer our participants a via nova, that is "a new way" of learning and living.',
-		alt: 'John teaching with whiteboard',
-		focusY: 'top',
-		focusX: 'center',
-		// focusX: 'center', // Center horizontally
-		// focusY: 'center', // Center vertically
-	},
-	{
-		src: '/img/poetry-night.jpg', // Poetry Night (focus on the table)
-		heading: 'Life of Freedom',
-		subheading: 'Better equipped for a life of freedom, mission, & holiness.',
-		alt: 'Fellows sitting outside',
-		focusY: 40,
-		focusX: 'center',
-	},
-]
-
-// Profile gallery images - Updated per design notes
-// Removed: candle light praise music, Ellen and Rachel smiling, Fellows sitting at Mel's, Fr. Francisco with Sam and Anthony
-// Added: Liliana with broom, Fellows on horses, Girls Dropping Flowers on St Joseph, Rachel praying at Clear Creek
-const profileImages = [
-	// '/img/profile-1.jpg', // Fr. Francisco with Fellows in seminar
-	'/img/profile-2.jpg', // Peter playing guitar at poetry night
-	'/img/profile-3.jpg', // Prayer at Fatima chapel
-	'/img/profile-liliana-broom.jpg', // Liliana beating runners with broom
-	'/img/profile-4.jpg', // Snow selfie girls
-	'/img/profile-fellows-horses.jpg', // Fellows on horses
-	'/img/profile-girls-flowers.jpg', // Girls Dropping Flowers on St Joseph
-	'/img/profile-rachel-praying.jpg', // Rachel praying at Clear Creek
-	// '/img/profile-5.jpg', // Year 1 group shot
-	'/img/profile-6.jpg', // Year 2 group shot
-	// '/img/profile-7.jpg', // FullSizeRender
 ]
 
 const titleVariants = {
@@ -107,36 +91,74 @@ export default function Index() {
 
 	return (
 		<div className="bg-white">
-			{/* Hero Section with Carousel */}
+			{/* Hero Section with Carousel - Enhanced with better overlay and CTAs */}
 			<HeroCarousel
 				slides={heroSlides}
 				intervalMs={8000}
 				heightClass="h-[236px] md:h-[510px]"
-				overlayOpacity={0.7}
-				staticHeading=""
+				overlayOpacity={0.5}
+				staticHeading="A year of holistic formation in study, work, & prayer."
 				staticSubheading={
-					<div className="container3 mx-auto">
-						<p className="mx-auto ml-0 max-w-[580px] pl-0 text-left font-sans text-3xl leading-relaxed font-light tracking-[0.3px] md:text-3xl lg:text-3xl">
-							Via Nova offers a 10-month, live-in experience of intensive
-							intellectual, professional, and spiritual formation for Catholics
-							ages 18-22.
-						</p>
+					<div className="container3 mx-auto !px-0">
+						<div className="ml-0 max-w-[580px] px-0 pl-0 text-left">
+							<p className="mb-6 font-sans text-xl leading-relaxed font-light tracking-[0.3px] text-white md:text-2xl lg:text-2xl">
+								Via Nova offers a 10-month, live-in experience of intellectual,
+								professional, & spiritual formation for Catholics ages 18-22.
+							</p>
+							<div className="flex flex-col gap-4 sm:flex-row">
+								<Button
+									variant="default"
+									size="lg"
+									asChild
+									className="bg-white text-gray-900 hover:bg-gray-100"
+								>
+									<Link to="/contact">Apply Now</Link>
+								</Button>
+								<Button
+									variant="outline"
+									size="lg"
+									asChild
+									className="border-white bg-transparent text-white hover:bg-white/10 hover:text-white"
+								>
+									<Link to="/why-via">Learn More</Link>
+								</Button>
+							</div>
+						</div>
 					</div>
 				}
 				mobileSubheading={
-					<p className="font-sans text-2xl leading-relaxed font-light md:text-3xl">
-						Via Nova offers a 10-month, live-in experience of intensive
-						intellectual, professional, and spiritual formation for Catholics
-						ages 18-22.
-					</p>
+					<div>
+						<p className="mb-4 font-sans text-2xl leading-relaxed font-light md:text-3xl">
+							Via Nova offers a 10-month, live-in experience of intellectual,
+							professional, & spiritual formation for Catholics ages 18-22.
+						</p>
+						<div className="flex flex-col gap-3">
+							<Button
+								variant="default"
+								size="lg"
+								asChild
+								className="bg-white text-gray-900 hover:bg-gray-100"
+							>
+								<a href="#apply">Apply Now</a>
+							</Button>
+							<Button
+								variant="outline"
+								size="lg"
+								asChild
+								className="border-white text-white hover:bg-white/10"
+							>
+								<a href="/why-via">Learn More</a>
+							</Button>
+						</div>
+					</div>
 				}
-				mobileSubheadingBgColor="bg-gray-500"
+				mobileSubheadingBgColor="bg-gray-600"
 			/>
 
 			{/* Second Paragraph Section - Full Width, White Background */}
-			<FullWidthSection background="bg-white" padding="py-12 md:py-16">
+			<FullWidthSection background="bg-white" padding="py-12 md:py-16 lg:py-20">
 				<motion.p
-					className="mx-auto max-w-7xl text-center font-sans text-2xl leading-relaxed font-light tracking-[0.3px] md:text-3xl lg:text-4xl"
+					className="mx-auto max-w-4xl text-left font-sans text-lg leading-relaxed font-light tracking-[0.3px] text-gray-800 md:text-xl lg:text-2xl"
 					variants={textVariants}
 					initial="hidden"
 					whileInView="visible"
@@ -149,114 +171,100 @@ export default function Index() {
 				</motion.p>
 			</FullWidthSection>
 
-			{/* Life in Via Section - Three Columns with Images */}
+			{/* Life in Via Section - Redesigned as clean three-column grid with cards */}
 			<FullWidthSection
 				ref={lifeInViaRef}
-				maxWidth="max-w-7xl lg:max-w-[120rem]"
+				maxWidth="max-w-7xl"
 				background="bg-heading"
-				className="py-0"
-				padding="py-0"
+				padding="py-16 md:py-20 lg:py-24"
 			>
-				{/* Layout - Five Columns: Text, Picture, Text, Picture, Text */}
-				{/* Mobile/Tablet: Vertical stack maintaining order */}
-				{/* Desktop: Horizontal 5-column layout with full-height images */}
-				<div className="px-4 py-8 md:py-0">
-					<div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-5 md:gap-4 lg:gap-6">
-						{/* 1. Study Text Column */}
-						<div className="flex flex-col md:col-span-1">
-							<motion.div
-								variants={textVariants}
-								initial="hidden"
-								animate={lifeInViaInView ? 'visible' : 'hidden'}
-								className="flex h-full flex-col justify-start py-16 text-left"
-							>
-								<p className="font-display text-lg leading-relaxed font-normal tracking-normal text-white md:text-base lg:text-2xl">
-									<span className="font-sans text-xl font-bold md:text-2xl lg:text-3xl">
-										Study
-									</span>{' '}
-									in Via consists of seminars on the ancient spiritual and
-									philosophical traditions of Israel, Greece, and the early
-									Church.
-								</p>
-							</motion.div>
+				<div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
+					{/* Study Card */}
+					<motion.div
+						variants={textVariants}
+						initial="hidden"
+						animate={lifeInViaInView ? 'visible' : 'hidden'}
+						className="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-white/5 shadow-lg backdrop-blur-sm"
+					>
+						<div className="relative h-64 w-full overflow-hidden md:h-72">
+							<Img
+								src="/img/hero-teaching.jpg"
+								alt="Seminar with LU and Fellows"
+								width={800}
+								height={600}
+								fit="cover"
+								className="h-full w-full object-cover"
+							/>
 						</div>
+						<div className="flex flex-1 flex-col px-6 py-8">
+							<p className="flex-1 font-sans text-lg leading-relaxed text-white/90 md:text-xl">
+								<span className="mb-3 font-sans text-xl font-bold text-white md:text-2xl">
+									Study
+								</span>{' '}
+								in Via consists of seminars on the ancient spiritual and
+								philosophical traditions of Israel, Greece, and the early
+								Church, under the guidance of master teachers.
+							</p>
+						</div>
+					</motion.div>
 
-						{/* 2. Study Image Column - Full Height, No Padding */}
-						<div className="flex flex-col md:col-span-1">
-							<motion.div
-								variants={textVariants}
-								initial="hidden"
-								animate={lifeInViaInView ? 'visible' : 'hidden'}
-								className="relative h-full min-h-[300px] w-full overflow-hidden md:min-h-full"
-							>
-								<Img
-									src="/img/life-in-via-study.jpg"
-									alt="Seminar with LU and Fellows"
-									width={800}
-									height={600}
-									fit="cover"
-									className="h-full w-full object-cover"
-								/>
-							</motion.div>
+					{/* Work Card */}
+					<motion.div
+						variants={textVariants}
+						initial="hidden"
+						animate={lifeInViaInView ? 'visible' : 'hidden'}
+						className="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-white/5 shadow-lg backdrop-blur-sm"
+					>
+						<div className="relative h-64 w-full overflow-hidden md:h-72">
+							<Img
+								src="/img/life-in-via-prayer.jpg"
+								alt="Work apprenticeship"
+								width={800}
+								height={600}
+								fit="cover"
+								className="h-full w-full object-cover"
+							/>
 						</div>
+						<div className="flex flex-1 flex-col px-6 py-8">
+							<p className="flex-1 font-sans text-lg leading-relaxed text-white/90 md:text-xl">
+								<span className="mb-3 font-sans text-xl font-bold text-white md:text-2xl">
+									Work
+								</span>{' '}
+								takes the form of paid apprenticeships with Catholic
+								professionals dedicated to preparing Via Fellows for success in
+								their respective careers.
+							</p>
+						</div>
+					</motion.div>
 
-						{/* 3. Work Text Column */}
-						<div className="flex flex-col md:col-span-1">
-							<motion.div
-								variants={textVariants}
-								initial="hidden"
-								animate={lifeInViaInView ? 'visible' : 'hidden'}
-								className="flex h-full flex-col justify-start py-16 text-left"
-							>
-								<p className="font-display text-lg leading-relaxed font-normal tracking-normal text-white md:text-base lg:text-2xl">
-									<span className="font-sans text-xl font-bold md:text-2xl lg:text-3xl">
-										Work
-									</span>{' '}
-									takes the form of apprenticeships with Catholic professionals
-									dedicated to preparing Via Fellows for success in their
-									respective careers.
-								</p>
-							</motion.div>
+					{/* Prayer Card */}
+					<motion.div
+						variants={textVariants}
+						initial="hidden"
+						animate={lifeInViaInView ? 'visible' : 'hidden'}
+						className="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-white/5 shadow-lg backdrop-blur-sm"
+					>
+						<div className="relative h-64 w-full overflow-hidden md:h-72">
+							<Img
+								src="/img/anthony-praying.jpg"
+								alt="Anthony and AnnAyrisse praying"
+								width={800}
+								height={600}
+								fit="cover"
+								className="h-full w-full object-cover"
+							/>
 						</div>
-
-						{/* 4. Prayer Image Column - Full Height, No Padding */}
-						<div className="flex flex-col md:col-span-1">
-							<motion.div
-								variants={textVariants}
-								initial="hidden"
-								animate={lifeInViaInView ? 'visible' : 'hidden'}
-								className="relative h-full min-h-[300px] w-full overflow-hidden md:min-h-full"
-							>
-								<Img
-									src="/img/life-in-via-prayer.jpg"
-									alt="Anthony and AnnAyrisse praying"
-									width={800}
-									height={600}
-									fit="cover"
-									className="h-full w-full object-cover"
-								/>
-							</motion.div>
+						<div className="flex flex-1 flex-col px-6 py-8">
+							<p className="flex-1 font-sans text-lg leading-relaxed text-white/90 md:text-xl">
+								<span className="mb-3 font-sans text-xl font-bold text-white md:text-2xl">
+									Prayer
+								</span>{' '}
+								takes the form of paid apprenticeships with Catholic
+								professionals dedicated to preparing Via Fellows for success in
+								their respective careers.
+							</p>
 						</div>
-
-						{/* 5. Prayer Text Column */}
-						<div className="flex flex-col md:col-span-1">
-							<motion.div
-								variants={textVariants}
-								initial="hidden"
-								animate={lifeInViaInView ? 'visible' : 'hidden'}
-								className="flex h-full flex-col justify-start py-16 text-left"
-							>
-								<p className="font-display text-lg leading-relaxed font-normal tracking-normal text-white md:text-base lg:text-2xl">
-									<span className="font-sans text-xl font-bold md:text-2xl lg:text-3xl">
-										Prayer
-									</span>{' '}
-									entails frequent time with Christ in the Eucharist and
-									intentional silence, fostering sustained recollection amid a
-									full schedule.
-								</p>
-							</motion.div>
-						</div>
-					</div>
+					</motion.div>
 				</div>
 			</FullWidthSection>
 
@@ -330,10 +338,10 @@ export default function Index() {
 				</FullWidthSection>
 
 				{/* Desktop: Image with overlay and text */}
-				<div className="relative hidden min-h-[600px] overflow-hidden py-12 md:block md:py-16">
+				<div className="relative hidden min-h-[600px] overflow-hidden py-12 md:block md:py-36">
 					<Img
-						src="/img/mountain-isaac-anthony.jpg"
-						alt="Isaac hoisting Anthony on mountain"
+						src="/img/hike-group.jpg"
+						alt="Group hiking"
 						width={1920}
 						height={1080}
 						fit="cover"
@@ -364,7 +372,7 @@ export default function Index() {
 									formation.
 								</motion.p> */}
 								<motion.p
-									className="mb-6 text-xl leading-relaxed md:text-2xl"
+									className="mb-6 text-xl leading-relaxed md:text-3xl"
 									variants={textVariants}
 									initial="hidden"
 									whileInView="visible"
@@ -376,7 +384,7 @@ export default function Index() {
 									and serve Him.
 								</motion.p>
 								<motion.p
-									className="mb-6 text-xl leading-relaxed md:text-2xl"
+									className="mb-6 text-xl leading-relaxed md:text-3xl"
 									variants={textVariants}
 									initial="hidden"
 									whileInView="visible"
@@ -388,33 +396,6 @@ export default function Index() {
 									as to help the future of the Church better live in the world
 									but not of it.
 								</motion.p>
-								<motion.p
-									className="mb-6 text-xl leading-relaxed md:text-2xl"
-									variants={textVariants}
-									initial="hidden"
-									whileInView="visible"
-									viewport={{ once: true }}
-								>
-									Via provides participants with a simple but very full life,
-									experienced in a community of people who desire largely the
-									same things, namely...
-								</motion.p>
-								<motion.ul
-									variants={textVariants}
-									initial="hidden"
-									whileInView="visible"
-									viewport={{ once: true }}
-									className="list-disc space-y-1.5 pl-6 text-xl leading-relaxed md:space-y-2 md:text-2xl"
-								>
-									<li>Knowledge of oneself, the world, and God</li>
-									<li>Habits of order and self-mastery</li>
-									<li>Meaningful work in a potential career</li>
-									<li>An abiding love of God and neighbor</li>
-									<li>A capacity to pray & meditate</li>
-									<li>Freedom from vice and attachment</li>
-									<li>An ability to share the faith with confidence</li>
-									<li>A deepened understanding of one's calling in life</li>
-								</motion.ul>
 							</div>
 						</div>
 					</div>
@@ -503,6 +484,8 @@ export default function Index() {
 					</motion.div>
 				</div>
 			</FullWidthSection>
+
+			<EmployeeCarousel />
 
 			{/* Footer */}
 			<footer className="bg-white py-6 md:py-8">

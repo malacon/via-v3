@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react'
 import { CarouselTextSection } from '#app/components/carousel-text-section.tsx'
 import HeroParallax from '#app/components/HeroParallax.tsx'
 import { type Route } from './+types/life-in-via.ts'
+import { Link } from 'react-router'
 
 export const meta: Route.MetaFunction = () => [
 	{ title: 'Life In Via | Via Nova' },
@@ -12,7 +14,58 @@ const spiritualImage = '/img/spiritual-1.jpg'
 const serviceImage = '/img/service-lundi-gras.jpg' // Updated per design notes
 const bottomLineImage = '/img/bottomline-1.jpg'
 
+const sectionIds = [
+	'intellectual-formation',
+	'spiritual-formation',
+	'service-community',
+	'retreats-pilgrimages',
+	'external-support',
+	'internal-support',
+	'professional-formation',
+] as const
+
 export default function LifeInVia() {
+	const [activeSection, setActiveSection] = useState<string>('')
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const stickyNav = document.querySelector('.sticky-nav')
+			if (!stickyNav) return
+
+			const navTop =
+				parseFloat(window.getComputedStyle(stickyNav).top) ||
+				(window.matchMedia('(min-width: 768px)').matches ? 105 : 73)
+			const navHeight = stickyNav.getBoundingClientRect().height
+			const offset = navTop + navHeight + 20 // Add some padding for better UX
+
+			// Find which section is currently in view
+			for (let i = sectionIds.length - 1; i >= 0; i--) {
+				const sectionId = sectionIds[i]
+				if (!sectionId) continue
+
+				const section = document.getElementById(sectionId)
+				if (section) {
+					const rect = section.getBoundingClientRect()
+					// Check if section top is above or at the offset point
+					if (rect.top <= offset) {
+						setActiveSection(sectionId)
+						return
+					}
+				}
+			}
+			// If no section is found, default to first one
+			if (sectionIds[0]) {
+				setActiveSection(sectionIds[0])
+			}
+		}
+
+		// Set initial active section
+		handleScroll()
+
+		window.addEventListener('scroll', handleScroll, { passive: true })
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
+
 	const scrollToSection = (sectionId: string) => {
 		const element = document.getElementById(sectionId)
 		if (element) {
@@ -64,9 +117,9 @@ export default function LifeInVia() {
 						<h1 className="order-1 mb-4 font-serif text-5xl font-normal text-black md:order-2 md:mb-6 md:text-[56px]">
 							Life in Via
 						</h1>
-						<p className="order-2 mb-6 font-serif text-lg text-gray-700 md:order-1 md:mb-4 md:text-xl">
+						{/* <p className="order-2 mb-6 font-serif text-lg text-gray-700 md:order-1 md:mb-4 md:text-xl">
 							study &nbsp;| &nbsp;work | &nbsp;pray
-						</p>
+						</p> */}
 					</div>
 					<p className="mx-auto max-w-3xl text-lg leading-loose text-gray-700 md:leading-relaxed">
 						Below you can find the essential features of life in Via.{' '}
@@ -80,7 +133,7 @@ export default function LifeInVia() {
 			{/* Hero Background Image Section */}
 			<HeroParallax
 				imageSrc="/img/life-in-via-hero.jpg"
-				heightClass="h-[423px]"
+				heightClass="h-[318px]"
 				overlayClass="bg-gradient-to-t from-black/30 to-transparent"
 			/>
 
@@ -90,43 +143,57 @@ export default function LifeInVia() {
 					<div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:flex-wrap md:space-y-0 md:space-x-10">
 						<button
 							onClick={() => scrollToSection('intellectual-formation')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'intellectual-formation' ? 'active' : ''
+							}`}
 						>
 							Intellectual Formation
 						</button>
 						<button
 							onClick={() => scrollToSection('spiritual-formation')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'spiritual-formation' ? 'active' : ''
+							}`}
 						>
 							Spiritual Formation
 						</button>
 						<button
 							onClick={() => scrollToSection('service-community')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'service-community' ? 'active' : ''
+							}`}
 						>
 							Service & Community
 						</button>
 						<button
 							onClick={() => scrollToSection('retreats-pilgrimages')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'retreats-pilgrimages' ? 'active' : ''
+							}`}
 						>
 							Retreats & Pilgrimages
 						</button>
 						<button
 							onClick={() => scrollToSection('external-support')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'external-support' ? 'active' : ''
+							}`}
 						>
 							External Support
 						</button>
 						<button
 							onClick={() => scrollToSection('internal-support')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'internal-support' ? 'active' : ''
+							}`}
 						>
 							Internal Support
 						</button>
 						<button
 							onClick={() => scrollToSection('professional-formation')}
-							className="sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white"
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'professional-formation' ? 'active' : ''
+							}`}
 						>
 							Professional Formation
 						</button>
@@ -143,36 +210,35 @@ export default function LifeInVia() {
 				imageAltPrefix="intellectual formation"
 			>
 				<p>
-					Via Fellows study the ancient philosophical and spiritual tradition of
-					the West under the tutelage of the best local instructors. Via's core
-					curriculum consists of several seminars each week split into the
-					following six sequences:
-				</p>
-				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-					<p>I. Introduction to Dialectic</p>
-					<p>II. Origin: Myths and Revelation</p>
-					<p>III. The Chosen People: Israel</p>
-					<p>IV. From Poetry to Science: Greece</p>
-					<p>V. The Pursuit of Happiness: Rome</p>
-					<p>VI. City of God: Church Fathers</p>
-				</div>
-				<p>
-					Each sequence concludes with a presentation from the Fellows. The
-					purpose of the presentations is to deepen Fellows' understanding of
-					each sequence's subject matter and to allow Fellows to fulfill the
-					responsibility that comes with the privilege of education, namely to
-					put the fruits of one's learning at the service of one's community.
+					Via's core curriculum consists of five seminars each week featuring
+					the spiritual and philosophical traditions of ancient Israel, Greece,
+					and Christianity. In addition to the core curriculum, Fellows have the
+					opportunity to take optional weekly seminars on various topics ranging
+					from Russian literature to modern biology, which friends in the wider
+					community are also able to enroll in.
 				</p>
 				<p>
-					Via's seminars and talks are for more than just the Fellows. Dozens of
-					friends beyond the cohort participate in Via's intellectual formation
-					by enrolling in our weekly seminars, and our discussions and lectures
-					are always open to the public.
+					The core curriculum's six sections are detailed on the{' '}
+					<Link to="/curriculum" className="text-brand-primary hover:underline">
+						curriculum page
+					</Link>
+					. Each section concludes with a presentation from the Fellows which
+					aims to deepen the Fellows’ understanding of the seminar’s subject
+					matter and to allow each Fellow to fulfill the responsibility that
+					comes with the privilege of education, namely to put the fruits of
+					one's learning at the service of one's community.
 				</p>
 				<p>
-					In addition to the seminars, Fellows attend and host regular retreats,
-					pilgrimages, lectures, and discussions to supplement their seminar
-					formation.
+					The Fellows’ intellectual formation also occurs through the many talks
+					and discussions Via hosts throughout the year. Various speakers come
+					from across the country to give talks at the Via House, and topics
+					range from existentialism to hunting.
+				</p>
+				<p>
+					Via's seminars, presentations, and lectures are for more than just the
+					Fellows. Many friends from the community participate in Via's
+					intellectual formation by enrolling in our weekly seminars, and our
+					presentations and lectures are always open to the public.
 				</p>
 				<p>
 					The purpose of the Fellows' intellectual formation is to deepen
@@ -198,7 +264,7 @@ export default function LifeInVia() {
 					While Fellows have specific times set aside exclusively for prayer,
 					they are encouraged to take seriously the exhortation of St. Paul to
 					pray without ceasing. Occasional pilgrimages and retreats also
-					supplement the Fellows' regular spiritual practices.
+					supplement the Fellows’ regular spiritual practices.
 				</p>
 				<p>
 					Fellows spend Friday mornings in silence to allow for an additional
@@ -206,7 +272,7 @@ export default function LifeInVia() {
 					exercise, house chores, etc.
 				</p>
 				<p>
-					The purpose of the Fellows' prayer regimen is to create opportunities
+					The purpose of the Fellows’ prayer regimen is to create opportunities
 					for Fellows to more effortlessly lift the mind to God and to form
 					lifelong habits of prayer and peace.
 				</p>
@@ -221,14 +287,16 @@ export default function LifeInVia() {
 				imageAltPrefix="service & community"
 			>
 				<p>
-					Fellows devote a set amount of time each week to pray and visit with
-					friends in the neighborhood, particularly those suffering
-					homelessness.
+					Fellows have various responsibilities in order to assist with the
+					internal communal life of Via and serve the wider community. These
+					responsibilities include preparing for events, monitoring expenses,
+					property maintenance, cooking, etc.
 				</p>
 				<p>
-					Fellows have individual responsibilities in order to assist with the
-					internal communal life of Via such as preparing for events, tracking
-					budgets, property maintenance, cooking, etc.
+					Fellows devote a set amount of time each week to visit with friends in
+					the neighborhood, particularly those suffering homelessness,
+					remembering our Lord's admonition that what is done to the least of
+					these is done to Him.
 				</p>
 				<p>
 					Fellows also serve the wider community by hosting events throughout
@@ -237,9 +305,10 @@ export default function LifeInVia() {
 					Gras, feast day balls, and the Fall Jamboree.
 				</p>
 				<p>
-					The Fellows host events to give people of all ages an experience of
-					meaningful recreation and to help the community observe the Church's
-					liturgical calendar.
+					Internally, the Fellows' service aims to make Via institutionally
+					harmonious and smooth, and externally, to build the kingdom of God by
+					providing experiences of meaningful recreation and formation and to
+					help the community observe the Church's liturgical calendar.
 				</p>
 			</CarouselTextSection>
 
@@ -333,17 +402,16 @@ export default function LifeInVia() {
 					their career aspirations and personal interests.
 				</p>
 				<p>
-					In addition to their work partnerships, Fellows are encouraged to seek
-					mentorship and sometimes internships with professionals in the
-					community in order to test their sense of calling to fields they may
-					wish to pursue as a career.
+					In addition to their work partnerships, Fellows pursue mentorship with
+					professionals in the community in order to test their sense of calling
+					to fields they may wish to pursue as a career.
 				</p>
 				<p>
-					The Fellows' employers–who are typically leaders in their organization
+					The Fellows’ employers–who are typically leaders in their organization
 					and are always active Catholics–understand that their employment of a
-					Via Fellow is in part for the Fellow's personal development, while
-					still expecting the Fellow to serve the organization with no less
-					dedication than any other employee.
+					Via Fellow is for the Fellow’s personal formation, while still
+					treating the Fellow with the same type of expectation as every other
+					employee.
 				</p>
 				<p>
 					The purpose of the Fellows' employment is to understand the
@@ -356,17 +424,17 @@ export default function LifeInVia() {
 			{/* Bottom Line Section */}
 			<CarouselTextSection
 				id="bottom-line"
-				title="Bottom Line"
+				title="Bottomline"
 				images={[bottomLineImage]}
 				carouselSide="right"
 				imageAltPrefix="bottom line"
 				variant="dark"
 			>
 				<p>
-					The essential purpose of all of Via's structures is to create an
+					The essential purpose of all of Via’s structures is to create an
 					environment that helps young people to respond more zealously to the
-					call to sanctity. No amount of programming can force the soul's free
-					response to this calling, but we believe Via's structures allow our
+					call to sanctity. No amount of programming can force the soul’s free
+					response to this calling, but we believe Via’s structures allow our
 					participants and those we serve to discover the profound joy of the
 					life of a disciple.
 				</p>

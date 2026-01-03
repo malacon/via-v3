@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Img } from 'openimg/react'
 import { Link } from 'react-router'
-import { type Route } from './+types/faq.ts'
+import { type Route } from './+types/faq.tsx'
 
 export const meta: Route.MetaFunction = () => [{ title: 'FAQ | Via Nova' }]
 

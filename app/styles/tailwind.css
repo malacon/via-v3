@@ -163,6 +163,62 @@
 	--color-brand-tint: #f7f7f7;
 	--color-brand-tint-80: rgba(247, 247, 247, 0.8);
 	--color-brand-tint-why-via: rgba(103, 116, 137, 0.15);
+
+	/* Via Nova Semantic Design System Colors */
+	--color-via-bg: #f7f3ec;
+	--color-via-surface: #ffffff;
+	--color-via-primary: #1e2837;
+	--color-via-primary-soft: #283546;
+	--color-via-accent: #cfa75b;
+	--color-via-accent-soft: #f2e3c5;
+	--color-via-text: #1f2933;
+	--color-via-text-muted: #4b5563;
+	--color-via-text-inverse: #f9fafb;
+	--color-via-border: #e5e7eb;
+	--color-via-border-strong: #cbd2e1;
+	--color-via-hero-overlay: rgba(15, 23, 42, 0.55);
+	--color-via-card-overlay: rgba(15, 23, 42, 0.35);
+
+	/* Via Nova Semantic Design System - Spacing & Layout */
+	--spacing-section-sm: 3rem;
+	--spacing-section-md: 4.5rem;
+	--spacing-section-lg: 6rem;
+	--spacing-content-x: 1.5rem;
+	--max-width-via-content: 72rem;
+	--max-width-via-narrow: 48rem;
+	--radius-via-card: 0.75rem;
+	--radius-via-pill: 9999px;
+	--shadow-via-card: 0 10px 30px rgba(15, 23, 42, 0.18);
+	--shadow-via-soft: 0 6px 18px rgba(15, 23, 42, 0.12);
+
+	/* Via Nova Semantic Design System - Typography */
+	--font-family-heading: 'Cormorant Garamond', 'Georgia', serif;
+	--font-family-body: 'Inter', 'system-ui', sans-serif;
+	/* --font-family-body: 'Baskerville', 'Georgia', serif; */
+	--font-size-display-hero: 3.25rem;
+	--font-size-display-hero--line-height: 1.05;
+	--font-size-display-hero--letter-spacing: -0.03em;
+	--font-size-display-hero-md: 3.75rem;
+	--font-size-display-hero-md--line-height: 1.05;
+	--font-size-display-hero-md--letter-spacing: -0.03em;
+	--font-size-h1: 2.5rem;
+	--font-size-h1--line-height: 1.1;
+	--font-size-h1--letter-spacing: -0.02em;
+	--font-size-h2: 2rem;
+	--font-size-h2--line-height: 1.15;
+	--font-size-h2--letter-spacing: -0.01em;
+	--font-size-h3: 1.5rem;
+	--font-size-h3--line-height: 1.25;
+	--font-size-h3--letter-spacing: -0.01em;
+	--font-size-eyebrow: 0.8rem;
+	--font-size-eyebrow--line-height: 1.4;
+	--font-size-eyebrow--letter-spacing: 0.16em;
+	--font-size-body-lg: 1.0625rem;
+	--font-size-body-lg--line-height: 1.7;
+	--font-size-body: 1rem;
+	--font-size-body--line-height: 1.7;
+	--font-size-body-sm: 0.875rem;
+	--font-size-body-sm--line-height: 1.6;
 }
 
 @theme {
@@ -178,9 +234,7 @@
 	--font-display:
 		'Baskerville', 'Georgia', serif, 'Futura', 'Sans Serif', system-ui,
 		sans-serif;
-	--font-sans:
-		'Baskerville', 'Georgia', serif, 'Futura', 'Sans Serif', 'Helvetica',
-		system-ui, sans-serif;
+	--font-sans: 'Futura', 'Sans Serif', 'Helvetica', system-ui, sans-serif;
 	--font-serif: 'Baskerville', 'Georgia', serif;
 	--font-navigation: 'Helvetica', 'Sans Serif', system-ui, sans-serif;
 
@@ -225,6 +279,7 @@
 	--text-button: 0.75rem;
 	--text-button--line-height: 1rem;
 	--text-button--font-weight: 700;
+
 	--animate-roll-reveal: roll-reveal 0.4s cubic-bezier(0.22, 1.28, 0.54, 0.99);
 	--animate-slide-left: slide-left 0.3s ease-out;
 	--animate-slide-top: slide-top 0.3s ease-out;
@@ -355,6 +410,14 @@
 	::file-selector-button {
 		border-color: hsl(var(--border));
 	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-stone-50 font-sans text-slate-900;
+	}
 }
 
 /* Disable parallax transforms when user prefers reduced motion */
@@ -369,7 +432,7 @@
 	}
 }
 
-/* Image mask utilities */
+/* Via Nova Semantic Design System - Using @layer utilities for Tailwind v4 */
 @layer utilities {
 	.text-header {
 		color: var(--color-text-header);
@@ -377,6 +440,157 @@
 
 	.bg-heading {
 		background-color: var(--color-text-header);
+	}
+	.bg-via-bg {
+		background-color: var(--color-via-bg);
+	}
+
+	.bg-via-surface {
+		background-color: var(--color-via-surface);
+	}
+
+	.bg-via-primary {
+		background-color: var(--color-via-primary);
+	}
+
+	.bg-via-primary-soft {
+		background-color: var(--color-via-primary-soft);
+	}
+
+	.bg-via-accent {
+		background-color: var(--color-via-accent);
+	}
+
+	.bg-via-accent-soft {
+		background-color: var(--color-via-accent-soft);
+	}
+
+	.text-via-text {
+		color: var(--color-via-text);
+	}
+
+	.text-via-text-muted {
+		color: var(--color-via-text-muted);
+	}
+
+	.text-via-text-inverse {
+		color: var(--color-via-text-inverse);
+	}
+
+	.border-via-border {
+		border-color: var(--color-via-border);
+	}
+
+	.border-via-border-strong {
+		border-color: var(--color-via-border-strong);
+	}
+
+	/* Via Nova Semantic Design System - Spacing */
+	.py-section-sm {
+		padding-top: var(--spacing-section-sm);
+		padding-bottom: var(--spacing-section-sm);
+	}
+
+	.py-section-md {
+		padding-top: var(--spacing-section-md);
+		padding-bottom: var(--spacing-section-md);
+	}
+
+	.py-section-lg {
+		padding-top: var(--spacing-section-lg);
+		padding-bottom: var(--spacing-section-lg);
+	}
+
+	.px-content-x {
+		padding-left: var(--spacing-content-x);
+		padding-right: var(--spacing-content-x);
+	}
+
+	/* Via Nova Semantic Design System - Max Width */
+	.max-w-via-content {
+		max-width: var(--max-width-via-content);
+	}
+
+	.max-w-via-narrow {
+		max-width: var(--max-width-via-narrow);
+	}
+
+	/* Via Nova Semantic Design System - Border Radius */
+	.rounded-via-card {
+		border-radius: var(--radius-via-card);
+	}
+
+	.rounded-via-pill {
+		border-radius: var(--radius-via-pill);
+	}
+
+	/* Via Nova Semantic Design System - Box Shadow */
+	.shadow-via-card {
+		box-shadow: var(--shadow-via-card);
+	}
+
+	.shadow-via-soft {
+		box-shadow: var(--shadow-via-soft);
+	}
+
+	/* Via Nova Semantic Design System - Typography */
+	.font-heading {
+		font-family: var(--font-family-heading);
+	}
+
+	.font-body {
+		font-family: var(--font-family-body);
+	}
+
+	.text-display-hero {
+		font-size: var(--font-size-display-hero);
+		line-height: var(--font-size-display-hero--line-height);
+		letter-spacing: var(--font-size-display-hero--letter-spacing);
+	}
+
+	.text-display-hero-md {
+		font-size: var(--font-size-display-hero-md);
+		line-height: var(--font-size-display-hero-md--line-height);
+		letter-spacing: var(--font-size-display-hero-md--letter-spacing);
+	}
+
+	.text-h1 {
+		font-size: var(--font-size-h1);
+		line-height: var(--font-size-h1--line-height);
+		letter-spacing: var(--font-size-h1--letter-spacing);
+	}
+
+	.text-h2 {
+		font-size: var(--font-size-h2);
+		line-height: var(--font-size-h2--line-height);
+		letter-spacing: var(--font-size-h2--letter-spacing);
+	}
+
+	.text-h3 {
+		font-size: var(--font-size-h3);
+		line-height: var(--font-size-h3--line-height);
+		letter-spacing: var(--font-size-h3--letter-spacing);
+	}
+
+	.text-eyebrow {
+		font-size: var(--font-size-eyebrow);
+		line-height: var(--font-size-eyebrow--line-height);
+		letter-spacing: var(--font-size-eyebrow--letter-spacing);
+	}
+
+	.text-body-lg {
+		font-size: var(--font-size-body-lg);
+		line-height: var(--font-size-body-lg--line-height);
+	}
+
+	.text-body {
+		font-size: var(--font-size-body);
+		line-height: var(--font-size-body--line-height);
+	}
+
+	.text-body-sm {
+		font-size: var(--font-size-body-sm);
+		line-height: var(--font-size-body-sm--line-height);
 	}
 
 	/* Via Nova Brand Color Classes */
@@ -440,13 +654,39 @@
 		mask-size: var(--mask-size, 100% 100%);
 		-webkit-mask-size: var(--mask-size, 100% 100%);
 	}
+}
 
+@layer utilities {
 	.sticky-nav-link {
 		transition: color 0.2s ease;
 	}
 
 	.sticky-nav-link:hover {
 		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.sticky-nav-link.active {
+		color: rgba(255, 255, 255, 1);
+		font-weight: 600;
+		text-decoration: underline;
+		text-underline-offset: 4px;
+		background-color: rgba(255, 255, 255, 0.15);
+		padding: 0.25rem 0.75rem;
+		border-radius: 0.375rem;
+		transition: all 0.3s ease;
+		box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+	}
+
+	.first-paragraph-text {
+		font-size: 1.05rem !important;
+		font-weight: 400 !important;
+		line-height: 1.5 !important;
+	}
+
+	@media (min-width: 768px) {
+		.first-paragraph-text {
+			font-size: 1.375rem !important;
+		}
 	}
 
 	/* Curriculum page mobile text wrapping */
@@ -472,5 +712,154 @@
 			text-indent: -1.5em;
 			padding-left: 1.5em;
 		}
+	}
+}
+
+/* Via Nova Landing Page Semantic Design System - Component classes */
+/* Note: These are component classes meant to be used directly in HTML/JSX, not with @apply */
+@layer components {
+	/* Layout */
+	.via-container {
+		@apply mx-auto max-w-6xl px-6;
+	}
+
+	.via-section {
+		@apply py-16 md:py-24;
+	}
+
+	.via-section-light {
+		@apply bg-gray-100;
+	}
+
+	.via-section-surface {
+		@apply bg-white;
+	}
+
+	.via-section-dark {
+		@apply bg-slate-900 text-slate-50;
+	}
+
+	/* Hero */
+	.via-hero {
+		@apply relative overflow-hidden bg-slate-900 text-slate-50;
+	}
+
+	.via-hero-inner {
+		@apply mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-24;
+	}
+
+	.via-hero-title {
+		@apply font-serif text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl;
+	}
+
+	.via-hero-subtitle {
+		@apply mt-4 max-w-md font-sans text-lg leading-relaxed text-slate-100;
+	}
+
+	.via-hero-cta-row {
+		@apply mt-8 flex flex-wrap gap-4;
+	}
+
+	/* Study / Work / Prayer band + cards */
+	.via-band-soft {
+		@apply text-slate-50;
+		background-color: var(--color-text-header);
+	}
+
+	.via-card-grid {
+		@apply mx-auto grid max-w-6xl gap-8 px-6 pt-12 pb-16 md:grid-cols-3 md:pt-16 md:pb-24;
+	}
+
+	.via-card {
+		@apply flex flex-col rounded-xl border border-slate-200 bg-white p-6 text-slate-900 shadow-lg transition-shadow transition-transform duration-150 md:p-8;
+	}
+
+	.via-card:hover {
+		@apply -translate-y-0.5 shadow-xl;
+	}
+
+	.via-card-title {
+		@apply mb-2 font-serif text-xl font-semibold;
+	}
+
+	.via-card-body {
+		@apply font-sans text-sm leading-relaxed text-slate-700;
+	}
+
+	/* Centered prose blocks */
+	.via-prose-centered {
+		@apply mx-auto max-w-6xl px-6 py-16 text-center md:py-24;
+	}
+
+	.via-prose-centered-narrow {
+		@apply mx-auto max-w-3xl;
+	}
+
+	.via-prose-body {
+		@apply font-sans text-lg leading-loose text-slate-800;
+	}
+
+	/* Two-column section */
+	.via-twocol {
+		@apply mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-24;
+	}
+
+	.via-section-title {
+		@apply text-center font-serif text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl;
+	}
+
+	.via-subheading {
+		@apply mb-3 font-serif text-xl font-semibold text-slate-900 md:text-2xl;
+	}
+
+	.via-body {
+		@apply font-sans text-base leading-relaxed text-slate-800;
+	}
+
+	.via-body-muted {
+		@apply font-sans text-base leading-relaxed text-slate-600;
+	}
+
+	/* Fellows banner */
+	.via-banner {
+		@apply bg-slate-900 text-slate-50;
+	}
+
+	.via-banner-inner {
+		@apply mx-auto max-w-6xl px-6 py-4 text-center font-sans text-lg font-semibold md:py-5 md:text-xl;
+	}
+
+	/* Keep Via Free CTA */
+	.via-cta-section {
+		@apply bg-stone-50 py-16 md:py-24;
+	}
+
+	.via-cta-card {
+		@apply mx-auto flex max-w-6xl justify-center px-6;
+	}
+
+	.via-cta-card-inner {
+		@apply w-full max-w-3xl rounded-xl border border-slate-200 bg-white px-6 py-8 text-center shadow-lg md:px-10 md:py-10;
+	}
+
+	.via-cta-title {
+		@apply mb-4 font-serif text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl;
+	}
+
+	.via-cta-body {
+		@apply mb-6 font-sans text-base leading-relaxed text-slate-700;
+	}
+
+	.via-cta-legal {
+		@apply mt-4 font-sans text-sm leading-relaxed text-slate-500;
+	}
+
+	/* Buttons */
+	.btn-primary {
+		@apply bg-brand-dark-blue hover:bg-brand-dark-blue/90 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg transition focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-stone-50 focus:outline-none;
+	}
+
+	.btn-secondary {
+		@apply border-brand-dark-blue hover:bg-brand-dark-blue/20 inline-flex items-center justify-center rounded-full border-2 bg-transparent px-6 py-3 text-sm font-semibold tracking-wide text-white transition focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-stone-50 focus:outline-none;
 	}
 }

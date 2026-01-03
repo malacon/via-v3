@@ -111,23 +111,11 @@ export function CarouselTextSection({
 	// Render carousel and text in the correct order based on carouselSide
 	const carouselElement = (
 		<motion.div
-			className="carousel-motion-container relative h-[254px]"
-			style={
-				{
-					'--desktop-height': imageContainerHeight,
-				} as React.CSSProperties & { '--desktop-height'?: string }
-			}
+			className="carousel-motion-container relative h-[254px] md:h-full"
 			variants={imageVariants}
 			initial="hidden"
 			animate={isInView ? 'visible' : 'hidden'}
 		>
-			<style>{`
-				@media (min-width: 768px) {
-					#${id} .carousel-motion-container {
-						height: var(--desktop-height, ${imageContainerHeight}) !important;
-					}
-				}
-			`}</style>
 			<Carousel
 				setApi={setApi}
 				opts={{
@@ -140,7 +128,7 @@ export function CarouselTextSection({
 				<CarouselContent>
 					{images.map((src, index) => (
 						<CarouselItem key={index} className="pl-0">
-							<div className="relative h-[254px] w-full overflow-hidden md:h-full">
+							<div className="relative h-[254px] w-full overflow-hidden rounded-xl shadow-md md:h-full">
 								<Img
 									src={src}
 									alt={`${altPrefix} ${index + 1}`}
@@ -173,7 +161,7 @@ export function CarouselTextSection({
 	const textElement = (
 		<div className="flex flex-col justify-center space-y-6">
 			<motion.h2
-				className={`font-serif text-2xl font-normal md:text-4xl md:font-bold ${titleColor}`}
+				className={`mt-4 mb-4 font-serif text-2xl font-semibold tracking-tight md:text-3xl ${titleColor}`}
 				variants={titleVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}
@@ -181,7 +169,7 @@ export function CarouselTextSection({
 				{title}
 			</motion.h2>
 			<motion.div
-				className={`space-y-4 text-lg leading-relaxed ${textColor}`}
+				className={`space-y-5 ${textColor}`}
 				variants={childrenVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}
@@ -195,15 +183,21 @@ export function CarouselTextSection({
 		</div>
 	)
 
+	// Handle special case for Bottom Line section - extra padding
+	const isBottomLine = id === 'bottom-line'
+	const sectionPadding = isBottomLine
+		? 'pt-16 pb-20 md:pt-20 md:pb-24'
+		: 'pt-16 pb-16 md:pt-16 md:pb-16'
+
 	return (
 		<section
 			id={id}
 			ref={ref}
-			className={`relative z-10 scroll-mt-24 ${bgColor} p-0 md:py-16 ${className ?? ''}`}
+			className={`relative z-10 ${bgColor} p-0 ${sectionPadding} ${className ?? ''}`}
 		>
 			<div className="mx-auto max-w-7xl px-0 pb-12 md:px-4 md:pb-0">
 				<div
-					className={`grid gap-6 md:gap-12 ${
+					className={`grid items-stretch gap-8 md:gap-12 lg:gap-16 ${
 						carouselSide === 'left'
 							? 'md:grid-cols-[45%_55%]'
 							: 'md:grid-cols-[55%_45%]'
@@ -217,7 +211,7 @@ export function CarouselTextSection({
 						{carouselElement}
 					</div>
 					<div
-						className={`p-6 pt-0 md:p-0 ${carouselSide === 'left' ? 'order-2 md:order-2' : 'order-2 md:order-1'}`}
+						className={`p-6 pt-4 md:p-0 md:pt-0 ${carouselSide === 'left' ? 'order-2 md:order-2' : 'order-2 md:order-1'}`}
 					>
 						{textElement}
 					</div>

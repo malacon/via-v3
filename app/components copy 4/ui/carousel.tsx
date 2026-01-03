@@ -155,12 +155,12 @@ const CarouselContent = React.forwardRef<
 	const { carouselRef, orientation } = useCarousel()
 
 	return (
-		<div ref={carouselRef} className="overflow-hidden">
+		<div ref={carouselRef} className="h-full overflow-hidden">
 			<div
 				ref={ref}
 				className={cn(
-					'flex',
-					orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+					'flex h-full',
+					orientation === 'horizontal' ? '-ml-0' : '-mt-0 flex-col',
 					className,
 				)}
 				{...props}
@@ -195,7 +195,7 @@ CarouselItem.displayName = 'CarouselItem'
 const CarouselPrevious = React.forwardRef<
 	HTMLButtonElement,
 	React.ComponentProps<typeof Button>
->(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+>(({ className, variant = 'ghost', size = 'icon', ...props }, ref) => {
 	const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
 	return (
@@ -204,9 +204,9 @@ const CarouselPrevious = React.forwardRef<
 			variant={variant}
 			size={size}
 			className={cn(
-				'absolute h-8 w-8 rounded-full',
+				'focus-within:box-shadow-none focus-visible:box-shadow-none absolute z-10 h-auto w-auto rounded-none border-none bg-transparent p-2 text-white opacity-0 ring-offset-0 transition-opacity focus-within:border-none focus-within:bg-transparent focus-within:ring-0 hover:border-none hover:bg-transparent hover:text-white/80 hover:opacity-100 focus:bg-transparent focus:ring-0 focus:outline-none focus-visible:border-none focus-visible:bg-transparent focus-visible:ring-0 active:border-none active:bg-transparent',
 				orientation === 'horizontal'
-					? 'top-1/2 -left-12 -translate-y-1/2'
+					? 'top-1/2 left-2 -translate-y-1/2 md:left-4'
 					: '-top-12 left-1/2 -translate-x-1/2 rotate-90',
 				className,
 			)}
@@ -214,7 +214,7 @@ const CarouselPrevious = React.forwardRef<
 			onClick={scrollPrev}
 			{...props}
 		>
-			<Icon name="chevron-left" className="h-4 w-4" />
+			<Icon name="chevron-left" className="h-20 w-20 md:h-20 md:w-20" />
 			<span className="sr-only">Previous slide</span>
 		</Button>
 	)
@@ -224,18 +224,20 @@ CarouselPrevious.displayName = 'CarouselPrevious'
 const CarouselNext = React.forwardRef<
 	HTMLButtonElement,
 	React.ComponentProps<typeof Button>
->(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+>(({ className, variant = 'ghost', size = 'icon', ...props }, ref) => {
 	const { orientation, scrollNext, canScrollNext } = useCarousel()
 
 	return (
+		// I don't want the button to have any border when it's clicked.
+		// I also want the button to have a background color when it's clicked.
 		<Button
 			ref={ref}
 			variant={variant}
 			size={size}
 			className={cn(
-				'absolute h-8 w-8 rounded-full',
+				'focus-within:box-shadow-none focus-visible:box-shadow-none absolute z-10 h-auto w-auto rounded-none border-none bg-transparent p-2 text-white opacity-0 ring-offset-0 transition-opacity focus-within:border-none focus-within:bg-transparent focus-within:ring-0 hover:border-none hover:bg-transparent hover:text-white/80 hover:opacity-100 focus:bg-transparent focus:ring-0 focus:outline-none focus-visible:border-none focus-visible:bg-transparent focus-visible:ring-0 active:border-none active:bg-transparent',
 				orientation === 'horizontal'
-					? 'top-1/2 -right-12 -translate-y-1/2'
+					? 'top-1/2 right-2 -translate-y-1/2 md:right-4'
 					: '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
 				className,
 			)}
@@ -243,12 +245,34 @@ const CarouselNext = React.forwardRef<
 			onClick={scrollNext}
 			{...props}
 		>
-			<Icon name="chevron-right" className="h-4 w-4" />
+			<Icon name="chevron-right" className="h-20 w-20 md:h-20 md:w-20" />
 			<span className="sr-only">Next slide</span>
 		</Button>
 	)
 })
 CarouselNext.displayName = 'CarouselNext'
+
+const CarouselCounter = React.forwardRef<
+	HTMLDivElement,
+	React.HTMLAttributes<HTMLDivElement> & {
+		current: number
+		total: number
+	}
+>(({ className, current, total, ...props }, ref) => {
+	return (
+		<div
+			ref={ref}
+			className={cn(
+				'absolute right-2 bottom-2 z-10 rounded-full bg-black/50 px-3 py-1 text-sm text-white md:right-4 md:bottom-4',
+				className,
+			)}
+			{...props}
+		>
+			{current}/{total}
+		</div>
+	)
+})
+CarouselCounter.displayName = 'CarouselCounter'
 
 export {
 	type CarouselApi,
@@ -257,4 +281,5 @@ export {
 	CarouselItem,
 	CarouselPrevious,
 	CarouselNext,
+	CarouselCounter,
 }

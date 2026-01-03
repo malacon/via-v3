@@ -11,7 +11,7 @@ export default function Via() {
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
 					<a href="/" className="flex items-center gap-3">
 						<img
-							src="/img/via-logo.png"
+							src="/img/via-logo-cropped.png"
 							alt="Via Nova logo"
 							className="w-auto"
 							width="324"
