@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 /**
  * Script to load secrets from .env file to Fly.io
- * 
+ *
  * Usage:
  *   npm run load-secrets:fly [-- --app=via-v3-4511] [-- --staging]
  *   or
@@ -78,7 +78,9 @@ async function setFlySecrets(
 		return
 	}
 
-	console.log(`\n📤 Uploading ${secretEntries.length} secrets to ${appName}...\n`)
+	console.log(
+		`\n📤 Uploading ${secretEntries.length} secrets to ${appName}...\n`,
+	)
 
 	// Build the secrets command
 	// fly secrets set KEY1=value1 KEY2=value2 ...
@@ -163,7 +165,7 @@ async function main() {
 	)
 
 	// Upload secrets
-	await setFlySecrets(appName, secrets)
+	await setFlySecrets(appName!, secrets)
 
 	console.log('\n✨ Done!')
 }
@@ -173,4 +175,3 @@ main().catch((error) => {
 	console.error(error)
 	process.exit(1)
 })
-
