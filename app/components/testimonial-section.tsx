@@ -30,6 +30,7 @@ interface TestimonialHeadshot {
 interface TestimonialSectionProps {
 	id?: string
 	name: string
+	title?: string
 	headshot?: TestimonialHeadshot
 	headshotColor?: string // Color for the circle when no headshot is provided
 	images: TestimonialImage[]
@@ -41,6 +42,7 @@ interface TestimonialSectionProps {
 export function TestimonialSection({
 	id,
 	name,
+	title,
 	headshot,
 	headshotColor,
 	images,
@@ -187,31 +189,39 @@ export function TestimonialSection({
 
 		return (
 			<motion.div
-				className={`float-left mr-6 ${headshotSize} shrink-0 overflow-hidden rounded-full`}
+				className="float-left"
 				style={{
-					shapeOutside: `circle(50% at 50% 50%)`,
-					shapeMargin: '1rem',
-					backgroundColor: headshot ? undefined : defaultHeadshotColor,
+					paddingBottom: '15px', // extra space at bottom (adjust as needed)
+					paddingRight: '40px', // space from text on the right
+					shapeOutside: 'margin-box',
+					borderRadius: '50%',
 				}}
 				variants={imageVariants}
 				initial="hidden"
 				animate={isInView ? 'visible' : 'hidden'}
 			>
-				{headshot ? (
-					<Img
-						src={headshot.src}
-						alt={headshot.alt}
-						width={headshot.width}
-						height={headshot.height}
-						fit="cover"
-						className="h-full w-full object-cover"
-						style={{
-							objectPosition: objectPosition,
-						}}
-					/>
-				) : (
-					<div className="h-full w-full" aria-hidden="true" />
-				)}
+				<div
+					className={`${headshotSize} shrink-0 overflow-hidden rounded-full border-2 border-gray-300`}
+					style={{
+						backgroundColor: headshot ? undefined : defaultHeadshotColor,
+					}}
+				>
+					{headshot ? (
+						<Img
+							src={headshot.src}
+							alt={headshot.alt}
+							width={headshot.width}
+							height={headshot.height}
+							fit="cover"
+							className="h-full w-full object-cover"
+							style={{
+								objectPosition: objectPosition,
+							}}
+						/>
+					) : (
+						<div className="h-full w-full" aria-hidden="true" />
+					)}
+				</div>
 			</motion.div>
 		)
 	}
@@ -222,7 +232,7 @@ export function TestimonialSection({
 			ref={ref}
 			className={`relative z-10 ${bgColor} py-8 ${className ?? ''}`}
 		>
-			<div className="mx-auto max-w-6xl px-4">
+			<div className="mx-auto max-w-6xl px-4 pt-8">
 				<div className="space-y-6">
 					{/* Headshot, name, first image, and first text section */}
 					<div className="clear-both">
@@ -262,7 +272,7 @@ export function TestimonialSection({
 								)
 							})()}
 						<motion.h2
-							className={`mb-4 inline-block font-serif text-4xl font-normal ${titleColor}`}
+							className={`mb-2 inline-block font-serif text-4xl font-normal ${titleColor}`}
 							style={{ verticalAlign: 'middle' }}
 							variants={titleVariants}
 							initial="hidden"
@@ -270,6 +280,16 @@ export function TestimonialSection({
 						>
 							{name}
 						</motion.h2>
+						{title ? (
+							<motion.p
+								className={`-mt-2 mb-4 text-[16pt] ${textColor}`}
+								variants={titleVariants}
+								initial="hidden"
+								animate={isInView ? 'visible' : 'hidden'}
+							>
+								{title}
+							</motion.p>
+						) : null}
 						{textSections.length > 0 && (
 							<motion.div
 								className={`space-y-4 text-lg leading-[25px] font-thin ${textColor}`}

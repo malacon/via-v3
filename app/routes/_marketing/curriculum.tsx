@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { type Route } from './+types/curriculum.ts'
+import { Img } from 'openimg/react'
 
 export const meta: Route.MetaFunction = () => [
 	{ title: 'Curriculum | Via Nova' },
@@ -52,7 +53,7 @@ export default function Curriculum() {
 			<div className="bg-brand-light-grey-blue h-[67px] w-full md:h-[119px]" />
 			<div className="container3">
 				<div
-					className="px-4 pt-16 pb-8 md:min-w-[1200px] md:px-20"
+					className="px-4 pt-16 pb-8 md:min-w-[1200px]"
 					style={{ margin: '0 auto' }}
 				>
 					<motion.h1
@@ -74,7 +75,7 @@ export default function Curriculum() {
 					/>
 				</div>
 
-				<main className="ml-auto max-w-[940px] px-4 pb-16 md:px-20">
+				<main className="max-w-[940px] px-4 pb-16">
 					<div className="text-black">
 						{/* Section I */}
 						<motion.section
@@ -478,6 +479,16 @@ export default function Curriculum() {
 						</motion.section>
 					</div>
 				</main>
+			</div>
+			<div className="relative h-[400px] w-full overflow-hidden md:h-[500px]">
+				<Img
+					src="/img/nic-book.jpg"
+					alt="Nicomachean Ethics Book"
+					width={1920}
+					height={1080}
+					fit="cover"
+					className="h-full w-full object-cover"
+				/>
 			</div>
 		</div>
 	)

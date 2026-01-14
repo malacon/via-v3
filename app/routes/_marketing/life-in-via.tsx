@@ -1,27 +1,31 @@
 import { useState, useEffect } from 'react'
-import { CarouselTextSection } from '#app/components/carousel-text-section.tsx'
+import { Link } from 'react-router'
+import {
+	CarouselTextSection,
+	CarouselTextDoubleSection,
+	CarouselImagelessTextSection,
+} from '#app/components/carousel-text-section.tsx'
 import HeroParallax from '#app/components/HeroParallax.tsx'
 import { type Route } from './+types/life-in-via.ts'
-import { Link } from 'react-router'
 
 export const meta: Route.MetaFunction = () => [
 	{ title: 'Life In Via | Via Nova' },
 ]
 
 // Images - per Luke's 11/1 notes: static images only, no galleries
-const intellectualImage = '/img/intellectual-1.jpg'
-const spiritualImage = '/img/spiritual-1.jpg'
+const intellectualImage = '/img/study-group4.png'
+const spiritualImage = '/img/life-via-prayer.jpg'
 const serviceImage = '/img/service-lundi-gras.jpg' // Updated per design notes
 const bottomLineImage = '/img/bottomline-1.jpg'
 
 const sectionIds = [
 	'intellectual-formation',
+	'professional-formation',
 	'spiritual-formation',
 	'service-community',
 	'retreats-pilgrimages',
 	'external-support',
 	'internal-support',
-	'professional-formation',
 ] as const
 
 export default function LifeInVia() {
@@ -150,6 +154,14 @@ export default function LifeInVia() {
 							Intellectual Formation
 						</button>
 						<button
+							onClick={() => scrollToSection('professional-formation')}
+							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
+								activeSection === 'professional-formation' ? 'active' : ''
+							}`}
+						>
+							Professional Formation
+						</button>
+						<button
 							onClick={() => scrollToSection('spiritual-formation')}
 							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
 								activeSection === 'spiritual-formation' ? 'active' : ''
@@ -189,14 +201,6 @@ export default function LifeInVia() {
 						>
 							Internal Support
 						</button>
-						<button
-							onClick={() => scrollToSection('professional-formation')}
-							className={`sticky-nav-link cursor-pointer text-center font-serif text-[18px] leading-[1.9em] font-normal tracking-[0.05em] text-white ${
-								activeSection === 'professional-formation' ? 'active' : ''
-							}`}
-						>
-							Professional Formation
-						</button>
 					</div>
 				</div>
 			</nav>
@@ -208,8 +212,9 @@ export default function LifeInVia() {
 				images={[intellectualImage]}
 				carouselSide="left"
 				imageAltPrefix="intellectual formation"
+				imageContainerHeight="700px"
 			>
-				<p>
+				<p className="">
 					Via's core curriculum consists of five seminars each week featuring
 					the spiritual and philosophical traditions of ancient Israel, Greece,
 					and Christianity. In addition to the core curriculum, Fellows have the
@@ -247,13 +252,49 @@ export default function LifeInVia() {
 				</p>
 			</CarouselTextSection>
 
+			{/* Professional Formation Section */}
+			<CarouselTextSection
+				id="professional-formation"
+				title="Professional Formation"
+				images={['/img/ultrasound.png']}
+				carouselSide="right"
+				imageAltPrefix="professional formation"
+				imageHeight={800}
+				imageContainerHeight="500px"
+			>
+				<p>
+					Fellows work for organizations in the community for two days each
+					week. Fellows are partnered with different organizations based on
+					their career aspirations and personal interests.
+				</p>
+				<p>
+					In addition to their work partnerships, Fellows pursue mentorship with
+					professionals in the community in order to test their sense of calling
+					to fields they may wish to pursue as a career.
+				</p>
+				<p>
+					The Fellows’ employers understand that their employment of a Via
+					Fellow is for the Fellow’s personal formation, while still treating
+					the Fellow with the same type of expectation as every other employee.
+					Via’s professional partners are typically leaders in their
+					organization and are always active Catholics.
+				</p>
+				<p>
+					The purpose of the Fellows’ employment is to understand the
+					inner-workings of a professional environment they are discerning as a
+					potential career, and to contribute meaningfully to their employer’s
+					organization and to the common good.
+				</p>
+			</CarouselTextSection>
+
 			{/* Spiritual Formation Section */}
 			<CarouselTextSection
 				id="spiritual-formation"
 				title="Spiritual Formation"
 				images={[spiritualImage]}
-				carouselSide="right"
+				carouselSide="left"
 				imageAltPrefix="spiritual formation"
+				imageContainerHeight="420px"
 			>
 				<p>
 					Fellows spend at least one hour in silent prayer with Christ in the
@@ -283,19 +324,20 @@ export default function LifeInVia() {
 				id="service-community"
 				title="Service & Community"
 				images={[serviceImage]}
-				carouselSide="left"
+				carouselSide="right"
 				imageAltPrefix="service & community"
+				imageContainerHeight="540px"
 			>
 				<p>
 					Fellows have various responsibilities in order to assist with the
 					internal communal life of Via and serve the wider community. These
 					responsibilities include preparing for events, monitoring expenses,
-					property maintenance, cooking, etc.
+					property management, cooking, etc.
 				</p>
 				<p>
 					Fellows devote a set amount of time each week to visit with friends in
 					the neighborhood, particularly those suffering homelessness,
-					remembering our Lord's admonition that what is done to the least of
+					remembering our Lord’s admonition that what is done to the least of
 					these is done to Him.
 				</p>
 				<p>
@@ -305,10 +347,10 @@ export default function LifeInVia() {
 					Gras, feast day balls, and the Fall Jamboree.
 				</p>
 				<p>
-					Internally, the Fellows' service aims to make Via institutionally
+					Internally, the Fellows’ service aims to make Via institutionally
 					harmonious and smooth, and externally, to build the kingdom of God by
 					providing experiences of meaningful recreation and formation and to
-					help the community observe the Church's liturgical calendar.
+					help the community observe the Church’s liturgical calendar.
 				</p>
 			</CarouselTextSection>
 
@@ -317,8 +359,9 @@ export default function LifeInVia() {
 				id="retreats-pilgrimages"
 				title="Retreats & Pilgrimages"
 				images={['/img/retreats-pilgrimages.jpg']}
-				carouselSide="right"
+				carouselSide="left"
 				imageAltPrefix="retreats and pilgrimages"
+				imageContainerHeight="440px"
 			>
 				<p>
 					Retreats in Via serve as an opportunity for devoting more time to
@@ -343,16 +386,58 @@ export default function LifeInVia() {
 				</p>
 			</CarouselTextSection>
 
+			{/* External and Internal Support Sections */}
+			<CarouselTextDoubleSection
+				id="external-and-internal-support"
+				title="External Support"
+				images={['/img/internal-support-music-room.jpg']}
+				carouselSide="right"
+				imageAltPrefix="external and internal support"
+				imageContainerHeight="683px"
+				secondaryTitle="Internal Support"
+				children={
+					<>
+						<p>
+							Each Fellow has a formation team which he or she meets with each
+							month. Formation meetings are focused on various topics including
+							career decisions, community life, personal challenges, financials,
+							vocational guidance, etc.
+						</p>
+						<p>
+							In addition to formation team meetings, Fellows meet with a
+							spiritual director and select mentors in the community throughout
+							the year.
+						</p>
+					</>
+				}
+				secondaryChildren={
+					<>
+						<p>
+							Fellows have intentional check-ins with their housemates every two
+							weeks to self-assess and to offer feedback to each other. These
+							check-ins are an opportunity for radical humility and honesty, and
+							yield manifold fruits, particularly in self-knowledge and
+							conscientiousness.
+						</p>
+						<p>
+							Fellows also meet with their cohort leader monthly to discuss
+							future plans, community life, goals, challenges, etc., as well as
+							the director of Via as necessary.
+						</p>
+					</>
+				}
+			></CarouselTextDoubleSection>
+
 			{/* External Support Section */}
-			<CarouselTextSection
+			{/* <CarouselTextSection
 				id="external-support"
 				title="External Support"
-				images={['/img/external-support-alt.jpg']}
-				carouselSide="left"
+				images={['/img/sunroom.jpg']}
+				carouselSide="right"
 				imageAltPrefix="external support"
 				imageHeight={383}
-				imageWidth={475}
-				imageContainerHeight="383px"
+				imageWidth={675}
+				imageContainerHeight="283px"
 			>
 				<p>
 					Each Fellow has a formation team which he or she meets with each
@@ -364,15 +449,17 @@ export default function LifeInVia() {
 					In addition to formation team meetings, Fellows meet with a spiritual
 					director and select mentors in the community throughout the year.
 				</p>
-			</CarouselTextSection>
+			</CarouselTextSection> */}
 
 			{/* Internal Support Section */}
-			<CarouselTextSection
+			{/* <CarouselTextSection
 				id="internal-support"
 				title="Internal Support"
 				images={['/img/internal-support-music-room.jpg']}
-				carouselSide="right"
+				carouselSide="left"
 				imageAltPrefix="internal support"
+				imageWidth={875}
+				imageContainerHeight="283px"
 			>
 				<p>
 					Fellows have intentional check-ins with their housemates every two
@@ -386,43 +473,10 @@ export default function LifeInVia() {
 					plans, community life, goals, challenges, etc., as well as the
 					director of Via as necessary.
 				</p>
-			</CarouselTextSection>
-
-			{/* Professional Formation Section */}
-			<CarouselTextSection
-				id="professional-formation"
-				title="Professional Formation"
-				images={['/img/professional-formation.jpg']}
-				carouselSide="left"
-				imageAltPrefix="professional formation"
-			>
-				<p>
-					Fellows work for organizations in the community for two days each
-					week. Fellows are partnered with different organizations based on
-					their career aspirations and personal interests.
-				</p>
-				<p>
-					In addition to their work partnerships, Fellows pursue mentorship with
-					professionals in the community in order to test their sense of calling
-					to fields they may wish to pursue as a career.
-				</p>
-				<p>
-					The Fellows’ employers–who are typically leaders in their organization
-					and are always active Catholics–understand that their employment of a
-					Via Fellow is for the Fellow’s personal formation, while still
-					treating the Fellow with the same type of expectation as every other
-					employee.
-				</p>
-				<p>
-					The purpose of the Fellows' employment is to understand the
-					inner-workings of a professional environment they are discerning as a
-					potential career, and to contribute meaningfully to their employer's
-					organization and to the common good.
-				</p>
-			</CarouselTextSection>
+			</CarouselTextSection> */}
 
 			{/* Bottom Line Section */}
-			<CarouselTextSection
+			<CarouselImagelessTextSection
 				id="bottom-line"
 				title="Bottomline"
 				images={[bottomLineImage]}
@@ -434,21 +488,20 @@ export default function LifeInVia() {
 					The essential purpose of all of Via’s structures is to create an
 					environment that helps young people to respond more zealously to the
 					call to sanctity. No amount of programming can force the soul’s free
-					response to this calling, but we believe Via’s structures allow our
-					participants and those we serve to discover the profound joy of the
-					life of a disciple.
+					response to this calling, but we have witnessed Via’s structures
+					provide a transformation that .
 				</p>
-			</CarouselTextSection>
+			</CarouselImagelessTextSection>
 
 			{/* Footer */}
-			<footer className="border-t border-gray-200 bg-white py-8">
+			{/* <footer className="border-t border-gray-200 bg-white py-8">
 				<div className="mx-auto max-w-7xl px-4 text-center">
 					<p className="text-base text-gray-600">
 						Via Nova is an independent 501(c)(3) organization. All donations are
 						tax-deductible by law.
 					</p>
 				</div>
-			</footer>
+			</footer> */}
 		</div>
 	)
 }

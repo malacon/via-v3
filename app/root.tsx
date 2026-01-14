@@ -527,6 +527,15 @@ function App() {
 				<div className="flex flex-1 flex-col">
 					<Outlet />
 				</div>
+				{/* Footer */}
+				<footer className="border-t border-gray-200 bg-white py-6">
+					<div className="mx-auto max-w-7xl px-4 text-center">
+						<p className="text-xs text-gray-500 md:text-base md:text-gray-600">
+							Via Nova is an independent 501(c)(3) organization. All donations
+							are tax-deductible by law.
+						</p>
+					</div>
+				</footer>
 			</div>
 			{/* Mobile Scroll to Top Button */}
 			<AnimatePresence>

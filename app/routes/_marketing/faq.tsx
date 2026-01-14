@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion'
 import { Img } from 'openimg/react'
 import { Link } from 'react-router'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '#app/components/ui/accordion.tsx'
 import { type Route } from './+types/faq.tsx'
 
 export const meta: Route.MetaFunction = () => [{ title: 'FAQ | Via Nova' }]
@@ -8,13 +14,7 @@ export const meta: Route.MetaFunction = () => [{ title: 'FAQ | Via Nova' }]
 interface FAQItemProps {
 	question: string
 	answer: string | React.ReactNode
-	isLast?: boolean
 	index?: number
-}
-
-const faqVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: { opacity: 1, y: 0 },
 }
 
 const dividerVariants = {
@@ -22,85 +22,35 @@ const dividerVariants = {
 	visible: { width: '100%' },
 }
 
-function FAQItem({
-	question,
-	answer,
-	isLast = false,
-	index = 0,
-}: FAQItemProps) {
-	// Helper function to parse text content into sentences
-	const parseAnswerIntoSentences = (
-		content: React.ReactNode,
-	): React.ReactNode => {
+function FAQItem({ question, answer, index = 0 }: FAQItemProps) {
+	const renderAnswer = (content: React.ReactNode) => {
 		if (typeof content === 'string') {
-			// Split by sentence endings (period, exclamation, question mark followed by space or end of string)
 			const sentences = content
 				.split(/(?<=[.!?])\s+/)
 				.filter((sentence) => sentence.trim())
 				.map((sentence) => sentence.trim())
 
-			return sentences.map((sentence, sentenceIndex) => {
-				// Last sentence should have padding-bottom: 8
-				const isLastSentence = sentenceIndex === sentences.length - 1
-				const className = isLastSentence ? 'pb-8 md:pb-0' : 'pb-0'
-				return (
-					<motion.div
-						key={sentenceIndex}
-						className={`text-lg leading-relaxed text-black md:pl-4 md:text-base ${className}`}
-						variants={faqVariants}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, margin: '-100px' }}
-						transition={{
-							duration: 0.6,
-							delay: index * 0.1 + sentenceIndex * 0.05,
-						}}
-					>
-						{sentence}
-					</motion.div>
-				)
-			})
+			return (
+				<div className="space-y-3 text-lg leading-relaxed text-black md:pl-4 md:text-base">
+					{sentences.map((sentence, sentenceIndex) => (
+						<p key={sentenceIndex}>{sentence}</p>
+					))}
+				</div>
+			)
 		}
 
-		// For JSX content, return as-is but wrapped
-		return (
-			<motion.div
-				className="pb-8 text-lg leading-relaxed text-black md:pb-0 md:pl-4 md:text-base"
-				variants={faqVariants}
-				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, margin: '-100px' }}
-				transition={{ duration: 0.6, delay: index * 0.1 }}
-			>
-				{answer}
-			</motion.div>
-		)
+		return <div className="md:pl-4">{content}</div>
 	}
 
 	return (
-		<div className="mb-8 space-y-4 md:mb-4">
-			<motion.h3
-				className="text-lg font-bold text-black"
-				variants={faqVariants}
-				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, margin: '-100px' }}
-				transition={{ duration: 0.6, delay: index * 0.1 }}
-			>
+		<AccordionItem value={`faq-${index}`}>
+			<AccordionTrigger className="text-left text-lg font-bold text-black">
 				{question}
-			</motion.h3>
-			{parseAnswerIntoSentences(answer)}
-			{!isLast && (
-				<motion.div
-					className="my-4 border-t border-black pt-0"
-					variants={dividerVariants}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
-					transition={{ duration: 0.8, delay: 0.2 }}
-				/>
-			)}
-		</div>
+			</AccordionTrigger>
+			<AccordionContent className="text-lg">
+				{renderAnswer(answer)}
+			</AccordionContent>
+		</AccordionItem>
 	)
 }
 
@@ -113,7 +63,7 @@ const faqData = [
 	{
 		question: 'What are the ages of participants in Via?',
 		answer:
-			'Fellows applying to the 2025-2026 cohort should be between ages 18 and 22 by August of 2025.',
+			'Fellows applying to the 2026-2027 cohort should be between ages 18 and 22 by August of 2026.',
 	},
 	{
 		question: 'Is Via co-ed?',
@@ -136,9 +86,9 @@ const faqData = [
 				will allow you to view the syllabus for Via's core curriculum. Fellows
 				have the opportunity to participate in other courses in addition to the
 				core curriculum throughout the year as well. The content of these
-				supplemental courses vary year by year. This fall 2025, the additional
-				courses feature Dostoevsky, Virgil, Augustine, the idea of logos, and
-				political theology.
+				supplemental courses vary year by year. This past fall 2025, the
+				additional courses feature Dostoevsky, Virgil, Augustine, the idea of
+				logos, and political theology were added.
 			</>
 		),
 	},
@@ -193,24 +143,72 @@ const faqData = [
 			"Via does not charge tuition. We believe that the experience of Via is so important that financial barriers should be removed as much as possible to allow students to participate in Via with minimal or no financial stress. The Fellows' only expenses are the normal personal expenses they have, in addition to their rent ($350/month if a Fellow is sharing a room, which most do). Fellows' food expenses are offset by several communal meals each week and the ability to meal prep.",
 	},
 	{
-		question: 'How does Via pay for all of this?',
+		question: 'What is Via’s funding structure?',
 		answer: (
-			<>
-				Via has been generously supported by the lay faithful. The Fellows'
-				annual fundraising (a minimum of $7,000 per Fellow) covers about one
-				third of Via's annual expenses. The remaining expenses are covered by a
-				wide array of generous Catholics who support Via directly. We aim to
-				keep Via free because we believe formation in Via is worth it.
-				Additionally, Via's most important features don't cost much money. The
-				most critical ingredients to making Via work are: young people hungry
-				for a full life, some great books, and a team of good people willing to
-				lend their talents and energy towards our mission. Most of the team that
-				makes Via's formative experience happen, do so pro bono. It takes a
-				village to do what we do, and in Louisiana we are blessed with an
-				incredible village willing to make major sacrifices for non-earthly
-				wages. In sum, Via is paid for by generous donations of the lay faithful
-				and thanks to a slew of zealous people working for cheap or free.
-			</>
+			<div className="space-y-4 text-black">
+				<p>
+					Via has been generously supported by the lay faithful. The Fellows'
+					total fundraising (a minimum of $7,000 per Fellow) covers about one
+					third of Via's annual expenses. The remaining expenses are covered by
+					a wide array of generous Catholics who support Via directly. We aim to
+					keep Via free because we believe financial barriers should not prevent
+					anyone from receiving life-changing formation. The future of the
+					Church is too important to spare expenses.
+				</p>
+				<p>
+					Additionally, Via's most important features don't cost much money. The
+					most critical ingredients to making Via work are young people eager
+					for deep formation, some great books, and a team of good people
+					willing to lend their talents and energy towards our mission.
+				</p>
+				<p>
+					It takes a village to do what we do, and in Southern Louisiana we are
+					blessed with an incredible village willing to make major sacrifices
+					for non-earthly wages. In sum, Via is paid for by generous donations
+					of the lay faithful and with a slew of zealous people working for
+					cheap or free.
+				</p>
+			</div>
+		),
+	},
+	{
+		question: 'What is the standard profile of a Via Fellow?',
+		answer: (
+			<div>
+				Via Fellows have a variety of backgrounds but are united in their desire
+				for largely the same things, namely:
+				<ul className="list-disc pl-6">
+					<li>Knowledge of oneself, the world, and God</li>
+					<li>Habits of order and self-mastery</li>
+					<li>Meaningful work in a potential career</li>
+					<li>An abiding love of God and neighbor</li>
+					<li>A capacity to pray & meditate</li>
+					<li>Freedom from vice and attachment</li>
+					<li>An ability to share the faith with confidence</li>
+					<li>A deepened understanding of one's calling in life</li>
+				</ul>
+			</div>
+		),
+	},
+	{
+		question: 'Will taking a gap year to do Via hurt my career?',
+		answer: (
+			<div className="space-y-4 text-black">
+				<p>
+					Many students assume the standard narrative that they need to go from
+					full time student to full time employee. The problem is that our
+					schools are rarely equipping graduates for thriving in the fullest
+					sense of the word aren’t being equipped for working in (nor for
+					evangelizing in a secular age, thriving in a technocratic age, etc.)
+					schools rarely offer a holistic formative experience, which everyone
+					knows everyone needs, and jobs expect young employees to contribute
+					when more formation is needed.
+				</p>
+				<p>
+					The Fellows say it best. Via is a life-changing experience that makes
+					delaying more than worth it.{' '}
+				</p>
+			</div>
 		),
 	},
 	{
@@ -267,7 +265,7 @@ export default function FAQ() {
 			<div className="bg-brand-light-grey-blue h-[67px] w-full md:h-[119px]" />
 			<div className="container3">
 				<div
-					className="px-4 pt-16 pb-4 md:min-w-[1200px] md:px-20"
+					className="px-4 pt-16 pb-4 md:min-w-[1200px]"
 					style={{ margin: '0 auto' }}
 				>
 					<motion.h1
@@ -288,19 +286,18 @@ export default function FAQ() {
 					/>
 				</div>
 
-				<main className="ml-auto max-w-[940px] px-4 pb-16 md:px-20">
+				<main className="max-w-[940px] px-4 pb-16">
 					<div>
-						<div className="space-y-8">
+						<Accordion type="single" collapsible className="w-full">
 							{faqData.map((faq, index) => (
 								<FAQItem
 									key={index}
 									question={faq.question}
 									answer={faq.answer}
-									isLast={index === faqData.length - 1}
 									index={index}
 								/>
 							))}
-						</div>
+						</Accordion>
 					</div>
 				</main>
 			</div>

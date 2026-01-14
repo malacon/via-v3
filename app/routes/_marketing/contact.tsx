@@ -15,6 +15,7 @@ import { sendEmail } from '#app/utils/email.server.ts'
 import { checkHoneypot } from '#app/utils/honeypot.server.ts'
 import { EmailSchema } from '#app/utils/user-validation.ts'
 import { type Route } from './+types/contact.ts'
+import ImageCarousel from '#app/components/image-carousel.tsx'
 
 export const meta: Route.MetaFunction = () => [{ title: 'Contact | Via Nova' }]
 
@@ -129,97 +130,100 @@ export default function Contact() {
 	const isSuccess = contact.data?.success === true
 
 	return (
-		<main className="mx-auto max-w-6xl bg-gray-100/50 px-4 py-8 sm:px-8 md:px-16 md:py-16 lg:px-52">
-			<h1 className="mb-6 font-serif text-4xl font-normal sm:text-5xl md:mb-8 md:text-6xl">
-				Get in touch.
-			</h1>
-			<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 md:text-lg">
-				If you would like to request an application to Via's 2026 cohort, if you
-				wish to get involved in our mission in any way, or if you just want to
-				say hello, please fill out your contact info below and someone from our
-				team will get back to you soon.
-			</p>
+		<>
+			<main className="mx-auto max-w-6xl bg-gray-100/50 px-4 py-8 sm:px-8 md:px-16 md:py-16 lg:px-52">
+				<h1 className="mb-6 font-serif text-4xl font-normal sm:text-5xl md:mb-8 md:text-6xl">
+					Get in touch.
+				</h1>
+				<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 md:text-lg">
+					If you would like to request an application to Via's 2026 cohort, if
+					you wish to get involved in our mission in any way, or if you just
+					want to say hello, please fill out your contact info below and someone
+					from our team will get back to you soon.
+				</p>
 
-			{isSuccess ? (
-				<div className="mt-6">
-					<p className="text-right text-sm text-gray-600">
-						Thanks for submitting!
-					</p>
-				</div>
-			) : (
-				<contact.Form method="POST" {...getFormProps(form)}>
-					<HoneypotInputs />
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-						<Field
-							labelProps={{
-								htmlFor: fields.firstName.id,
-								children: 'First Name',
-								className: 'text-lg leading-relaxed md:text-base',
-							}}
-							inputProps={{
-								...getInputProps(fields.firstName, { type: 'text' }),
-								// input should be blocked and dark background
-								className: 'border-gray-800  rounded-none',
-							}}
-							errors={fields.firstName.errors}
-						/>
-						<Field
-							labelProps={{
-								htmlFor: fields.lastName.id,
-								children: 'Last Name',
-								className: 'text-lg leading-relaxed md:text-base',
-							}}
-							inputProps={{
-								...getInputProps(fields.lastName, { type: 'text' }),
-								className: 'border-gray-800  rounded-none',
-							}}
-							errors={fields.lastName.errors}
-						/>
-						<Field
-							labelProps={{
-								htmlFor: fields.email.id,
-								children: 'Email',
-								className: 'text-lg leading-relaxed md:text-base',
-							}}
-							inputProps={{
-								required: true,
-								...getInputProps(fields.email, { type: 'email' }),
-								className: 'border-gray-800  rounded-none',
-							}}
-							errors={fields.email.errors}
-						/>
+				{isSuccess ? (
+					<div className="mt-6">
+						<p className="text-right text-sm text-gray-600">
+							Thanks for submitting!
+						</p>
 					</div>
-					<TextareaField
-						className="mt-4"
-						labelProps={{
-							htmlFor: fields.message.id,
-							children: 'Message',
-							className: 'text-lg leading-relaxed md:text-base',
-						}}
-						textareaProps={{
-							...getTextareaProps(fields.message),
-							rows: 6,
-							className: 'border-gray-800  rounded-none',
-						}}
-						errors={fields.message.errors}
-					/>
-					<ErrorList errors={form.errors} id={form.errorId} />
-					<div className="mt-6 flex justify-end">
-						<StatusButton
-							type="submit"
-							status={
-								contact.state === 'submitting'
-									? 'pending'
-									: (form.status ?? 'idle')
-							}
-							disabled={contact.state !== 'idle'}
-							className="font-display w-full rounded-none border-gray-800 py-6 text-lg leading-relaxed font-thin md:text-base"
-						>
-							Send
-						</StatusButton>
-					</div>
-				</contact.Form>
-			)}
-		</main>
+				) : (
+					<contact.Form method="POST" {...getFormProps(form)}>
+						<HoneypotInputs />
+						<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+							<Field
+								labelProps={{
+									htmlFor: fields.firstName.id,
+									children: 'First Name',
+									className: 'text-lg leading-relaxed md:text-base',
+								}}
+								inputProps={{
+									...getInputProps(fields.firstName, { type: 'text' }),
+									// input should be blocked and dark background
+									className: 'border-gray-800  rounded-none',
+								}}
+								errors={fields.firstName.errors}
+							/>
+							<Field
+								labelProps={{
+									htmlFor: fields.lastName.id,
+									children: 'Last Name',
+									className: 'text-lg leading-relaxed md:text-base',
+								}}
+								inputProps={{
+									...getInputProps(fields.lastName, { type: 'text' }),
+									className: 'border-gray-800  rounded-none',
+								}}
+								errors={fields.lastName.errors}
+							/>
+							<Field
+								labelProps={{
+									htmlFor: fields.email.id,
+									children: 'Email',
+									className: 'text-lg leading-relaxed md:text-base',
+								}}
+								inputProps={{
+									required: true,
+									...getInputProps(fields.email, { type: 'email' }),
+									className: 'border-gray-800  rounded-none',
+								}}
+								errors={fields.email.errors}
+							/>
+						</div>
+						<TextareaField
+							className="mt-4"
+							labelProps={{
+								htmlFor: fields.message.id,
+								children: 'Message',
+								className: 'text-lg leading-relaxed md:text-base',
+							}}
+							textareaProps={{
+								...getTextareaProps(fields.message),
+								rows: 6,
+								className: 'border-gray-800  rounded-none',
+							}}
+							errors={fields.message.errors}
+						/>
+						<ErrorList errors={form.errors} id={form.errorId} />
+						<div className="mt-6 flex justify-end">
+							<StatusButton
+								type="submit"
+								status={
+									contact.state === 'submitting'
+										? 'pending'
+										: (form.status ?? 'idle')
+								}
+								disabled={contact.state !== 'idle'}
+								className="font-display w-full rounded-none border-gray-800 py-6 text-lg leading-relaxed font-thin md:text-base"
+							>
+								Send
+							</StatusButton>
+						</div>
+					</contact.Form>
+				)}
+			</main>
+			<ImageCarousel />
+		</>
 	)
 }

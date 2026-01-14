@@ -234,7 +234,7 @@ export function TestimonialSection({
 						{renderHeadshot()}
 						{/* Header text at the top, inline with headshot */}
 						<motion.h2
-							className={`mb-4 inline-block font-serif text-4xl font-normal ${titleColor}`}
+							className={`mb-4 inline-block font-sans text-4xl font-normal ${titleColor}`}
 							variants={titleVariants}
 							initial="hidden"
 							animate={isInView ? 'visible' : 'hidden'}

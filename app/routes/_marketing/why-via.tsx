@@ -12,19 +12,15 @@ export default function WhyVia() {
 				<div className="mx-auto max-w-7xl px-4">
 					<div className="text-center">
 						<div className="flex flex-col-reverse md:flex-col">
-							<p className="mb-8 font-serif text-xl text-gray-700 md:mb-4">
-								freedom &nbsp;| &nbsp;mission &nbsp;| &nbsp;holiness
-							</p>
 							<h1 className="mb-4 font-serif text-5xl font-normal text-black md:mb-8 md:text-6xl">
 								Why Via?
 							</h1>
 						</div>
 						<div className="mx-auto max-w-4xl space-y-6 text-base leading-relaxed text-gray-700 md:text-lg">
 							<p>
-								A lot of people ask us why they should do Via, or why Via
-								exists. We think this question can best be answered by those who
-								have participated in our way of life. Below are a few Fellows'
-								articulation of Via's purpose and merit.
+								A lot of people ask why they should do Via. This question can
+								best be answered by those who have experienced Via firsthand.
+								Below are a few past Fellows’ thoughts on why they did Via.
 							</p>
 						</div>
 					</div>
@@ -36,12 +32,23 @@ export default function WhyVia() {
 				imageSrc="/img/why-via-hero.jpg"
 				heightClass="h-[429px]"
 				overlayClass="bg-gradient-to-t from-black/15 via-black/10 to-black/15"
+				objectPosition="center center"
 			/>
 
 			{/* Collin Stephenson Testimonial */}
 			<TestimonialSection
 				id="testimonials"
-				name="Collin | Fellow, 2024 Cohort"
+				name="Collin S."
+				title="Via Fellow | 2024 Cohort"
+				className="mt-8"
+				headshot={{
+					src: '/img/collin.png',
+					alt: 'Collin Headshot',
+					width: 400,
+					height: 400,
+					objectPosition: 'center',
+					cropX: '50%',
+				}}
 				images={[
 					{
 						src: '/img/testimonial-collin.jpg',
@@ -84,9 +91,10 @@ export default function WhyVia() {
 
 			{/* Ellen LeBlanc Testimonial */}
 			<TestimonialSection
-				name="Ellen | Fellow, 2024 Cohort"
+				name="Ellen L."
+				title="Via Fellow | 2024 Cohort"
 				headshot={{
-					src: '/img/ellen-headshot3.png',
+					src: '/img/ellen-circle.png',
 					alt: 'Ellen Headshot',
 					width: 400,
 					height: 400,
@@ -166,7 +174,16 @@ export default function WhyVia() {
 
 			{/* Isaac LeJeune Testimonial */}
 			<TestimonialSection
-				name="Isaac | Fellow, 2023 Cohort"
+				name="Isaac L."
+				title="Fellow, 2023 Cohort"
+				headshot={{
+					src: '/img/isaac-circle.png',
+					alt: 'Isaac Headshot',
+					width: 400,
+					height: 400,
+					objectPosition: 'center',
+					cropX: '50%',
+				}}
 				images={[
 					{
 						src: '/img/testimonial-isaac-1.jpg',
@@ -229,11 +246,12 @@ export default function WhyVia() {
 
 			{/* Sam LeBlanc Testimonial */}
 			<TestimonialSection
-				name="Sam | Fellow, 2023 Cohort"
+				name="Sam L."
+				title="Via Fellow | 2023 Cohort"
 				// light brown
 				headshotColor="#8B4513"
 				headshot={{
-					src: '/img/sam-headshot.png',
+					src: '/img/sam-circle.png',
 					alt: 'Sam Headshot',
 					width: 400,
 					height: 400,
@@ -282,16 +300,6 @@ export default function WhyVia() {
 					</>,
 				]}
 			/>
-
-			{/* Footer */}
-			<footer className="border-t border-gray-200 bg-white py-6">
-				<div className="mx-auto max-w-7xl px-4 text-center">
-					<p className="text-xs text-gray-500 md:text-base md:text-gray-600">
-						Via Nova is an independent 501(c)(3) organization. All donations are
-						tax-deductible by law.
-					</p>
-				</div>
-			</footer>
 		</div>
 	)
 }
