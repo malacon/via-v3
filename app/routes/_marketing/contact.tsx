@@ -45,7 +45,7 @@ export async function action({ request }: Route.ActionArgs) {
 	const name = [firstName, lastName].filter(Boolean).join(' ') || email
 
 	const response = await sendEmail({
-		to: 'hello@vianova.org', // Update this to your actual contact email
+		to: 'luke@studyworkpray.org', // Update this to your actual contact email
 		subject: `Contact Form Submission from ${name}`,
 		react: (
 			<ContactFormEmail
