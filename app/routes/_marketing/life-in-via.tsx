@@ -488,8 +488,11 @@ export default function LifeInVia() {
 					The essential purpose of all of Via’s structures is to create an
 					environment that helps young people to respond more zealously to the
 					call to sanctity. No amount of programming can force the soul’s free
-					response to this calling, but we have witnessed Via’s structures
-					provide a transformation that .
+					response to this calling. However, we have witnessed this formative
+					environment lead to profound transformation in our participants over
+					and over again such that we know with utmost confidence that if a
+					young person chooses to lean into the structures of this formation, it
+					works.
 				</p>
 			</CarouselImagelessTextSection>
 
