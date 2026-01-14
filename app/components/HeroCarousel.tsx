@@ -185,9 +185,9 @@ export default function HeroCarousel({
 					<div className="container3 mx-auto flex h-full w-full">
 						{/* Text panel (left) */}
 						<div className="flex w-full max-w-[720px] items-center px-4 py-10 md:max-w-[640px] md:py-16 lg:max-w-[720px] lg:px-0 xl:max-w-[800px]">
-							<div className="w-full text-white">
+							<div className="text-via-text-inverse w-full">
 								{(staticHeading || current.heading) && (
-									<h1 className="text-4xl font-bold drop-shadow md:text-5xl lg:text-6xl">
+									<h1 className="font-serif text-4xl leading-tight font-bold text-balance drop-shadow md:text-5xl">
 										{staticHeading ?? current.heading}
 									</h1>
 								)}
