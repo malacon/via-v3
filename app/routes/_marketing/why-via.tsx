@@ -42,7 +42,7 @@ export default function WhyVia() {
 				title="Via Fellow | 2024 Cohort"
 				className="mt-8"
 				headshot={{
-					src: '/img/collin.png',
+					src: '/img/collin-mute.png',
 					alt: 'Collin Headshot',
 					width: 400,
 					height: 400,

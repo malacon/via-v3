@@ -259,9 +259,9 @@ export default function Index() {
 								<span className="mb-3 font-sans text-xl font-bold text-white md:text-2xl">
 									Prayer
 								</span>{' '}
-								takes the form of paid apprenticeships with Catholic
-								professionals dedicated to preparing Via Fellows for success in
-								their respective careers.
+								entails a robust regimen of sacraments & prayer, fostering
+								sustained recollection and frequent opportunities to beg divine
+								assistance.
 							</p>
 						</div>
 					</motion.div>
@@ -390,11 +390,11 @@ export default function Index() {
 									whileInView="visible"
 									viewport={{ once: true }}
 								>
-									We believe that such an experience is enormously beneficial,
-									such that an additional stage of formation should be inserted
-									into the traditional sequence of young adults' formation, so
-									as to help the future of the Church better live in the world
-									but not of it.
+									Because we have found this experience to be enormously
+									beneficial, we believe a new stage should be added to the
+									traditional sequence of young adults' formation—a stage of
+									holistic education that equips the future of the Church for a
+									life of order, holiness, and the frontlines of evangelization.
 								</motion.p>
 							</div>
 						</div>

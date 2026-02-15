@@ -305,9 +305,9 @@ function App() {
 					<div className="container3 mx-auto flex items-center justify-between px-4 py-2.5 md:px-28 md:py-3 lg:px-20">
 						<Link to="/" className="flex items-center gap-3">
 							<img
-								src="/img/via-logo-cropped.png"
+								src="/img/via-logo2.jpg"
 								alt="Via Nova logo"
-								className="h-[58px] w-auto md:h-[81px] md:w-[324px]"
+								className="h-[48px] w-auto md:h-[61px]"
 								style={{ imageRendering: 'crisp-edges' }}
 							/>
 						</Link>
@@ -317,7 +317,7 @@ function App() {
 						>
 							<Link
 								to="/"
-								className={`text-black transition-colors hover:text-[#404040] hover:underline ${
+								className={`hidden text-black transition-colors hover:text-[#404040] hover:underline xl:block ${
 									isActivePath('/') ? 'text-[#404040] underline' : ''
 								}`}
 							>

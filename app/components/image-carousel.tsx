@@ -8,11 +8,11 @@ import {
 } from '#app/components/ui/carousel.tsx'
 
 const images = [
+	'/img/contact-5.jpg',
 	'/img/contact-1.jpg',
 	'/img/contact-2.jpg',
-	'/img/contact-3.jpg',
+	'/img/contact-3.png',
 	'/img/contact-4.jpg',
-	'/img/contact-5.jpg',
 	'/img/contact-6.jpg',
 	'/img/contact-7.jpg',
 	'/img/contact-8.jpg',

@@ -205,8 +205,8 @@ const faqData = [
 					when more formation is needed.
 				</p>
 				<p>
-					The Fellows say it best. Via is a life-changing experience that makes
-					delaying more than worth it.{' '}
+					The Fellows say it best: Via is a life-changing experience that makes
+					taking a break from school or work more than worth it.
 				</p>
 			</div>
 		),

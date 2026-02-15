@@ -142,7 +142,7 @@ export default function LifeInVia() {
 			/>
 
 			{/* Sticky In-Page Navigation */}
-			<nav className="sticky-nav bg-brand-dark-blue top-[73px] z-20 py-4 md:sticky md:top-[105px]">
+			<nav className="sticky-nav bg-brand-dark-blue top-[73px] z-20 py-4 md:sticky md:top-[85px]">
 				<div className="max-w-8xl mx-auto px-4">
 					<div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:flex-wrap md:space-y-0 md:space-x-10">
 						<button

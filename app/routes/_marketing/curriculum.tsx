@@ -166,7 +166,7 @@ export default function Curriculum() {
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								III. The Chosen People: Israel
+								III. Revelation: the Chosen People
 							</motion.h2>
 							<div className="grid grid-cols-1 gap-4 text-base md:grid-cols-2">
 								<ul className="space-y-2">
@@ -207,7 +207,7 @@ export default function Curriculum() {
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								IV. From Poetry to Science: Greece
+								IV. Natural Reason, from Poetry to Science: Greece
 							</motion.h2>
 							<div className="grid grid-cols-1 gap-4 text-base md:grid-cols-2">
 								<ul className="space-y-3">
@@ -275,7 +275,7 @@ export default function Curriculum() {
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								V. The Pursuit of Happiness: Rome
+								V. Government of the Earthly City and the Pursuit of Happiness: Rome
 							</motion.h2>
 							<ul className="space-y-2 text-base">
 								<AnimatedListItem index={0}>
@@ -315,7 +315,7 @@ export default function Curriculum() {
 								viewport={{ once: true, margin: '-100px' }}
 								transition={{ duration: 0.6 }}
 							>
-								VI. City of God: Church Fathers
+								VI. Revelation: the Heavenly City
 							</motion.h2>
 							<ul className="space-y-4 text-base">
 								<AnimatedListItem index={0}>
@@ -340,7 +340,7 @@ export default function Curriculum() {
 												</ul>
 											</AnimatedListItem>
 											<AnimatedListItem index={1}>
-												2. God
+												2. Nature of God
 												<ul className="mt-1 ml-6 space-y-1">
 													<AnimatedListItem index={0}>
 														a. Irenaeus
@@ -378,7 +378,7 @@ export default function Curriculum() {
 												</ul>
 											</AnimatedListItem>
 											<AnimatedListItem index={2}>
-												3. Creation
+												3. Origins of Creation
 												<ul className="mt-1 ml-6 space-y-1">
 													<AnimatedListItem index={0}>
 														a. Athanasius
@@ -394,7 +394,7 @@ export default function Curriculum() {
 										</ul>
 										<ul className="space-y-4">
 											<AnimatedListItem index={3}>
-												4. Sin
+												4. The Curse of Sin
 												<ul className="mt-1 ml-6 space-y-1">
 													<AnimatedListItem index={0}>a. Leo</AnimatedListItem>
 													<AnimatedListItem index={1}>
@@ -427,7 +427,7 @@ export default function Curriculum() {
 												</ul>
 											</AnimatedListItem>
 											<AnimatedListItem index={5}>
-												6. New Sacrifice (Lifting the curse)
+												6. New Sacrifice: Lifting the Curse
 												<ul className="mt-1 ml-6 space-y-1">
 													<AnimatedListItem index={0}>
 														a. Justin Martyr
