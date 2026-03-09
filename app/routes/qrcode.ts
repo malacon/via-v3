@@ -1,7 +1,7 @@
 import { type LoaderFunctionArgs } from 'react-router'
 import * as QRCode from 'qrcode'
 
-const SITE_URL = 'https://via.studyworkpray.org/'
+const SITE_URL = 'https://via.studyworkpray.org/contact'
 
 export async function loader(_args: LoaderFunctionArgs) {
 	const buffer = await QRCode.toBuffer(SITE_URL)
