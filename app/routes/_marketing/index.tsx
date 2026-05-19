@@ -145,7 +145,7 @@ export default function Index() {
 								variant="outline"
 								size="lg"
 								asChild
-								className="border-white text-white hover:bg-white/10"
+								className="border-white bg-transparent text-white hover:bg-white/10 hover:text-white"
 							>
 								<a href="/why-via">Learn More</a>
 							</Button>

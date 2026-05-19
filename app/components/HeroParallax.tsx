@@ -8,6 +8,7 @@ type HeroParallaxProps = {
 	heightClass?: string
 	overlayClass?: string
 	objectPosition?: string // e.g., "center 70%", "center top"
+	imageOffsetY?: string // e.g., "-120px" to shift fixed parallax image up within the frame
 }
 
 export default function HeroParallax({
@@ -17,6 +18,7 @@ export default function HeroParallax({
 	heightClass = 'h-[80vh]',
 	overlayClass = 'bg-black/40',
 	objectPosition = 'center center',
+	imageOffsetY = '0px',
 }: HeroParallaxProps) {
 	const sectionRef = useRef<HTMLDivElement>(null)
 
@@ -32,13 +34,20 @@ export default function HeroParallax({
 	return (
 		<section
 			ref={sectionRef}
-			className={`relative hidden ${heightClass} overflow-hidden md:block`}
+			className={`relative ${heightClass} overflow-hidden`}
 			aria-label="Parallax hero"
 		>
+			<img
+				src={imageSrc}
+				alt=""
+				className="h-full w-full object-cover md:hidden"
+				style={{ objectPosition }}
+			/>
 			<motion.div
-				className="pointer-events-none fixed top-0 left-0 hidden h-screen w-screen will-change-transform md:block"
+				className="pointer-events-none fixed left-0 hidden h-screen w-screen will-change-transform md:block"
 				style={{
 					y,
+					top: imageOffsetY,
 					zIndex: 1,
 				}}
 				aria-hidden
@@ -52,10 +61,7 @@ export default function HeroParallax({
 				/>
 			</motion.div>
 
-			<div
-				className={`absolute inset-0 z-0 hidden ${overlayClass} md:block`}
-				aria-hidden
-			/>
+			<div className={`absolute inset-0 z-0 ${overlayClass}`} aria-hidden />
 
 			{(heading || subheading) && (
 				<div className="relative z-[2] flex h-full flex-col items-center justify-center px-6 text-center text-white">

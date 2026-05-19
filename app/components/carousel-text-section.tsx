@@ -28,6 +28,7 @@ interface CarouselTextSectionProps {
 interface CarouselTextDoubleSectionProps {
 	id: string
 	title: string
+	secondaryId?: string
 	secondaryTitle: string
 	images: string[]
 	children: ReactNode
@@ -259,6 +260,7 @@ export function CarouselTextSection({
 export function CarouselTextDoubleSection({
 	id,
 	title,
+	secondaryId,
 	secondaryTitle,
 	images,
 	children,
@@ -419,7 +421,7 @@ export function CarouselTextDoubleSection({
 					))}
 				</motion.div>
 			</div>
-			<div className="flex flex-col space-y-6">
+			<div id={secondaryId} className="flex scroll-mt-36 flex-col space-y-6">
 				<motion.h2
 					className={`font-serif text-2xl font-normal md:text-4xl md:font-bold ${titleColor}`}
 					variants={titleVariants}

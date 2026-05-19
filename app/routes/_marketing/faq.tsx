@@ -84,12 +84,28 @@ const faqData = [
 					link
 				</Link>{' '}
 				will allow you to view the syllabus for Via's core curriculum. Fellows
-				have the opportunity to participate in other courses in addition to the
-				core curriculum throughout the year as well. The content of these
-				supplemental courses vary year by year. This past fall 2025, the
-				additional courses feature Dostoevsky, Virgil, Augustine, the idea of
-				logos, and political theology were added.
+				also have the opportunity to participate in optional semester-long
+				courses in addition to the core curriculum. The content of these
+				optional courses vary year by year. Last year, the additional courses
+				covered Vergil, St. Augustine, St. Benedict, St. Vincent of Lerins,
+				Dostoevsky, theories of knowledge, and evolutionary biology.
 			</>
+		),
+	},
+	{
+		question: 'What does a normal week in Via look like?',
+		answer: (
+			<div className="space-y-4 text-black">
+				<p>Below is a screenshot of a normal week.</p>
+				<Img
+					src="/img/normal-week-in-via.png"
+					alt="Screenshot of a normal week in Via"
+					width={1200}
+					height={800}
+					fit="contain"
+					className="w-full rounded-lg border border-gray-200 bg-white object-contain shadow-sm"
+				/>
+			</div>
 		),
 	},
 	{

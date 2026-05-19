@@ -15,8 +15,6 @@ import {
 } from 'react-router'
 import { HoneypotProvider } from 'remix-utils/honeypot/react'
 import { type Route } from './+types/root.ts'
-import appleTouchIconAssetUrl from './assets/favicons/apple-touch-icon.png?url'
-import faviconAssetUrl from './assets/favicons/favicon.svg?url'
 import { GeneralErrorBoundary } from './components/error-boundary.tsx'
 import { EpicProgress } from './components/progress-bar.tsx'
 import { SearchBar } from './components/search-bar.tsx'
@@ -50,11 +48,17 @@ export const links: Route.LinksFunction = () => {
 		{ rel: 'preload', href: iconsHref, as: 'image' },
 		{
 			rel: 'icon',
-			href: '/favicon.ico',
-			sizes: '48x48',
+			type: 'image/png',
+			href: '/favicons/favicon-32x32.png',
+			sizes: '32x32',
 		},
-		{ rel: 'icon', type: 'image/svg+xml', href: faviconAssetUrl },
-		{ rel: 'apple-touch-icon', href: appleTouchIconAssetUrl },
+		{
+			rel: 'icon',
+			type: 'image/png',
+			href: '/favicons/favicon-16x16.png',
+			sizes: '16x16',
+		},
+		{ rel: 'apple-touch-icon', href: '/favicons/apple-touch-icon.png' },
 		{
 			rel: 'manifest',
 			href: '/site.webmanifest',
@@ -66,8 +70,12 @@ export const links: Route.LinksFunction = () => {
 
 export const meta: Route.MetaFunction = ({ data }) => {
 	return [
-		{ title: data ? 'Epic Notes' : 'Error | Epic Notes' },
-		{ name: 'description', content: `Your own captain's log` },
+		{ title: data ? 'Via Nova' : 'Error | Via Nova' },
+		{
+			name: 'description',
+			content:
+				'Via Nova forms young adults through study, work, prayer, and communal life.',
+		},
 	]
 }
 
@@ -164,6 +172,7 @@ function Document({
 				{children}
 				<script
 					nonce={nonce}
+					suppressHydrationWarning
 					dangerouslySetInnerHTML={{
 						__html: `window.ENV = ${JSON.stringify(env)}`,
 					}}
@@ -447,14 +456,14 @@ function App() {
 									duration: 0.3,
 									ease: [0.4, 0, 0.2, 1],
 								}}
-								className="h-full border-t border-gray-200 bg-white lg:hidden"
+								className="h-full border-t border-gray-200 bg-white/95 shadow-lg backdrop-blur-sm lg:hidden"
 								aria-label="Mobile navigation"
 							>
-								<div className="mx-auto flex h-[100vh] flex-col items-center gap-4 px-4 py-4 text-xl">
+								<div className="mx-auto flex h-[100vh] max-w-sm flex-col items-stretch px-8 py-8 font-serif text-2xl">
 									<Link
 										to="/"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`border-b border-gray-200 py-4 text-center tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/') ? 'text-[#404040] underline' : ''
 										}`}
 									>
@@ -463,7 +472,7 @@ function App() {
 									<Link
 										to="/life-in-via"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`border-b border-gray-200 py-4 text-center tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/life-in-via')
 												? 'text-[#404040] underline'
 												: ''
@@ -474,7 +483,7 @@ function App() {
 									<Link
 										to="/why-via"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`font-display tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`border-b border-gray-200 py-4 text-center tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/why-via') ? 'text-[#404040] underline' : ''
 										}`}
 									>
@@ -483,7 +492,7 @@ function App() {
 									<Link
 										to="/curriculum"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`border-b border-gray-200 py-4 text-center tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/curriculum')
 												? 'text-[#404040] underline'
 												: ''
@@ -494,7 +503,7 @@ function App() {
 									<Link
 										to="/faq"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`border-b border-gray-200 py-4 text-center tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/faq') ? 'text-[#404040] underline' : ''
 										}`}
 									>
@@ -503,7 +512,7 @@ function App() {
 									<Link
 										to="/contact"
 										onClick={() => setMobileMenuOpen(false)}
-										className={`tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
+										className={`border-b border-gray-200 py-4 text-center tracking-wider text-black transition-colors hover:text-[#404040] hover:underline ${
 											isActivePath('/contact') ? 'text-[#404040] underline' : ''
 										}`}
 									>
@@ -514,7 +523,7 @@ function App() {
 										target="_blank"
 										rel="noreferrer noopener"
 										onClick={() => setMobileMenuOpen(false)}
-										className="tracking-wider text-black transition-colors hover:text-[#404040] hover:underline"
+										className="mt-8 rounded-full border border-black px-8 py-4 text-center text-xl tracking-[0.2em] text-black transition-colors hover:bg-black hover:text-white"
 									>
 										GIVE
 									</a>

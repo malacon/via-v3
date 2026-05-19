@@ -10,7 +10,9 @@ export default {
 	routeDiscovery: { mode: 'initial' },
 
 	future: {
-		unstable_optimizeDeps: true,
+		// Keep disabled for pnpm: React Router's generated optimizeDeps.include
+		// can include transitive packages that are not resolvable from the project root.
+		unstable_optimizeDeps: false,
 	},
 
 	buildEnd: async ({ viteConfig, reactRouterConfig, buildManifest }) => {

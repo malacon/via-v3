@@ -92,7 +92,8 @@ export default function LifeInVia() {
 			// On mobile, the image appears first (254px tall), so we need to account for it
 			// to position the text content below the sticky nav
 			const isMobile = window.matchMedia('(max-width: 767px)').matches
-			const mobileImageHeight = isMobile ? 254 : 0
+			const mobileImageHeight =
+				isMobile && sectionId !== 'internal-support' ? 254 : 0
 
 			// Calculate where the element currently is relative to viewport
 			const elementTop = element.getBoundingClientRect().top
@@ -125,12 +126,6 @@ export default function LifeInVia() {
 							study &nbsp;| &nbsp;work | &nbsp;pray
 						</p> */}
 					</div>
-					<p className="mx-auto max-w-3xl text-lg leading-loose text-gray-700 md:leading-relaxed">
-						Below you can find the essential features of life in Via.{' '}
-						<br className="hidden md:block" />
-						These categories don't do justice to the experience of Via but
-						here's the gist.
-					</p>
 				</div>
 			</section>
 
@@ -343,8 +338,16 @@ export default function LifeInVia() {
 				<p>
 					Fellows also serve the wider community by hosting events throughout
 					the year, such as poetry nights, lectures, jam sessions, discussions,
-					etc., as well as several major events including our Courir de Lundi
-					Gras, feast day balls, and the Fall Jamboree.
+					etc., as well as several major events including our{' '}
+					<a
+						href="https://www.youtube.com/watch?v=b0_8MiwsjFY"
+						target="_blank"
+						rel="noreferrer noopener"
+						className="text-brand-primary hover:underline"
+					>
+						Courir de Lundi Gras
+					</a>
+					, feast day balls, and the Fall Jamboree.
 				</p>
 				<p>
 					Internally, the Fellows’ service aims to make Via institutionally
@@ -388,8 +391,9 @@ export default function LifeInVia() {
 
 			{/* External and Internal Support Sections */}
 			<CarouselTextDoubleSection
-				id="external-and-internal-support"
+				id="external-support"
 				title="External Support"
+				secondaryId="internal-support"
 				images={['/img/internal-support-music-room.jpg']}
 				carouselSide="right"
 				imageAltPrefix="external and internal support"

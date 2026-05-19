@@ -16,13 +16,6 @@ export default function WhyVia() {
 								Why Via?
 							</h1>
 						</div>
-						<div className="mx-auto max-w-4xl space-y-6 text-base leading-relaxed text-gray-700 md:text-lg">
-							<p>
-								A lot of people ask why they should do Via. This question can
-								best be answered by those who have experienced Via firsthand.
-								Below are a few past Fellows’ thoughts on why they did Via.
-							</p>
-						</div>
 					</div>
 				</div>
 			</section>
@@ -32,7 +25,8 @@ export default function WhyVia() {
 				imageSrc="/img/why-via-hero.jpg"
 				heightClass="h-[429px]"
 				overlayClass="bg-gradient-to-t from-black/15 via-black/10 to-black/15"
-				objectPosition="center center"
+				objectPosition="center bottom"
+				imageOffsetY="-140px"
 			/>
 
 			{/* Collin Stephenson Testimonial */}
@@ -88,6 +82,10 @@ export default function WhyVia() {
 					</>,
 				]}
 			/>
+
+			<div className="mx-auto max-w-6xl px-4">
+				<div className="h-px bg-gray-200" />
+			</div>
 
 			{/* Ellen LeBlanc Testimonial */}
 			<TestimonialSection
@@ -172,6 +170,10 @@ export default function WhyVia() {
 				]}
 			/>
 
+			<div className="mx-auto max-w-6xl px-4">
+				<div className="h-px bg-gray-200" />
+			</div>
+
 			{/* Isaac LeJeune Testimonial */}
 			<TestimonialSection
 				name="Isaac L."
@@ -243,6 +245,10 @@ export default function WhyVia() {
 					</>,
 				]}
 			/>
+
+			<div className="mx-auto max-w-6xl px-4">
+				<div className="h-px bg-gray-200" />
+			</div>
 
 			{/* Sam LeBlanc Testimonial */}
 			<TestimonialSection
