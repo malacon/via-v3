@@ -9,7 +9,13 @@ test('mobile visitors can use Apply Now to reach the contact page', async ({
 
 	const applyNow = page.getByRole('link', { name: 'Apply Now' })
 	await expect(applyNow).toHaveAttribute('href', '/contact')
-	await applyNow.click()
+	const documentNavigation = page.waitForRequest(
+		(request) =>
+			request.isNavigationRequest() &&
+			new URL(request.url()).pathname === '/contact',
+	)
+	await applyNow.click({ noWaitAfter: true })
+	await documentNavigation
 	await expect(page).toHaveURL('/contact')
 })
 

@@ -112,7 +112,9 @@ export default function Index() {
 									asChild
 									className="bg-white text-gray-900 hover:bg-gray-100"
 								>
-									<Link to="/contact">Apply Now</Link>
+									<Link to="/contact" reloadDocument>
+										Apply Now
+									</Link>
 								</Button>
 								<Button
 									variant="outline"
@@ -139,7 +141,9 @@ export default function Index() {
 								asChild
 								className="bg-white text-gray-900 hover:bg-gray-100"
 							>
-								<Link to="/contact">Apply Now</Link>
+								<Link to="/contact" reloadDocument>
+									Apply Now
+								</Link>
 							</Button>
 							<Button
 								variant="outline"
