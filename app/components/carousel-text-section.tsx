@@ -60,8 +60,8 @@ export function CarouselTextSection({
 	imageAltPrefix,
 	variant = 'light',
 	className,
-	imageWidth = 800,
-	imageHeight = 1000,
+	imageWidth = 1600,
+	imageHeight = 1200,
 	imageContainerHeight = '587px',
 }: CarouselTextSectionProps) {
 	const [api, setApi] = useState<CarouselApi>()
@@ -235,8 +235,8 @@ export function CarouselTextSection({
 				<div
 					className={`grid gap-6 md:gap-12 ${
 						carouselSide === 'left'
-							? 'md:grid-cols-[45%_55%]'
-							: 'md:grid-cols-[55%_45%]'
+							? 'md:grid-cols-[minmax(0,45fr)_minmax(0,55fr)]'
+							: 'md:grid-cols-[minmax(0,55fr)_minmax(0,45fr)]'
 					}`}
 				>
 					{/* On mobile, always show carousel first, then text */}
@@ -269,8 +269,8 @@ export function CarouselTextDoubleSection({
 	imageAltPrefix,
 	variant = 'light',
 	className,
-	imageWidth = 800,
-	imageHeight = 1000,
+	imageWidth = 1600,
+	imageHeight = 1200,
 	imageContainerHeight = '587px',
 }: CarouselTextDoubleSectionProps) {
 	const [api, setApi] = useState<CarouselApi>()
@@ -460,8 +460,8 @@ export function CarouselTextDoubleSection({
 				<div
 					className={`grid items-stretch gap-8 md:gap-12 lg:gap-16 ${
 						carouselSide === 'left'
-							? 'md:grid-cols-[45%_55%]'
-							: 'md:grid-cols-[55%_45%]'
+							? 'md:grid-cols-[minmax(0,45fr)_minmax(0,55fr)]'
+							: 'md:grid-cols-[minmax(0,55fr)_minmax(0,45fr)]'
 					}`}
 				>
 					{/* On mobile, always show carousel first, then text */}

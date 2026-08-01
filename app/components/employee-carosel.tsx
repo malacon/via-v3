@@ -1,7 +1,5 @@
 import React from 'react'
 import { flushSync } from 'react-dom'
-import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar'
-import { Card, CardContent } from './ui/card'
 import {
 	type CarouselApi,
 	Carousel,
@@ -10,6 +8,8 @@ import {
 	CarouselPrevious,
 	CarouselNext,
 } from '#app/components/ui/carousel.tsx'
+import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar'
+import { Card, CardContent } from './ui/card'
 
 const board = [
 	{
@@ -20,29 +20,33 @@ const board = [
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 	},
 	{
-		name: 'Lorena Ebenroth',
-		title: "Women's Cohort Leader",
-		image: '/img/board/lorena.ebenroth.jpg',
-		quote:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-	},
-	{
 		name: 'Jacob Troutman',
 		title: 'Director of Finance',
+		affiliation: 'Via Nova',
 		image: '/img/board/jacob.troutman.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 	},
 	{
 		name: 'John Lindsley',
-		title: 'Tutor',
+		title: 'Lead Tutor',
+		affiliation: 'Via Nova',
 		image: '/img/board/john.lindsley.jpg',
+		quote:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+	},
+	{
+		name: 'Lorena Ebenroth',
+		title: "Women's Cohort Leader",
+		affiliation: 'Via Nova',
+		image: '/img/board/lorena.ebenroth.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 	},
 	{
 		name: 'Sam Pitre',
 		title: 'Employer',
+		affiliation: 'St. Joseph the Worker Handyman',
 		image: '/img/board/sam.pitre.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -50,6 +54,7 @@ const board = [
 	{
 		name: 'Dr. John Anderson',
 		title: 'Employer',
+		affiliation: 'OncoLogics',
 		image: '/img/board/john.anderson.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -57,11 +62,13 @@ const board = [
 	{
 		name: 'Dr. Cory Hayes',
 		title: 'Tutor',
+		affiliation: 'John Paul the Great Academy',
 		image: '/img/board/corey.hayes.jpg',
 	},
 	{
 		name: 'Jay Toups',
 		title: 'Employer',
+		affiliation: 'High Performance Teams',
 		image: '/img/board/jay.toups.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -69,6 +76,7 @@ const board = [
 	{
 		name: 'Dr. Damon Cudihy',
 		title: 'Employer',
+		affiliation: 'Acadiana OBGYN',
 		image: '/img/board/damon.cudihy.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -76,6 +84,7 @@ const board = [
 	{
 		name: 'Fr. Josh Guillory',
 		title: 'Tutor',
+		affiliation: 'St. Patrick Catholic Church',
 		image: '/img/board/josh.guillory.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -83,6 +92,7 @@ const board = [
 	{
 		name: 'Blair Piras',
 		title: 'Employer',
+		affiliation: 'Blair Barlow Art',
 		image: '/img/board/blair.piras.jpg',
 		quote:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -159,17 +169,22 @@ export default function EmployeeCarousel() {
 				}}
 				className="w-full"
 			>
-				<CarouselContent className="-ml-1">
-					{board.map(({ image, name, title, quote }, index) => (
+				<CarouselContent
+					className="-ml-1"
+					role="list"
+					aria-label="Via Nova team"
+				>
+					{board.map(({ image, name, title, affiliation }, index) => (
 						<CarouselItem
 							style={{
 								...(tweenValues.length && { opacity: tweenValues[index] }),
 							}}
 							key={image}
+							role="listitem"
 							className="basis-10/12 pl-1 md:basis-5/12 lg:basis-3/12"
 						>
 							<div className="p-1">
-								<Card className="h-[370px] bg-slate-700">
+								<Card className="h-[400px] bg-slate-700">
 									<CardContent className="flex items-center justify-center p-6 pt-12 text-white">
 										{/* <p className="before:content-['] text-xl font-light leading-8">
 												{quote}
@@ -177,13 +192,18 @@ export default function EmployeeCarousel() {
 										<div className="flex flex-col place-items-start justify-center gap-4 pb-4">
 											<div className="flex w-full flex-col place-items-center">
 												<Avatar className="h-48 w-48">
-													<AvatarImage src={image} />
+													<AvatarImage src={image} alt={name} />
 													<AvatarFallback>tn</AvatarFallback>
 												</Avatar>
 											</div>
 											<div className="flex w-full flex-col pt-4 text-center">
 												<p className="text-center text-2xl">{name}</p>
 												<p className="text-center text-base">{title}</p>
+												{affiliation ? (
+													<p className="mt-1 text-center text-sm text-white/80">
+														{affiliation}
+													</p>
+												) : null}
 											</div>
 										</div>
 									</CardContent>

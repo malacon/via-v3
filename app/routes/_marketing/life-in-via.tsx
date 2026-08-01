@@ -207,6 +207,8 @@ export default function LifeInVia() {
 				images={[intellectualImage]}
 				carouselSide="left"
 				imageAltPrefix="intellectual formation"
+				imageWidth={2200}
+				imageHeight={1792}
 				imageContainerHeight="700px"
 			>
 				<p className="">
@@ -254,7 +256,8 @@ export default function LifeInVia() {
 				images={['/img/ultrasound.png']}
 				carouselSide="right"
 				imageAltPrefix="professional formation"
-				imageHeight={800}
+				imageWidth={1920}
+				imageHeight={2208}
 				imageContainerHeight="500px"
 			>
 				<p>
@@ -289,6 +292,8 @@ export default function LifeInVia() {
 				images={[spiritualImage]}
 				carouselSide="left"
 				imageAltPrefix="spiritual formation"
+				imageWidth={1536}
+				imageHeight={2048}
 				imageContainerHeight="420px"
 			>
 				<p>
@@ -321,6 +326,8 @@ export default function LifeInVia() {
 				images={[serviceImage]}
 				carouselSide="right"
 				imageAltPrefix="service & community"
+				imageWidth={1200}
+				imageHeight={715}
 				imageContainerHeight="540px"
 			>
 				<p>
@@ -364,6 +371,8 @@ export default function LifeInVia() {
 				images={['/img/retreats-pilgrimages.jpg']}
 				carouselSide="left"
 				imageAltPrefix="retreats and pilgrimages"
+				imageWidth={1079}
+				imageHeight={1600}
 				imageContainerHeight="440px"
 			>
 				<p>
@@ -397,6 +406,8 @@ export default function LifeInVia() {
 				images={['/img/internal-support-music-room.jpg']}
 				carouselSide="right"
 				imageAltPrefix="external and internal support"
+				imageWidth={1200}
+				imageHeight={900}
 				imageContainerHeight="683px"
 				secondaryTitle="Internal Support"
 				children={

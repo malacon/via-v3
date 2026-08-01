@@ -316,8 +316,9 @@ function App() {
 							<img
 								src="/img/via-logo2.jpg"
 								alt="Via Nova logo"
+								width={7000}
+								height={1400}
 								className="h-[48px] w-auto md:h-[61px]"
-								style={{ imageRendering: 'crisp-edges' }}
 							/>
 						</Link>
 						<nav

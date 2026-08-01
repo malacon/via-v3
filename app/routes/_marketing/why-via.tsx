@@ -25,8 +25,7 @@ export default function WhyVia() {
 				imageSrc="/img/why-via-hero.jpg"
 				heightClass="h-[429px]"
 				overlayClass="bg-gradient-to-t from-black/15 via-black/10 to-black/15"
-				objectPosition="center bottom"
-				imageOffsetY="-140px"
+				objectPosition="center center"
 			/>
 
 			{/* Collin Stephenson Testimonial */}

@@ -1,13 +1,13 @@
 import { motion, useInView } from 'framer-motion'
 import { Img } from 'openimg/react'
 import { useRef } from 'react'
+import { Link } from 'react-router'
+import EmployeeCarousel from '#app/components/employee-carosel.tsx'
 import { FullWidthBannerLink } from '#app/components/full-width-banner-link.tsx'
 import { FullWidthSection } from '#app/components/full-width-section.tsx'
 import HeroCarousel, { type Slide } from '#app/components/HeroCarousel.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { type Route } from './+types/index.ts'
-import { Link } from 'react-router'
-import EmployeeCarousel from '#app/components/employee-carosel.tsx'
 
 export const meta: Route.MetaFunction = () => [
 	{ title: 'Via Nova' },
@@ -139,7 +139,7 @@ export default function Index() {
 								asChild
 								className="bg-white text-gray-900 hover:bg-gray-100"
 							>
-								<a href="#apply">Apply Now</a>
+								<Link to="/contact">Apply Now</Link>
 							</Button>
 							<Button
 								variant="outline"
