@@ -1,5 +1,4 @@
 import { motion, useInView } from 'framer-motion'
-import { Img } from 'openimg/react'
 import React, { useEffect, useRef, useState, type ReactNode } from 'react'
 import {
 	Carousel,
@@ -167,12 +166,13 @@ export function CarouselTextSection({
 					{images.map((src, index) => (
 						<CarouselItem key={index} className="pl-0">
 							<div className="relative h-[254px] w-full overflow-hidden md:h-full">
-								<Img
+								<img
 									src={src}
 									alt={`${altPrefix} ${index + 1}`}
 									width={imageWidth}
 									height={imageHeight}
-									fit="cover"
+									loading="lazy"
+									decoding="async"
 									className="h-full w-full object-cover"
 								/>
 							</div>
@@ -364,12 +364,13 @@ export function CarouselTextDoubleSection({
 					{images.map((src, index) => (
 						<CarouselItem key={index} className="pl-0">
 							<div className="relative h-[254px] w-full overflow-hidden rounded-lg shadow-md md:h-full">
-								<Img
+								<img
 									src={src}
 									alt={`${altPrefix} ${index + 1}`}
 									width={imageWidth}
 									height={imageHeight}
-									fit="cover"
+									loading="lazy"
+									decoding="async"
 									className="h-full w-full object-cover"
 								/>
 							</div>

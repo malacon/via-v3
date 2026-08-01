@@ -100,6 +100,17 @@ test.describe('Life in Via at a Retina desktop viewport', () => {
 		page,
 		navigate,
 	}) => {
+		const runtimeOptimizedMarketingImages: string[] = []
+		page.on('request', (request) => {
+			const url = new URL(request.url())
+			if (
+				url.pathname === '/resources/images' &&
+				url.searchParams.get('src')?.startsWith('/img/')
+			) {
+				runtimeOptimizedMarketingImages.push(request.url())
+			}
+		})
+
 		await navigate('/life-in-via')
 
 		const pageWidths = await page.evaluate(() => ({
@@ -121,6 +132,7 @@ test.describe('Life in Via at a Retina desktop viewport', () => {
 			const image = page.getByAltText(altText)
 			await image.scrollIntoViewIfNeeded()
 			await expect(image).toBeVisible()
+			await expect(image).toHaveAttribute('src', /^\/img\/.+\.webp$/)
 			await expect
 				.poll(() =>
 					image.evaluate((element) => {
@@ -131,6 +143,8 @@ test.describe('Life in Via at a Retina desktop viewport', () => {
 				)
 				.toBeGreaterThanOrEqual(1.9)
 		}
+
+		expect(runtimeOptimizedMarketingImages).toEqual([])
 	})
 })
 

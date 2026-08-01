@@ -13,9 +13,9 @@ export const meta: Route.MetaFunction = () => [
 ]
 
 // Images - per Luke's 11/1 notes: static images only, no galleries
-const intellectualImage = '/img/study-group4.png'
-const spiritualImage = '/img/life-via-prayer.jpg'
-const serviceImage = '/img/service-lundi-gras.jpg' // Updated per design notes
+const intellectualImage = '/img/study-group4.webp'
+const spiritualImage = '/img/life-via-prayer.webp'
+const serviceImage = '/img/service-lundi-gras.webp' // Updated per design notes
 const bottomLineImage = '/img/bottomline-1.jpg'
 
 const sectionIds = [
@@ -253,7 +253,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="professional-formation"
 				title="Professional Formation"
-				images={['/img/ultrasound.png']}
+				images={['/img/ultrasound.webp']}
 				carouselSide="right"
 				imageAltPrefix="professional formation"
 				imageWidth={1920}
@@ -368,7 +368,7 @@ export default function LifeInVia() {
 			<CarouselTextSection
 				id="retreats-pilgrimages"
 				title="Retreats & Pilgrimages"
-				images={['/img/retreats-pilgrimages.jpg']}
+				images={['/img/retreats-pilgrimages.webp']}
 				carouselSide="left"
 				imageAltPrefix="retreats and pilgrimages"
 				imageWidth={1079}
@@ -403,7 +403,7 @@ export default function LifeInVia() {
 				id="external-support"
 				title="External Support"
 				secondaryId="internal-support"
-				images={['/img/internal-support-music-room.jpg']}
+				images={['/img/internal-support-music-room.webp']}
 				carouselSide="right"
 				imageAltPrefix="external and internal support"
 				imageWidth={1200}
