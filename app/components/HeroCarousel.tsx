@@ -137,7 +137,7 @@ export default function HeroCarousel({
 				aria-label="Hero image carousel"
 			>
 				{/* Slides as absolutely positioned layers to cross-fade */}
-				<div className="absolute inset-0">
+				<div className="pointer-events-none absolute inset-0">
 					<AnimatePresence mode="sync" initial={false}>
 						<motion.div
 							key={current?.src + index} // key on index to trigger transition

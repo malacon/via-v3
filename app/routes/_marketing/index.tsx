@@ -112,9 +112,7 @@ export default function Index() {
 									asChild
 									className="bg-white text-gray-900 hover:bg-gray-100"
 								>
-									<Link to="/contact" reloadDocument>
-										Apply Now
-									</Link>
+									<a href="/contact">Apply Now</a>
 								</Button>
 								<Button
 									variant="outline"
@@ -141,9 +139,7 @@ export default function Index() {
 								asChild
 								className="bg-white text-gray-900 hover:bg-gray-100"
 							>
-								<Link to="/contact" reloadDocument>
-									Apply Now
-								</Link>
+								<a href="/contact">Apply Now</a>
 							</Button>
 							<Button
 								variant="outline"
@@ -337,7 +333,7 @@ export default function Index() {
 						viewport={{ once: true }}
 					>
 						Via was born out of the conviction that every Catholic would be
-						profoundly well-served by having one year of holistic formation.
+						profoundly well-served by having one year of deep formation.
 					</motion.p>
 				</FullWidthSection>
 

@@ -100,8 +100,8 @@ const faqData = [
 				<Img
 					src="/img/normal-week-in-via.png"
 					alt="Screenshot of a normal week in Via"
-					width={1200}
-					height={800}
+					width={2746}
+					height={1592}
 					fit="contain"
 					className="w-full rounded-lg border border-gray-200 bg-white object-contain shadow-sm"
 				/>

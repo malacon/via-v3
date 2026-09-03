@@ -19,6 +19,51 @@ test('mobile visitors can use Apply Now to reach the contact page', async ({
 	await expect(page).toHaveURL('/contact')
 })
 
+test('the homepage describes Via as a year of deep formation', async ({
+	page,
+	navigate,
+}) => {
+	await navigate('/')
+
+	await expect(
+		page.getByText(
+			'Via was born out of the conviction that every Catholic would be profoundly well-served by having one year of deep formation.',
+			{ exact: true },
+		),
+	).toBeVisible()
+})
+
+test('the FAQ displays the normal-week calendar screenshot', async ({
+	page,
+	navigate,
+}) => {
+	await navigate('/faq')
+
+	const question = page.getByRole('button', {
+		name: 'What does a normal week in Via look like?',
+	})
+	await expect
+		.poll(async () => {
+			if ((await question.getAttribute('data-state')) !== 'open') {
+				await question.click()
+			}
+			return question.getAttribute('data-state')
+		})
+		.toBe('open')
+	const calendar = page.getByRole('img', {
+		name: 'Screenshot of a normal week in Via',
+	})
+	await expect(calendar).toBeVisible()
+	await expect
+		.poll(() =>
+			calendar.evaluate((element) => {
+				const image = element as HTMLImageElement
+				return image.complete && image.naturalWidth > 0
+			}),
+		)
+		.toBe(true)
+})
+
 test('the header logo uses smooth high-density rendering', async ({
 	page,
 	navigate,
