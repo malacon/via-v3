@@ -112,7 +112,9 @@ export default function Index() {
 									asChild
 									className="bg-white text-gray-900 hover:bg-gray-100"
 								>
-									<a href="/contact">Apply Now</a>
+									<Link to="/contact" prefetch="render">
+										Apply Now
+									</Link>
 								</Button>
 								<Button
 									variant="outline"
@@ -139,7 +141,9 @@ export default function Index() {
 								asChild
 								className="bg-white text-gray-900 hover:bg-gray-100"
 							>
-								<a href="/contact">Apply Now</a>
+								<Link to="/contact" prefetch="render">
+									Apply Now
+								</Link>
 							</Button>
 							<Button
 								variant="outline"
@@ -278,7 +282,6 @@ export default function Index() {
 						width={1920}
 						height={1080}
 						fit="cover"
-						isAboveFold
 						className="h-full w-full object-cover"
 					/>
 				</div>
@@ -345,7 +348,6 @@ export default function Index() {
 						width={1920}
 						height={1080}
 						fit="cover"
-						isAboveFold
 						className="absolute inset-0 h-full w-full object-cover"
 					/>
 					{/* Gradient overlay - dark on left (for text) to light on right - never fully clear, maintain 15-20% minimum */}

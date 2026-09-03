@@ -192,7 +192,12 @@ export default function EmployeeCarousel() {
 										<div className="flex flex-col place-items-start justify-center gap-4 pb-4">
 											<div className="flex w-full flex-col place-items-center">
 												<Avatar className="h-48 w-48">
-													<AvatarImage src={image} alt={name} />
+													<AvatarImage
+														src={image}
+														alt={name}
+														loading="lazy"
+														decoding="async"
+													/>
 													<AvatarFallback>tn</AvatarFallback>
 												</Avatar>
 											</div>

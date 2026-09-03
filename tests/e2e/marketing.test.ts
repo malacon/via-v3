@@ -2,21 +2,23 @@ import { expect, test } from '#tests/playwright-utils.ts'
 
 test('mobile visitors can use Apply Now to reach the contact page', async ({
 	page,
-	navigate,
 }) => {
 	await page.setViewportSize({ width: 390, height: 844 })
-	await navigate('/')
+	await page.route('**/*', async (route) => {
+		if (route.request().resourceType() === 'image') {
+			await new Promise((resolve) => setTimeout(resolve, 30_000))
+		}
+		await route.continue()
+	})
+	await page.goto('/', { waitUntil: 'domcontentloaded' })
 
 	const applyNow = page.getByRole('link', { name: 'Apply Now' })
 	await expect(applyNow).toHaveAttribute('href', '/contact')
-	const documentNavigation = page.waitForRequest(
-		(request) =>
-			request.isNavigationRequest() &&
-			new URL(request.url()).pathname === '/contact',
-	)
-	await applyNow.click({ noWaitAfter: true })
-	await documentNavigation
+	await applyNow.click()
 	await expect(page).toHaveURL('/contact')
+	await expect(
+		page.getByRole('heading', { name: 'Get in touch.' }),
+	).toBeVisible()
 })
 
 test('the homepage describes Via as a year of deep formation', async ({
