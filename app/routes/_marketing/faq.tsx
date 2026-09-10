@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { Img } from 'openimg/react'
 import { Link } from 'react-router'
 import {
 	Accordion,
@@ -97,12 +96,13 @@ const faqData = [
 		answer: (
 			<div className="space-y-4 text-black">
 				<p>Below is a screenshot of a normal week.</p>
-				<Img
+				<img
 					src="/img/normal-week-in-via.png"
 					alt="Screenshot of a normal week in Via"
 					width={2746}
 					height={1592}
-					fit="contain"
+					loading="lazy"
+					decoding="async"
 					className="w-full rounded-lg border border-gray-200 bg-white object-contain shadow-sm"
 				/>
 			</div>
@@ -319,12 +319,13 @@ export default function FAQ() {
 			</div>
 			{/* Bottom Image */}
 			<div className="relative h-[400px] w-full overflow-hidden md:h-[500px]">
-				<Img
-					src="/img/faq-books-glasses.jpg"
+				<img
+					src="/img/faq-books-glasses.webp"
 					alt="Books and glasses"
 					width={1920}
 					height={1080}
-					fit="cover"
+					loading="lazy"
+					decoding="async"
 					className="h-full w-full object-cover"
 				/>
 			</div>

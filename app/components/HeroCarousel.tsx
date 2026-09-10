@@ -1,5 +1,4 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Img } from 'openimg/react'
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 
 type HorizontalFocus = number | 'left' | 'center' | 'right'
@@ -154,13 +153,13 @@ export default function HeroCarousel({
 							aria-hidden={current.alt ? undefined : true}
 						>
 							{/* Background image layer */}
-							<Img
+							<img
 								src={current.src}
 								alt={current.alt || ''}
 								width={1920}
 								height={1080}
-								fit="cover"
-								isAboveFold
+								fetchPriority="high"
+								decoding="async"
 								className="absolute inset-0 h-full w-full scale-x-[-1] object-cover"
 								style={{
 									objectPosition: getObjectPosition(

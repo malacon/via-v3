@@ -1,5 +1,4 @@
 import { motion, useInView } from 'framer-motion'
-import { Img } from 'openimg/react'
 import { useRef } from 'react'
 import { Link } from 'react-router'
 import EmployeeCarousel from '#app/components/employee-carosel.tsx'
@@ -22,7 +21,7 @@ export const meta: Route.MetaFunction = () => [
 // 1) dancing, 2) John teaching (whiteboard centered), 3) Max/Lili sitting outside (flipped)
 const heroSlides: Slide[] = [
 	{
-		src: '/img/mountain-isaac-anthony-flip.jpg', // Poetry Night (focus on the table)
+		src: '/img/mountain-isaac-anthony-flip.webp', // Poetry Night (focus on the table)
 		heading: 'Isaac hoisting Anthony on mountain',
 		subheading: '',
 		alt: 'Isaac hoisting Anthony on mountain',
@@ -30,7 +29,7 @@ const heroSlides: Slide[] = [
 		focusX: 'center',
 	},
 	{
-		src: '/img/life-in-via-luke.png', // VIA-30.HayesAndFellowsSmilingSeminar.JPG
+		src: '/img/life-in-via-luke.webp', // VIA-30.HayesAndFellowsSmilingSeminar.JPG
 		heading: 'A New Way',
 		subheading:
 			'Through a life of study, work, and prayer, we offer our participants a via nova, that is "a new way" of learning and living.',
@@ -41,7 +40,7 @@ const heroSlides: Slide[] = [
 		// focusY: 'center', // Center vertically
 	},
 	{
-		src: '/img/hero-dancing.jpg', // IMG_3998.jpeg from _EventsDances
+		src: '/img/hero-dancing.webp', // IMG_3998.jpeg from _EventsDances
 		heading: 'Via Nova',
 		subheading:
 			'Offers a live-in experience of holistic intellectual, professional, and spiritual formation for young adults.',
@@ -191,12 +190,13 @@ export default function Index() {
 						className="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-white/5 shadow-lg backdrop-blur-sm"
 					>
 						<div className="relative h-64 w-full overflow-hidden md:h-72">
-							<Img
-								src="/img/hero-teaching.jpg"
+							<img
+								src="/img/hero-teaching.webp"
 								alt="Seminar with LU and Fellows"
 								width={800}
 								height={600}
-								fit="cover"
+								loading="lazy"
+								decoding="async"
 								className="h-full w-full object-cover"
 							/>
 						</div>
@@ -220,12 +220,13 @@ export default function Index() {
 						className="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-white/5 shadow-lg backdrop-blur-sm"
 					>
 						<div className="relative h-64 w-full overflow-hidden md:h-72">
-							<Img
-								src="/img/life-in-via-prayer.jpg"
+							<img
+								src="/img/life-in-via-prayer.webp"
 								alt="Work apprenticeship"
 								width={800}
 								height={600}
-								fit="cover"
+								loading="lazy"
+								decoding="async"
 								className="h-full w-full object-cover"
 							/>
 						</div>
@@ -249,12 +250,13 @@ export default function Index() {
 						className="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-white/5 shadow-lg backdrop-blur-sm"
 					>
 						<div className="relative h-64 w-full overflow-hidden md:h-72">
-							<Img
-								src="/img/anthony-praying.jpg"
+							<img
+								src="/img/anthony-praying.webp"
 								alt="Anthony and AnnAyrisse praying"
 								width={800}
 								height={600}
-								fit="cover"
+								loading="lazy"
+								decoding="async"
 								className="h-full w-full object-cover"
 							/>
 						</div>
@@ -276,12 +278,13 @@ export default function Index() {
 			<section>
 				{/* Mobile: Image at top */}
 				<div className="relative h-[267px] overflow-hidden md:hidden">
-					<Img
-						src="/img/mountain-isaac-anthony.jpg"
+					<img
+						src="/img/mountain-isaac-anthony.webp"
 						alt="Isaac hoisting Anthony on mountain"
 						width={1920}
 						height={1080}
-						fit="cover"
+						loading="lazy"
+						decoding="async"
 						className="h-full w-full object-cover"
 					/>
 				</div>
@@ -342,12 +345,13 @@ export default function Index() {
 
 				{/* Desktop: Image with overlay and text */}
 				<div className="relative hidden min-h-[600px] overflow-hidden py-12 md:block md:py-36">
-					<Img
-						src="/img/hike-group.jpg"
+					<img
+						src="/img/hike-group.webp"
 						alt="Group hiking"
 						width={1920}
 						height={1080}
-						fit="cover"
+						loading="lazy"
+						decoding="async"
 						className="absolute inset-0 h-full w-full object-cover"
 					/>
 					{/* Gradient overlay - dark on left (for text) to light on right - never fully clear, maintain 15-20% minimum */}
