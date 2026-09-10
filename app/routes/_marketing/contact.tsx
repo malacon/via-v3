@@ -136,7 +136,7 @@ export default function Contact() {
 					Get in touch.
 				</h1>
 				<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 md:text-lg">
-					If you would like to request an application to Via's 2026 cohort, if
+					If you would like to request an application to Via's 2027 cohort, if
 					you wish to get involved in our mission in any way, or if you just
 					want to say hello, please fill out your contact info below and someone
 					from our team will get back to you soon.
