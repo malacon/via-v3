@@ -24,7 +24,7 @@ test('Users can register and use passkeys', async ({
 	navigate,
 	login,
 }) => {
-	await login()
+	const user = await login()
 
 	const { client, authenticatorId } = await setupWebAuthn(page)
 
@@ -58,8 +58,8 @@ test('Users can register and use passkeys', async ({
 	).toHaveLength(1)
 
 	// Logout
-	await page.getByRole('link', { name: 'User menu' }).click()
-	await page.getByRole('menuitem', { name: /logout/i }).click()
+	await navigate('/users/:username', { username: user.username })
+	await page.getByRole('button', { name: /logout/i }).click()
 	await expect(page).toHaveURL(`/`)
 
 	// Try logging in with passkey
@@ -81,7 +81,9 @@ test('Users can register and use passkeys', async ({
 	await Promise.race([passkeyAssertedPromise, errorPromise])
 
 	// Verify successful login
-	await expect(page.getByRole('link', { name: 'User menu' })).toBeVisible()
+	await expect(page).toHaveURL('/')
+	await navigate('/users/:username', { username: user.username })
+	await expect(page.getByRole('link', { name: /edit profile/i })).toBeVisible()
 
 	// Verify the sign count increased
 	const afterLoginCredentials = await client.send('WebAuthn.getCredentials', {
@@ -107,8 +109,8 @@ test('Users can register and use passkeys', async ({
 	expect(afterDeletionCredentials.credentials).toHaveLength(1)
 
 	// Logout again to test deleted passkey
-	await page.getByRole('link', { name: 'User menu' }).click()
-	await page.getByRole('menuitem', { name: /logout/i }).click()
+	await navigate('/users/:username', { username: user.username })
+	await page.getByRole('button', { name: /logout/i }).click()
 	await expect(page).toHaveURL(`/`)
 
 	// Try logging in with the deleted passkey

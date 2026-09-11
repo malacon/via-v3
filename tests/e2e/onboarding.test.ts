@@ -48,9 +48,8 @@ const test = base.extend<{
 test('onboarding with link', async ({ page, navigate, getOnboardingData }) => {
 	const onboardingData = getOnboardingData()
 
-	await navigate('/')
-
-	await page.getByRole('link', { name: /log in/i }).click()
+	// Account entry is a direct route, not part of the marketing navigation.
+	await navigate('/login')
 	await expect(page).toHaveURL(`/login`)
 
 	const createAccountLink = page.getByRole('link', {
@@ -104,14 +103,15 @@ test('onboarding with link', async ({ page, navigate, getOnboardingData }) => {
 
 	await expect(page).toHaveURL(`/`)
 
-	await page.getByRole('link', { name: 'User menu' }).click()
-	await page.getByRole('menuitem', { name: /profile/i }).click()
+	await navigate('/users/:username', { username: onboardingData.username })
 
 	await expect(page).toHaveURL(`/users/${onboardingData.username}`)
 
-	await page.getByRole('link', { name: 'User menu' }).click()
-	await page.getByRole('menuitem', { name: /logout/i }).click()
+	await expect(page.getByRole('link', { name: /edit profile/i })).toBeVisible()
+	await page.getByRole('button', { name: /logout/i }).click()
 	await expect(page).toHaveURL(`/`)
+	await navigate('/settings/profile')
+	await expect(page).toHaveURL(/\/login\?redirectTo=/)
 })
 
 test('onboarding with a short code', async ({
@@ -344,7 +344,8 @@ test('login as existing user', async ({ page, navigate, insertNewUser }) => {
 	await page.getByRole('button', { name: /log in/i }).click()
 	await expect(page).toHaveURL(`/`)
 
-	await expect(page.getByRole('link', { name: 'User menu' })).toBeVisible()
+	await navigate('/users/:username', { username: user.username })
+	await expect(page.getByRole('link', { name: /edit profile/i })).toBeVisible()
 })
 
 test('reset password with a link', async ({
@@ -402,7 +403,8 @@ test('reset password with a link', async ({
 
 	await expect(page).toHaveURL(`/`)
 
-	await expect(page.getByRole('link', { name: 'User menu' })).toBeVisible()
+	await navigate('/users/:username', { username: user.username })
+	await expect(page.getByRole('link', { name: /edit profile/i })).toBeVisible()
 })
 
 test('reset password with a short code', async ({

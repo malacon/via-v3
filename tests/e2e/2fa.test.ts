@@ -37,8 +37,8 @@ test('Users can add 2FA to their account and use it when logging in', async ({
 	await expect(main).toHaveText(/You have enabled two-factor authentication./i)
 	await expect(main.getByRole('link', { name: /disable 2fa/i })).toBeVisible()
 
-	await page.getByRole('link', { name: 'User menu' }).click()
-	await page.getByRole('menuitem', { name: /logout/i }).click()
+	await navigate('/users/:username', { username: user.username })
+	await page.getByRole('button', { name: /logout/i }).click()
 	await expect(page).toHaveURL(`/`)
 
 	await navigate('/login')
@@ -59,5 +59,7 @@ test('Users can add 2FA to their account and use it when logging in', async ({
 
 	await page.getByRole('button', { name: /submit/i }).click()
 
-	await expect(page.getByRole('link', { name: 'User menu' })).toBeVisible()
+	await expect(page).toHaveURL('/')
+	await navigate('/users/:username', { username: user.username })
+	await expect(page.getByRole('link', { name: /edit profile/i })).toBeVisible()
 })
