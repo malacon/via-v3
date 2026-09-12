@@ -1,5 +1,28 @@
 import { expect, test } from '#tests/playwright-utils.ts'
 
+test('an applicant can submit the contact form with the verified email sender', async ({
+	page,
+	navigate,
+}) => {
+	await navigate('/contact')
+	await page
+		.getByRole('textbox', { name: 'First Name', exact: true })
+		.fill('Test')
+	await page
+		.getByRole('textbox', { name: 'Last Name', exact: true })
+		.fill('Applicant')
+	await page
+		.getByRole('textbox', { name: 'Email', exact: true })
+		.fill('applicant@example.com')
+	await page
+		.getByRole('textbox', { name: 'Message', exact: true })
+		.fill('Please send information about the 2027 cohort.')
+	await page.getByRole('button', { name: 'Send', exact: true }).click()
+	await expect(
+		page.getByText('Thanks for submitting!', { exact: true }),
+	).toBeVisible()
+})
+
 test('mobile visitors can use Apply Now to reach the contact page', async ({
 	page,
 }) => {

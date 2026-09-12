@@ -31,11 +31,12 @@ export async function sendEmail({
 	| { html: string; text: string; react?: never }
 	| { react: ReactElement; html?: never; text?: never }
 )) {
-	const from = 'hello@studyworkpray.org'
+	const from = 'hello@mail.studyworkpray.org'
 
 	const email = {
-		from,
 		...options,
+		// Resend verifies the exact subdomain; callers must not override it.
+		from,
 		...(react ? await renderReactEmail(react) : null),
 	}
 
