@@ -169,6 +169,8 @@ jobs:
         run: |
           flyctl deploy \
             --build-only \
+            --local-only \
+            --depot=false \
             --push \
             --image-label ${{ github.sha }} \
             --build-arg COMMIT_SHA=${{ github.sha }} \
@@ -181,6 +183,8 @@ jobs:
         run: |
           flyctl deploy \
             --build-only \
+            --local-only \
+            --depot=false \
             --push \
             --image-label ${{ github.sha }} \
             --build-arg COMMIT_SHA=${{ github.sha }} \
