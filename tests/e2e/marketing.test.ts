@@ -1,27 +1,46 @@
 import { expect, test } from '#tests/playwright-utils.ts'
 
-test('an applicant can submit the contact form with the verified email sender', async ({
-	page,
-	navigate,
-}) => {
-	await navigate('/contact')
-	await page
-		.getByRole('textbox', { name: 'First Name', exact: true })
-		.fill('Test')
-	await page
-		.getByRole('textbox', { name: 'Last Name', exact: true })
-		.fill('Applicant')
-	await page
-		.getByRole('textbox', { name: 'Email', exact: true })
-		.fill('applicant@example.com')
-	await page
-		.getByRole('textbox', { name: 'Message', exact: true })
-		.fill('Please send information about the 2027 cohort.')
-	await page.getByRole('button', { name: 'Send', exact: true }).click()
-	await expect(
-		page.getByText('Thanks for submitting!', { exact: true }),
-	).toBeVisible()
-})
+for (const width of [390, 1280]) {
+	test(`an applicant sees a clear submission confirmation at ${width}px`, async ({
+		page,
+		navigate,
+	}) => {
+		await page.setViewportSize({ width, height: 844 })
+		await navigate('/contact')
+		await page
+			.getByRole('textbox', { name: 'First Name', exact: true })
+			.fill('Test')
+		await page
+			.getByRole('textbox', { name: 'Last Name', exact: true })
+			.fill('Applicant')
+		await page
+			.getByRole('textbox', { name: 'Email', exact: true })
+			.fill('applicant@example.com')
+		await page
+			.getByRole('textbox', { name: 'Message', exact: true })
+			.fill('Please send information about the 2027 cohort.')
+		await page.getByRole('button', { name: 'Send', exact: true }).click()
+		const confirmation = page.getByRole('status', {
+			name: 'Your message has been sent.',
+		})
+		await expect(confirmation).toBeVisible()
+		await expect(confirmation).toBeFocused()
+		await expect(confirmation).toBeInViewport({ ratio: 1 })
+		const bounds = await confirmation.boundingBox()
+		expect(bounds).not.toBeNull()
+		expect(bounds!.x).toBeGreaterThanOrEqual(0)
+		expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width)
+		await expect(confirmation).toContainText(
+			'Our team will be in touch using the email address you provided.',
+		)
+		await expect(
+			confirmation.getByRole('link', { name: 'Back to home' }),
+		).toHaveAttribute('href', '/')
+		await expect(
+			page.getByRole('button', { name: 'Send', exact: true }),
+		).toHaveCount(0)
+	})
+}
 
 test('mobile visitors can use Apply Now to reach the contact page', async ({
 	page,

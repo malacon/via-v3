@@ -6,7 +6,8 @@ import {
 } from '@conform-to/react'
 import { getZodConstraint, parseWithZod } from '@conform-to/zod'
 import * as E from '@react-email/components'
-import { data, useFetcher } from 'react-router'
+import { useEffect, useRef } from 'react'
+import { data, Link, useFetcher } from 'react-router'
 import { HoneypotInputs } from 'remix-utils/honeypot/react'
 import { z } from 'zod'
 import { ErrorList, Field, TextareaField } from '#app/components/forms.tsx'
@@ -128,6 +129,16 @@ export default function Contact() {
 	})
 
 	const isSuccess = contact.data?.success === true
+	const confirmationRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		if (!isSuccess) return
+		confirmationRef.current?.focus({ preventScroll: true })
+		confirmationRef.current?.scrollIntoView({
+			block: 'center',
+			behavior: 'instant',
+		})
+	}, [isSuccess])
 
 	return (
 		<>
@@ -135,18 +146,61 @@ export default function Contact() {
 				<h1 className="mb-6 font-serif text-4xl font-normal sm:text-5xl md:mb-8 md:text-6xl">
 					Get in touch.
 				</h1>
-				<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 md:text-lg">
-					If you would like to request an application to Via's 2027 cohort, if
-					you wish to get involved in our mission in any way, or if you just
-					want to say hello, please fill out your contact info below and someone
-					from our team will get back to you soon.
-				</p>
+				{!isSuccess && (
+					<p className="mb-6 text-lg leading-relaxed text-gray-600 sm:mb-8 md:text-lg">
+						If you would like to request an application to Via's 2027 cohort, if
+						you wish to get involved in our mission in any way, or if you just
+						want to say hello, please fill out your contact info below and
+						someone from our team will get back to you soon.
+					</p>
+				)}
 
 				{isSuccess ? (
-					<div className="mt-6">
-						<p className="text-right text-sm text-gray-600">
-							Thanks for submitting!
+					<div
+						ref={confirmationRef}
+						role="status"
+						tabIndex={-1}
+						aria-labelledby="contact-success-title"
+						className="border-t-primary flex scroll-mt-8 flex-col items-center border border-t-4 border-gray-200 bg-white px-6 py-10 text-center shadow-sm outline-none sm:px-10 sm:py-14"
+					>
+						<span
+							className="mb-6 flex size-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-800"
+							aria-hidden="true"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="1.75"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								className="size-8"
+							>
+								<path d="m5 12 4 4L19 6" />
+							</svg>
+						</span>
+						<p className="mb-3 text-xs font-semibold tracking-[0.2em] text-emerald-800 uppercase">
+							Message sent
 						</p>
+						<h2
+							id="contact-success-title"
+							className="text-primary max-w-lg font-serif text-3xl leading-tight sm:text-4xl"
+						>
+							Your message has been sent.
+						</h2>
+						<p className="mt-5 max-w-md text-base leading-relaxed text-gray-600 sm:text-lg">
+							Thank you for reaching out to Via Nova. Our team will be in touch
+							using the email address you provided.
+						</p>
+						<Link
+							to="/"
+							className="text-primary mt-8 inline-flex min-h-11 items-center border-b border-gray-300 px-2 text-sm underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4"
+						>
+							Back to home{' '}
+							<span aria-hidden="true" className="ml-2">
+								&rarr;
+							</span>
+						</Link>
 					</div>
 				) : (
 					<contact.Form method="POST" {...getFormProps(form)}>
