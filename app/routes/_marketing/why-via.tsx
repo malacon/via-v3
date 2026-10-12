@@ -285,17 +285,17 @@ export default function WhyVia() {
 							I couldn't have learned otherwise.
 						</p>
 						<p>
-							However, the most important thing Via taught me was that we are on
-							this fundamentally earth to know, to love and to serve Jesus
-							Christ. As much as I was told this in the past, I needed to learn
-							this experientially. Features of life in Via, such as the fact
-							that we were going to wake up and pray (no matter what happened
-							the night before and no matter what opportunity might be occurring
-							the next morning) and that we will close each day in prayer (no
-							matter how late it is or how busy we are) taught me that a rich
-							prayer life is not merely recommended or highly advised but
-							essential for my relationship with God in a deeper way than
-							anything I could have been told.
+							However, the most important thing Via taught me was that
+							fundamentally we are on this earth to know, to love and to serve
+							Jesus Christ. As much as I was told this in the past, I needed to
+							learn this experientially. Features of life in Via, such as the
+							fact that we were going to wake up and pray (no matter what
+							happened the night before and no matter what opportunity might be
+							occurring the next morning) and that we will close each day in
+							prayer (no matter how late it is or how busy we are) taught me
+							that a rich prayer life is not merely recommended or highly
+							advised but essential for my relationship with God in a deeper way
+							than anything I could have been told.
 						</p>
 						<p>
 							My experience in Via showed me that forming habits of holiness and
